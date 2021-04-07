@@ -25,21 +25,24 @@ using namespace std;
 //
 // generate 1,2,3,4 all permutations in vector<vector<int>> as result
 
-void dfs(vector<int> v, vector<vector<int>>& res) {
+void dfs(vector<int> v, vector<vector<int>> &res) {
     if (v.size() == 4) {
-        if (find(res.begin(), res.end(), v) == res.end()) res.push_back(v);
+        //if (find(res.begin(), res.end(), v) == res.end())
+        res.push_back(v);
         return;
     }
     for (int i = 1; i <= 4; i++) {
-        vector<int> temp(v);
-        temp.push_back(i);
-        dfs(temp, res);
+        if (find(v.begin(), v.end(), i) == v.end()) {
+            vector<int> temp(v);
+            temp.push_back(i);
+            dfs(temp, res);
+        }
     }
 }
 
 int main() {
     vector<vector<int>> result;
-    dfs({1, 2, 3, 4}, result);
+    dfs({}, result);
     for (auto i : result) {
         for (auto j : i) cout << j;
         cout << ", ";
