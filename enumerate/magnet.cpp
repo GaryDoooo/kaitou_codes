@@ -4,10 +4,10 @@ using namespace std;
 
 int brute_force(int m, int n) {
     int res = 0;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++) {
-            if (n - i - j >= 0)
-                if (i * 5 + j * 3 + n - i - j == m) res++;
+    for (int i = 0; i <= n; i++)
+        for (int j = 0; j <= n - i; j++) {
+            // if (n - i - j >= 0)
+            if (i * 5 + j * 3 + n - i - j == m) res++;
         }
     return res;
 }
