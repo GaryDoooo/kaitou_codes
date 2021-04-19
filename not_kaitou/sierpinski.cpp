@@ -27,13 +27,15 @@ int main() {
     }
     int dim = (1 << n) ;
     char res[100][100];
+    for (int i = 0; i < 10000; i++) {*(res + i) = 0;}
     draw(res, n, dim , 0);
     for (int y = 0; y < dim; y++) {
         for (int x = 1; x <= dim * 2; x++)
-            if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '_')
-                cout << res[x][y];
-            else
+            //if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '_')
+            if (res[x][y] == 0)
                 cout << " ";
+            else
+                cout << res[x][y];
         cout << endl;
     }
     return 0;
