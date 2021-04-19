@@ -6,7 +6,7 @@ void draw(char res[65][33], int lvl, int x, int y) {
         res[x][y] = '/';
         res[x + 1][y] = '\\';
         res[x][y + 1] = '-';
-        res[x + 1][y + 1] = '-'; //]
+        res[x + 1][y + 1] = '_'; //]
         res[x - 1][y + 1] = '/';
         res[x + 2][y + 1] = '\\';
     } else {
@@ -29,8 +29,8 @@ int main() {
     char res[65][33];
     draw(res, n, dim / 2, 0);
     for (int y = 0; y < dim; y++) {
-        for (int x = 0; x < dim; x++)
-            if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '-')
+        for (int x = 0; x < dim * 2; x++)
+            if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '_')
                 cout << res[x][y];
             else
                 cout << " ";
