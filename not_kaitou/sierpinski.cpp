@@ -7,6 +7,8 @@ void draw(char res[33][33], int lvl, int x, int y) {
         res[x + 1][y] = '\\';
         res[x][y + 1] = '-';
         res[x + 1][y + 1] = '-'; //]
+        res[x - 1][y + 1] = '/';
+        res[x + 2][y + 1] = '\\';
     } else {
         int offset = 1 << (lvl - 1);
         draw(res, lvl - 1, x, y);
