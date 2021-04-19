@@ -8,6 +8,7 @@ int main() {
         if (x == 3) water_loss = 8;
         water -= water_loss;
         if (x == 5) break;
+        x += 1;
     }
     cout << water;
 }
