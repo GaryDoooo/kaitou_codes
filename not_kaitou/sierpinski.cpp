@@ -31,7 +31,6 @@ int main() {
     draw(res, n, dim , 0);
     for (int y = 0; y < dim; y++) {
         for (int x = 1; x <= dim * 2; x++)
-            //if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '_')
             if (res[x][y] == 0)
                 cout << " ";
             else
