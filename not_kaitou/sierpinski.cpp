@@ -23,13 +23,15 @@ int main() {
         cout << "\nOut of range.\n";
         return 0;
     }
-    int dim = 1 << n + 1;
+    int dim = (1 << n) + 1;
     char res[33][33];
     draw(res, n, dim / 2, 0);
     for (int y = 0; y < dim; y++) {
         for (int x = 0; x < dim; x++)
             if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '-')
                 cout << res[x][y];
+            else
+                cout << " ";
         cout << endl;
     }
     return 0;
