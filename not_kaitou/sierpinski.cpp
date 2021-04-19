@@ -25,11 +25,11 @@ int main() {
         cout << "\nOut of range.\n";
         return 0;
     }
-    int dim = (1 << n) + 1;
+    int dim = (1 << n) ;
     char res[100][100];
-    draw(res, n, dim / 2, 0);
+    draw(res, n, dim , 0);
     for (int y = 0; y < dim; y++) {
-        for (int x = 0; x < dim * 2; x++)
+        for (int x = 1; x <= dim * 2; x++)
             if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '_')
                 cout << res[x][y];
             else
