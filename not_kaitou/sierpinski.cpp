@@ -28,7 +28,7 @@ int main() {
     draw(res, n, dim / 2, 0);
     for (int y = 0; y < dim; y++) {
         for (int x = 0; x < dim; x++)
-            if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == ' - ')
+            if (res[x][y] == '/' or res[x][y] == '\\' or res[x][y] == '-')
                 cout << res[x][y];
         cout << endl;
     }
