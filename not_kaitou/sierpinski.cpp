@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void draw(char res[32][32], int lvl, int x, int y) {
+void draw(char res[33][33], int lvl, int x, int y) {
     if (lvl == 1) {
         res[x][y] = '/';
         res[x + 1][y] = '\\';
@@ -23,8 +23,8 @@ int main() {
         cout << "\nOut of range.\n";
         return 0;
     }
-    int dim = 1 << n;
-    char res[32][32];
+    int dim = 1 << n + 1;
+    char res[33][33];
     draw(res, n, dim / 2, 0);
     for (int y = 0; y < dim; y++) {
         for (int x = 0; x < dim; x++)
