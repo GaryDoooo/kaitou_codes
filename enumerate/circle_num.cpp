@@ -15,8 +15,7 @@ int main() {
                 pn ++;
                 c = 1;
             } else c ++;
-            x++;
-        }
+        } x++;
         if (pn == 10) break;
     }
 }
