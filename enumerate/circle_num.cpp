@@ -9,7 +9,7 @@ int main() {
         if (c == 3) {
             int i = x % (p.size()) + 1;
             cout << i << " ";
-            p.remove(i)
+            p.(i)
             c == 1;
         } else c ++;
         x++;
