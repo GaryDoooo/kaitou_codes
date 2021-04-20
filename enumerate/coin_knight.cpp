@@ -8,9 +8,11 @@ int main() {
         for (int c = 1; c <= i; c++) {
             total += i;
             day ++;
-            if (day == 20) break;
+            if (day == 20) {
+                cout << total << endl;
+                return 0;
+            }
         }
         i ++;
     }
-    cout << total << endl;
 }
