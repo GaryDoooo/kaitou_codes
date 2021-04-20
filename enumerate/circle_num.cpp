@@ -11,7 +11,7 @@ int main() {
             if (c == 3) {
                 cout << i << " ";
                 p[i] = -1;
-                c == 1;
+                c = 1;
             } else c ++;
             x++;
         }
