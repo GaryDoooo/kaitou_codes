@@ -1,6 +1,19 @@
 import random
+from unoframe import UnoFrame
+import tkinter
 
+def print2(txt):
+    f.addmessage(txt)
 
+def input(txt):
+    f.addmessage(txt)
+    f.clicked = False
+    while True:
+        if f.clicked:
+            break
+    return f.inp()
+
+# Uno classes/internal stuff -------------------------------------------------------------------
 class UnoCard:
     """represents an Uno card
     attributes:
@@ -193,18 +206,18 @@ class UnoPlayer:
           deck is an UnoDeck representing the current deck
           pile is an UnoPile representing the discard pile"""
         if not self.comp:
-            # print player info
-            print(self.name + ", it's your turn.")
-            print(pile)
-            print("Your hand: ")
-            print(self.get_hand())
+            # print2 player info
+            print2(self.name + ", it's your turn.")
+            print2(pile)
+            print2("Your hand: ")
+            print2(self.get_hand())
             # get a list of cards that can be played
             topcard = pile.top_card()
             matches = [card for card in self.hand if card.is_match(topcard)]
             if len(matches) > 0:  # can play
                 for index in range(len(matches)):
-                    # print the playable cards with their number
-                    print(str(index + 1) + ": " + str(matches[index]))
+                    # print2 the playable cards with their number
+                    print2(str(index + 1) + ": " + str(matches[index]))
                 # get player's choice of which card to play
                 choice = 0
                 while choice < 1 or choice > len(matches):
@@ -214,26 +227,26 @@ class UnoPlayer:
                 # play the chosen card from hand, add it to the pile
                 self.play_card(matches[choice - 1], pile)
             else:  # can't play
-                print("You can't play, so you have to draw.")
+                print2("You can't play, so you have to draw.")
                 input("Press enter to draw.")
                 # check if deck is empty -- if so, reset it
                 if deck.is_empty():
                     deck.reset_deck(pile)
                 # draw a new card from the deck
                 newcard = self.draw_card(deck)
-                print("You drew: " + str(newcard))
+                print2("You drew: " + str(newcard))
                 if newcard.is_match(topcard):  # can be played
-                    print("Good -- you can play that!")
+                    print2("Good -- you can play that!")
                     self.play_card(newcard, pile)
                 else:  # still can't play
-                    print("Sorry, you still can't play.")
+                    print2("Sorry, you still can't play.")
                 input("Press enter to continue.")
         if self.comp:
             matches = [card for card in self.hand if card.is_match(pile.top_card())]
             if len(matches) > 0:
                 playc = max(matches, key=lambda c: c.rank)
                 self.play_card(playc, pile)
-                print("Computer plays ", playc)
+                print2(f"Computer plays {playc}")
             else:
                 if deck.is_empty():
                     deck.reset_deck(pile)
@@ -241,7 +254,7 @@ class UnoPlayer:
                 topcard = pile.top_card()
                 if newcard.is_match(topcard):
                     self.play_card(newcard, pile)
-                    print("Computer plays ", newcard)
+                    print2(f"Computer plays {newcard}")
 
 
 def play_uno(numPlayers):
@@ -252,30 +265,32 @@ def play_uno(numPlayers):
     pile = UnoPile(deck)
     # set up the players
     playerList = []
-    for n in range(numPlayers):
-        # get each player's name, then create an UnoPlayer
-        compp = input("Will this player be a computer?(t or f): ")
-        if compp == "f":
-            name = input("Player #" + str(n + 1) + ", enter your name: ")
-            playerList.append(UnoPlayer(name, deck))
-        if compp == "t":
-            playerList.append(UnoPlayer("Computer " + str(n+1), deck, comp=True))
+    playerList.append(UnoPlayer("player", deck))
+    playerList.append(UnoPlayer("Computer " , deck, comp=True))
+    # for n in range(numPlayers):
+    #     # get each player's name, then create an UnoPlayer
+    #     compp = input("Will this player be a computer?(t or f): ")
+    #     if compp == "f":
+    #         name = input("Player #" + str(n + 1) + ", enter your name: ")
+    #         playerList.append(UnoPlayer(name, deck))
+    #     if compp == "t":
+    #         playerList.append(UnoPlayer("Computer " + str(n+1), deck, comp=True))
     # randomly assign who goes first
     currentPlayerNum = random.randrange(numPlayers)
     # play the game
     reverse = 1  # 1 = regular order, -1 = reversed
     while True:
-        # print the game status
-        print("-------")
+        # print2 the game status
+        print2("-------")
         for player in playerList:
-            print(player)
-        print("-------")
+            print2(player)
+        print2("-------")
         # take a turn
         playerList[currentPlayerNum].take_turn(deck, pile)
         # check for a winner
         if playerList[currentPlayerNum].has_won():
-            print(playerList[currentPlayerNum].get_name() + " wins!")
-            print("Thanks for playing!")
+            print2(playerList[currentPlayerNum].get_name() + " wins!")
+            print2("Thanks for playing!")
             break
         # go to the next player
         action = pile.top_card().action
@@ -289,5 +304,10 @@ def play_uno(numPlayers):
             continue
         currentPlayerNum = (currentPlayerNum + reverse) % numPlayers
 
-
-play_uno(3)
+if __name__ == "__main__":
+    # Main game loop -------------------------------------------------------------------------------
+    r = tkinter.Tk()
+    f = UnoFrame(r)
+    play_uno(2)
+    f.mainloop()
+    
