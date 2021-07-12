@@ -12,6 +12,7 @@ int main() {
     int e = 0;
     //for (auto i : scores) cout << i << " ";
     for (int i = 0; i < 3; i++) {
+        cout << scores.back() << " " << e << endl;
         e += scores.back();
         scores.pop_back();
     }
