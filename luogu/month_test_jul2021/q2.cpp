@@ -9,5 +9,10 @@ int main() {
         scores.push_back(scores);
     }
     sort(scores.begin(), scores.end())
-    for (int i = 0; i < 3; i++)
+    int e = 0;
+    for (int i = 0; i < 3; i++) {
+        e += scores.pop();
     }
+    cout << e;
+    return 0;
+}
