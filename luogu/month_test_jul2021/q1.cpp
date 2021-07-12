@@ -3,7 +3,7 @@ int main() {
     int l, t;
     int lp, tp, bp;
     int la, ta;
-// 	cin >> l >> t >> lp >> tp >> bp;
+    cin >> l >> t >> lp >> tp >> bp;
 // 	bool bmwi=false;
 // 	if (lp + tp > bp*2)
 // 		bmwi = true;
@@ -19,4 +19,5 @@ int main() {
 // 			}
 // 		}
 // 	}
-// }
+    for ()
+    }
