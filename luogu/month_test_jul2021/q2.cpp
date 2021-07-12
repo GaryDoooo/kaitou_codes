@@ -6,7 +6,7 @@ int main() {
     vector<int> scores = {};
     int x;
     while (cin >> x) {
-        scores.push_back(scores);
+        scores.push_back(x);
     }
     sort(scores.begin(), scores.end());
     int e = 0;
