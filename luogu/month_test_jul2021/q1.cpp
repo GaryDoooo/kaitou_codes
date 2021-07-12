@@ -22,7 +22,7 @@ int main() {
 // 		}
 // 	}
     int minn = 1000000;
-    for (int b = 0; b < min(l, t) * 2; b++) {
+    for (int b = 0; b <= min(l, t) * 2; b++) {
         int bfp = bp * b;
         int fp = bfp + (l - (b / 2)) * lp + (t - (b / 2)) * tp;
         if (fp < minn) minn = fp;
