@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 int main() {
     int l, t;
     int lp, tp, bp;
@@ -19,5 +20,6 @@ int main() {
 // 			}
 // 		}
 // 	}
-    for ()
+    int min = 1000000;
+    for (int b = 0; b < min(l, t) / 2)
     }
