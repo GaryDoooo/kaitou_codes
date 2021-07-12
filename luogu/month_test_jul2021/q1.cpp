@@ -26,6 +26,6 @@ int main() {
         int fp = bfp + (l - (b / 2)) * lp + (t - (b / 2)) * tp;
         if (fp < minn) minn = fp;
     }
-    cout << min;
+    cout << minn;
     return 0;
 }
