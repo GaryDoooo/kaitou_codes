@@ -10,9 +10,10 @@ int main() {
     }
     sort(scores.begin(), scores.end());
     int e = 0;
-    for (auto i : scores) cout << i << " ";
+    //for (auto i : scores) cout << i << " ";
     for (int i = 0; i < 3; i++) {
-        e += scores.pop_back();
+        e += scores.back();
+        scores.pop_back();
     }
     cout << e;
     return 0;
