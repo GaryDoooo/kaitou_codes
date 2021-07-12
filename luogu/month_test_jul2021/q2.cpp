@@ -8,7 +8,7 @@ int main() {
     while (cin >> x) {
         scores.push_back(scores);
     }
-    sort(scores.begin(), scores.end())
+    sort(scores.begin(), scores.end());
     int e = 0;
     for (int i = 0; i < 3; i++) {
         e += scores.pop();
