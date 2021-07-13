@@ -8,7 +8,8 @@ vector<int> convert_to_base(long long n, int base) {
         res.push_back(n % base);
         n /= base;
     }
-    return res;
+    if (res.front())
+        return res;
 }
 bool hui(vector<int> &a) {
     vector<int> r (a.rbegin(), a.rend());
@@ -27,6 +28,7 @@ int main() {
     for (int i = 2; i <= 16; i++ ) {
         e = convert_to_base(x, i);
         for (auto i : e) cout << i << " ";
+        cout << endl;
         if (hui(e)) {
             if (fl) {
                 cout << "Yes" << endl;
