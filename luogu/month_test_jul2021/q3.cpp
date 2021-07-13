@@ -18,6 +18,7 @@ int main() {
     long long x;
     cin >> x;
     vector<int> e = convert_to_base(x, 16);
+    for (auto i : e) cout << i << " ";
     if (hui(e)) {
         cout << "Yes" << endl;
     } else {
