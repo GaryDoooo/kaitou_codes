@@ -17,7 +17,8 @@ bool hui(vector<int> &a) {
 int main() {
     long long x;
     cin >> x;
-    if (hui(convert_to_base(x, 16))) {
+    vector<int> e = convert_to_base(x, 16);
+    if (hui(e)) {
         cout << "Yes" << endl;
     } else {
         cout << "No" << endl;
