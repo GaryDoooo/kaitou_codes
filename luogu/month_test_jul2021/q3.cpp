@@ -3,7 +3,7 @@
 using namespace std;
 
 vector<int> convert_to_base(long long n, int base) {
-    vector <int> res;
+    vector <int> res = {};
     while (n > 1) {
         res.push_back(n % base);
         n /= base;
@@ -17,7 +17,7 @@ bool hui(vector<int> &a) {
 int main() {
     long long x;
     cin >> x;
-    vector<int> e = convert_to_base(x, 16);
+    vector<int> e = convert_to_base(x, 2);
     for (auto i : e) cout << i << " ";
     if (hui(e)) {
         cout << "Yes" << endl;
