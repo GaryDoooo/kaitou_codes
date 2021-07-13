@@ -35,9 +35,8 @@ int main() {
             if (fl) {
                 cout << "Yes" << endl;
                 fl = false;
-            } else {
-                cout << i << " ";
             }
+            cout << i << " ";
         }
     }
     if (fl) {
