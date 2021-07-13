@@ -8,8 +8,10 @@ vector<int> convert_to_base(long long n, int base) {
         res.push_back(n % base);
         n /= base;
     }
-    if (res.front())
-        return res;
+    if (res.front() == 0) {
+        res.pop_front();
+    }
+    return res;
 }
 bool hui(vector<int> &a) {
     vector<int> r (a.rbegin(), a.rend());
