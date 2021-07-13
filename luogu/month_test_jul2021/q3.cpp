@@ -8,9 +8,9 @@ vector<int> convert_to_base(long long n, int base) {
         res.push_back(n % base);
         n /= base;
     }
-    if (res.front() == 0) {
-        res.erase(res.begin());
-    }
+    // if (res.() == 0) {
+    //     res.erase(res.begin());
+    // }
     return res;
 }
 bool hui(vector<int> &a) {
