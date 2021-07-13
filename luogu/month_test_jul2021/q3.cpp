@@ -18,7 +18,6 @@ int main() {
     long long x;
     cin >> x;
     vector<int> e = convert_to_base(x, 2);
-    // for (auto i : e) cout << i << " ";
     // if (hui(e)) {
     //     cout << "Yes" << endl;
     // } else {
@@ -27,6 +26,7 @@ int main() {
     bool fl = true;
     for (int i = 2; i <= 16; i++ ) {
         e = convert_to_base(x, i);
+        for (auto i : e) cout << i << " ";
         if (hui(e)) {
             if (fl) {
                 cout << "Yes" << endl;
