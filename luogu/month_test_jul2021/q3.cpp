@@ -29,8 +29,8 @@ int main() {
     bool fl = true;
     for (int i = 2; i <= 16; i++ ) {
         e = convert_to_base(x, i);
-        for (auto i : e) cout << i << " ";
-        cout << endl;
+        // for (auto i : e) cout << i << " ";
+        // cout << endl;
         if (hui(e)) {
             if (fl) {
                 cout << "Yes" << endl;
