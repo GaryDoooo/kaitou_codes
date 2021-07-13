@@ -9,13 +9,22 @@ int main() {
     while (cin >> x) {
         a.push_back(x);
     }
-    for (int i = )
-        // vector<int> b;
-        // for (int i = 0; i < x.size() / 2; i++) {
-        //     b.push_back(a.back());
-        //     a.pop_back();
-        // }
-        // for (auto i : a) {
-        //     if (cou)
-        //     }
+    vector<int> res;
+    for (int i = 1; i <= k; i++) {
+        if (count(a.begin(), a.end(), i) > 0) {
+            res.push_back(i);
+        }
     }
+    cout << res.size()
+    for (auto i : res) {
+        cout << i << " ";
+    }
+    // vector<int> b;
+    // for (int i = 0; i < x.size() / 2; i++) {
+    //     b.push_back(a.back());
+    //     a.pop_back();
+    // }
+    // for (auto i : a) {
+    //     if (cou)
+    //     }
+}
