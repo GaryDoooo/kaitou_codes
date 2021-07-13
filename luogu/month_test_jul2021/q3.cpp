@@ -9,7 +9,7 @@ vector<int> convert_to_base(long long n, int base) {
         n /= base;
     }
     if (res.front() == 0) {
-        res.pop_front();
+        res.erase(res.begin());
     }
     return res;
 }
