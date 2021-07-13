@@ -2,9 +2,10 @@
 #include <vector>
 using namespace std;
 int main() {
-    int
+    int n, k;
+    if
     vector<int> res;
-    int x;
-    while (cin >> x) {
+int x;
+while (cin >> x) {
     }
 }
