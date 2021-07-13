@@ -15,7 +15,7 @@ int main() {
             res.push_back(i);
         }
     }
-    cout << res.size()
+    cout << res.size();
     for (auto i : res) {
         cout << i << " ";
     }
