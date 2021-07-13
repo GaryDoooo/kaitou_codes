@@ -3,9 +3,10 @@
 using namespace std;
 int main() {
     int n, k;
-    if
+    cin >> n >> k;
     vector<int> res;
-int x;
-while (cin >> x) {
+    int x;
+    while (cin >> x) {
+        res.push_back(x);
     }
 }
