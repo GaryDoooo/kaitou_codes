@@ -22,5 +22,4 @@ int main() {
     } else {
         cout << "No" << endl;
     }
-    for (int i = 2)
-    }
+}
