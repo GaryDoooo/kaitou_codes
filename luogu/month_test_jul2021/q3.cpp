@@ -10,9 +10,12 @@ vector<int> convert_to_base(long long n, int base) {
     }
     return res;
 }
-bool hui_vecn(vector<int> n) {
+bool hui(vector<int> &a) {
+    vector<int> r (a.rbegin(), a.rend());
+    return (a == r);
 }
 int main() {
     long long x;
     cin >> x;
-}
+    if (convert_to_base(x, ))
+    }
