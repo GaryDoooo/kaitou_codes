@@ -8,7 +8,7 @@ int main() {
         int b = i / 100 % 10;
         int c = i / 10 % 10;
         int d = i % 10;
-        if (((a * 10 + b) + (c * 10 + d)) * ((a * 10 + b) + (c * 10 + d))) {
+        if (((a * 10 + b) + (c * 10 + d)) * ((a * 10 + b) + (c * 10 + d)) == i) {
             cout << a << b << c << d << endl;
             return 0;
         }
