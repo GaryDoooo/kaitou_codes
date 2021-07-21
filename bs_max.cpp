@@ -7,7 +7,7 @@ int main() {
     // for (double i = 0; i < 10; i += 0.1) {
     //     cout << f(i) << " ";
     // }
-    double k;
+    double k; 
     // for (int ii = 0; ii < 3000000; ii++) {
     // Binary search
     k = -10;
