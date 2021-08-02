@@ -1,7 +1,4 @@
-#include <iostream>
-#include <cmath>
-#include <string>
-// #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 typedef long long L;
 using namespace std;
 
