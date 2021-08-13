@@ -7,6 +7,12 @@ inline int read() {
     return x * f;
 }
 int main() {
-    int n = read();
-    for (int i = 0; i < n; i++)
+    int n = read(), a;
+    int mod_counter[3];
+    for (int i = 0; i < n; i++) {
+        a = read();
+        mod_counter[a % 3]++;
     }
+    cout << min(mod_counter[1], mod_counter[2]) + mod_counter[0] / 2;
+    return 0;
+}
