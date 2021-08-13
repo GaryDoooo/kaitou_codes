@@ -9,7 +9,7 @@ inline int read() {
 }
 int main() {
     int n = read(), a;
-    int mod_counter[3];
+    int mod_counter[3] = {0};
     for (int i = 0; i < n; i++) {
         a = read();
         mod_counter[a % 3]++;
