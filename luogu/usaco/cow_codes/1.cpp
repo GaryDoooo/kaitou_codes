@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    freopen(".in", "r", stdin);
-    freopen("cowfind.out", "w", stdout);
+    freopen("ctiming.in", "r", stdin);
+    freopen("ctiming.out", "w", stdout);
+    int
 }
