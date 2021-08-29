@@ -5,11 +5,12 @@ const int N = 10005;
 vector<int> e[N];
 int n, u, v, x, de[N], cnt[N];
 void dfs(int u) {
+    cnt[u] = 1;
     for (int i = 0; i < e[u].size(); i++) {
         int v = e[u][i];
         de[v] = de[u] + 1;
-        // cnt[u]++;
         dfs(v);
+        cnt[u] += cnt[v];
     }
 }
 int main() {
@@ -24,7 +25,7 @@ int main() {
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> x;
-        cout << de[x] << " " << e[x].size() + 1 << endl;
+        cout << de[x] << " " << cnt[de[x] + 1] << endl;
     }
     return 0;
 }
