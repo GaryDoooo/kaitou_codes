@@ -2,8 +2,8 @@
 using namespace std;
 int main()
 {
-    // freopen("cowfind.in", "r", stdin);
-    // freopen("cowfind.out", "w", stdout);
+    freopen("cowfind.in", "r", stdin);
+    freopen("cowfind.out", "w", stdout);
     // fstream in_file;
     // in_file.open("cowfind.in", ios::out);
     // fstream out_file;
