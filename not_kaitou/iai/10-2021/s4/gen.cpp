@@ -19,6 +19,7 @@ inline int read() {
 
 int main() {
     srand(time(NULL));
-    cout << 25 << endl;
-    for (int i = 0; i < 25; i++) cout << rand() % 2500 << endl;
+    int n = 1500;
+    cout << n << endl;
+    for (int i = 0; i < n; i++) cout << rand() % 2500 << endl;
 }
