@@ -16,7 +16,7 @@ int main() {
     vector<int> bt_sums;
     for (int i = 1; i <= n; i++) {
         sum += read() - m;
-        res += (sum > 0);
+        res += (sum >= 0);
         bool not_added = true;
         for (int j = Btree.size() - 1; j >= 0; j--) {
             if (sum < *(Btree[j].begin()) and j > 0) continue;

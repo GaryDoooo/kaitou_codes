@@ -26,7 +26,7 @@ struct cache {
 };
 unordered_map<ull, cache> m;
 bool can_sum(int index, int sum, int a[], int acc[]) {
-    cout << index << " " << sum << "    ";
+    // cout << index << " " << sum << "    ";
     if (index < 0 or sum < 0 or acc[index] < sum) return false;
     // if (sum==0) return true;
     ull index_sum = ((ull)sum << 12) + index;
