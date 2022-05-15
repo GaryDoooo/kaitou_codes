@@ -13,6 +13,7 @@ int main(){
         cin >> a[i];
     }
     sort(a + 1, a + n + 1, cmp);
+for (int i=1;i<=n;i++) cout<<a[i]<<endl;
     int maxn = -1;
     int maxt;
     for (int i = 1; i <= n; i++){
@@ -20,7 +21,7 @@ int main(){
         int s = 0;
         int l = i, r = i;
         while (t > 0){
-	   cout<<t<<" "<<l<<" "<<r<<" "<<i<<endl;
+	   // cout<<t<<" "<<l<<" "<<r<<" "<<i<<endl;
             if (r == n and l == 1){
                 break;
             }
