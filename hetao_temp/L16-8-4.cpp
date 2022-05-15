@@ -20,6 +20,7 @@ int main(){
         int s = 0;
         int l = i, r = i;
         while (t > 0){
+	   cout<<t<<" "<<l<<" "<<r<<" "<<i<<endl;
             if (r == n and l == 1){
                 break;
             }
