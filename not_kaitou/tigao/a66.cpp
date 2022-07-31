@@ -1,46 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct cheese {
-    int h, v;
-};
-bool operator<(cheese const& aa, cheese const& b) { return aa.h < b.h; }
-cheese c[105];
-int n, t, k, res, top, j;
-map<int, int> a[2005];
+int n, t, k, res, v[105], h[105], a[2005];
 int main() {
     scanf("%d %d %d", &n, &t, &k);
-    for (int i = 0; i < n; i++) scanf("%d %d", &c[i].v, &c[i].h);
-    sort(c, c + n);
-    // for (int i = 0; i < n; i++) cout << c[i].h << " " << c[i].v << endl;
-    a[0][0] = 0;
-    for (j = 0; j < n; j++) {
-        if (c[j].h >= k) break;
-        // for (int i = top; i >= 0; i--) {
-        for (int i = 0; i < t; i++)
-            res = max(res, a[i + c[j].h][0] =
-                               max(a[i + c[j].h][0], a[i][0] + c[j].v));
-        // top += c[j].h;
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", v + i, h + i);
+        for (int j = 0; (j + h[i]) / 5 * 4 <= t; j += 5)
+            a[j + h[i]] = max(a[j + h[i]], a[j] + v[i]);
     }
-    for (; j < n; j++) {
-        // for (int i = top; i >= 0; i--) {
-        for (int i = 0; i < t * 2; i++) {
-            for (auto option : a[i]) {
-                int shortest_big_cheese =
-                    (option.first > 0 ? min(option.first, c[j].h) : c[j].h);
-                int value       = option.second;
-                int new_total_h = i + c[j].h;
-                int new_total_v = value + c[j].v;
-                if ((new_total_h - shortest_big_cheese) / 5 * 4 +
-                        shortest_big_cheese >
-                    t)
-                    continue;
-                top = max(top, new_total_h);
-                res = max(
-                    res, a[new_total_h][shortest_big_cheese] = max(
-                             a[new_total_h][shortest_big_cheese], new_total_v));
-            }
-        }
+    res = a[t];
+    for (int i = 0; i < n; i++) {
+        if (h[i] < k) continue;
+        res = max(res, v[i] + a[(t - h[i]) / 4 * 5]);
     }
-    cout << res;
+    cout << res << endl;
 }
-
