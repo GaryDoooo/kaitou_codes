@@ -26,7 +26,7 @@ int main() {
                       compressed[i / 5 * 4 + c[j].h] = max(
                           compressed[i / 5 * 4 + c[j].h], normal[i] + c[j].v));
         }
-        for (int i = 5; i + shortest_big_cheese <= t; i += 5) {
+        for (int i = 5; i + shortest_big_cheese <= t; i++) {
             res = max(res, compressed[i + c[j].h / 5 * 4] =
                                max(compressed[i + c[j].h / 5 * 4],
                                    compressed[i] + c[j].v));
