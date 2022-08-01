@@ -12,11 +12,7 @@ int main() {
     cin >> m;
     for (int i = 0; i < m; i++) {
         cin >> s >> e;
-        s--;
-        e--;
-        int k      = trunc(log2(e - s + 1));
-        int offset = 1;
-        offset <<= k;
-        cout << max(f[s][k], f[e - offset + 1][k]) << endl;
+        int k = trunc(log2(e - s + 1));
+        cout << max(f[s - 1][k], f[e - (1 << k)][k]) << endl;
     }
 }
