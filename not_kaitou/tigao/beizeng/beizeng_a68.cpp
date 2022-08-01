@@ -26,6 +26,6 @@ int main() {
         offset <<= k;
         cout << s << " " << e << " " << k << " " << offset << endl;
         // cout << k << " " << offset << endl;
-        // cout << max(f[s][k], f[e - offset + 1][k]) << endl;
+        cout << max(f[s][k], f[e - offset + 1][k]) << endl;
     }
 }
