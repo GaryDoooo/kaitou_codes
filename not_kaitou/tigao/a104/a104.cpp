@@ -13,20 +13,21 @@ int main() {
             f[i][j] = f[f[i][j - 1]][j - 1];
         }
     }
-    for (int i = 1; i <= n; i++) {
-        cout << i << ": ";
-        for (int j = 0; j < 4; j++) cout << f[i][j] << " ";
-        cout << endl;
-    }
+    // for (int i = 1; i <= n; i++) {
+    //     cout << i << ": ";
+    //     for (int j = 0; j < 4; j++) cout << f[i][j] << " ";
+    //     cout << endl;
+    // }
     scanf("%d", &q);
     // cout << q << endl;
     for (int i = 1; i <= q; i++) {
         scanf("%d%d", &s, &e);
+        if (s > e) swap(s, e);
         // cout << s << " " << e << endl;
         int k   = trunc(log2(e - s));
         int res = 0, t = s;
         while (t < e) {
-            if (f[t][k] == n and k > 0) {
+            if ((f[t][k] == n or f[t][k] == 0 or f[t][k] > e) and k > 0) {
                 k--;
             } else {
                 res += 1 << k;
