@@ -1,54 +1,25 @@
 #include <bits/stdc++.h>
-#define MAX_INT 2147483647
-#define MIN_INT -2147483648
 using namespace std;
-typedef vector<int> vint;
-typedef long long ll;
-typedef unsigned long long ull;
-typedef unsigned long ul;
-typedef unordered_set<int> usint;
-inline int read() {
-    int xxxxx = 0, fffff = 1;
-    char ccccch = getchar();
-    while (!isdigit(ccccch)) {
-        if (ccccch == '-') fffff = -1;
-        ccccch = getchar();
-    }
-    while (isdigit(ccccch)) {
-        xxxxx  = (xxxxx << 1) + (xxxxx << 3) + (ccccch ^ 48);
-        ccccch = getchar();
-    }
-    return xxxxx * fffff;
-}
-inline void write(int x) {
-    static int sta[35];
-    int top = 0;
-    do {
-        sta[top++] = x % 10, x /= 10;
-    } while (x);
-    while (top) putchar(sta[--top] + 48);  // 48 是 '0'
-    putchar(' ');
-}
-////////////////////////
-
 int main() {
-    string input, s = "";
+    char s[100];
+    int f = 0, a = 0;
     do {
-        cin >> input;
-        s += input;
-    } while (input.back() != 'E');
-    int left = 0, f = 0, a = 0;
-    while (left < s.length()) {
-        if (s[left] == 'E') break;
-        if (s[left] == 'F') f++;
-        if (s[left] == 'A') a++;
-        left++;
-        if (abs(f - a) > 1 and (a >= 11 or f >= 11)) {
-            cout << f << ":" << a << endl;
-            f = a = 0;
+        // cin >> input;
+        // s = input;
+        scanf("%s", s);
+        for (int left = 0; s[left] != '\0'; left++) {
+            if (s[left] == 'E') {
+                if (a + f > 0) printf("%d:%d\n", f, a);
+                return 0;
+                // cout << f << ":" << a << endl;
+            }
+            if (s[left] == 'F') f++;
+            if (s[left] == 'A') a++;
+            if (abs(f - a) > 1 and (a >= 11 or f >= 11)) {
+                // cout << f << ":" << a << endl;
+                printf("%d:%d\n", f, a);
+                f = a = 0;
+            }
         }
-    }
-    if (a + f > 0) {
-        cout << f << ":" << a << endl;
-    }
+    } while (1);
 }
