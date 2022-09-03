@@ -1,0 +1,70 @@
+<html>
+<head> <title>USACO OPEN11 forgot Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'forgot' Analysis</h2>
+<h4>by Amlesh Jayakumar</h4>
+<p>This is a relatively straightforward dynamic programming problem. The idea 
+here is to work through the password backwards, trying to fit each of the NW 
+words you have into the password where they fit (this is almost identical to 
+the dynamic programming solution to the Knapsack Problem). Set up an array 
+DP[], where DP[i] stores the lexicographically least string made up of the 
+given words that fits into the password from its ith letter to the end (note 
+that this can include '?' in some cases). Working backwards through the 
+password (i.e. For i: L .. 1) we check each of the NW words to look for a word 
+that fits the password at the location we are currently on (i.e. For j: 1..NW, 
+check if the jth word fits the ith position of the password). Once we find such 
+a word, we replace the value stored in DP[i] if what we found is 
+lexicographically smaller. The answer is then found at DP[0].</p>
+
+<p>The following is Fatih Gelgi's compact code:</p>
+
+<pre>
+
+// DP
+#include &lt;fstream&gt;
+using namespace std;
+
+int l,n;
+string pass,words[1000],dp[1001];
+
+// checks if word y matches to the location x in the password
+bool match(int x,int y)
+{
+    for (int i=0; i&lt;words[y].length(); i++)
+        if (pass[x+i]!='?' && pass[x+i]!=words[y][i])
+            return false;
+    return true;
+}
+
+int main()
+{
+    ifstream fin("forgot.in");
+    fin &gt;&gt; l &gt;&gt; n &gt;&gt; pass;
+    for (int i=0; i&lt;n; i++)
+        fin &gt;&gt; words[i];
+    fin.close();
+
+    for (int i=l-1; i&gt;=0; i--)
+        for (int j=0; j&lt;n; j++)
+        {
+            int k=i+words[j].length();
+            if (k&lt;=l && (k==l || dp[k]!="") && match(i,j))
+                if (dp[i]=="" || dp[i]&gt;words[j]+dp[k])
+                    dp[i]=words[j]+dp[k];
+        }
+
+    ofstream fout("forgot.out");
+    fout &lt;&lt; dp[0] &lt;&lt; endl;
+    fout.close();
+}
+</pre>
+
+
+

@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0043)http://ace.delos.com/TESTDATA/NOV08.toy.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 toy Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="toy.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'toy' Analysis</H2>
+<H4>by Jacob Steinhardt and Richard Peng</H4>
+<P>Clearly, we may assume that N1 is bigger than N2 and C1 is less than C2 since 
+otherwise we only ever need to use one cleaning method. 
+<P>First, suppose that we fix the number of toys that we buy at t<SUB>0</SUB>. 
+Then, first of all, we should always buy all the toys right away, because we're 
+going to spend the money anyways so we might as well be able to use the toys as 
+much as possible. 
+<P>Now we consider how to optimally clean the toys. Note that since we have 
+perfect knowledge of the future, we can think of the cleaning process occurring 
+instantaneously providing we pay the cost and the toy to clean was last used 
+sufficiently long ago. In other words, if we need a toy to be cleaned by day x, 
+and it was last used on day x-n, then we can declare that we used any cleaning 
+method that required at most n days starting on day x-n. 
+<P>Then, whenever we can use method 1 to clean a toy, we do it since no other 
+toys can be cleaned at a cheaper price. When we are forced to use the more 
+expensive method 2, we always use the toy that was mostly recently used in the 
+hope that 'older' toys can be cleaned after their usage using method 1 if we 
+wait enough. To implement this, we can track all the toys that can be cleaned 
+using method 2 in a double ended queue (storing the times of their previous 
+usage). When the front end of the queue can be cleaned using method 1, we take 
+it away, otherwise, clean the ones starting from the back end of the queue. If 
+the queue ever becomes empty, we would need more toys. 
+<P>This gives an O(sum t<SUB>i</SUB>) algorithm for determining the cheapest way 
+to get everything done with a fixed number of toys providing we do event-driven 
+simulation. Thus we get an overall algorithm of O(N * sum t<SUB>i</SUB>) by 
+looping through all possible initial numbers of toys where N is the number of 
+days. This is the algorithm that gets 70% of the points. 
+<P>To get all the points, a convexity argument is needed. Let f(t) denote the 
+minimum attainable cost using t toys (we set f(t) to infinity if it is 
+impossible to use only t toys and have enough toys each day). We will prove that 
+f(t) is a convex function. We can then use an algorithm called ternary search to 
+quickly compute the minimum value of f. This works because a convex function has 
+a single local minimum: <PRE>\      /
+ \    /
+  \  /
+   \/
+</PRE>so our strategy for finding the minimum is to find progressively smaller 
+intervals containing the minimum until we can zero in. The "feasible interval" 
+is the interval that we know the minimum value of f must lie in. 
+<P>We can efficiently cut off one-third of the feasible interval. We do this by 
+sampling f at two points, about 1/3 and 2/3 of the way through the current 
+feasible interval. Let f(1/3) and f(2/3) denote these two values of f. There are 
+two possibilities: <BR>f(1/3) &lt;= f(2/3): then the minimum lies between 0 and 
+2/3 <BR>f(1/3) &gt; f(2/3): then the minimum lies between 1/3 and 1 
+<P>Either way, we trim our interval down to 2/3 the size of what it used to be. 
+Therefore, the interval will converge to a single point in logarithmic time, so 
+after O(log(sum t<SUB>i</SUB>)) iterations of the O(sum t<SUB>i</SUB>) algorithm 
+to compute the value of f(t), we will have our answer. This would then give us 
+an O(log(sum t<SUB>i</SUB>) * (sum t<SUB>i</SUB>)) algorithm, which is fast 
+enough to get 90% of the points (there are also some memory issues to hack out). 
+To get all the points, we need to "batch" the toys, so that toys added on the 
+same day can all be processed simultaneously. This just requires keeping two 
+values in the queue -- the day a toy was added and how many toys are left from 
+that day. This gives an O(log(sum t<SUB>i</SUB>) * N) algorithm. 
+<P>Note that we could also find the minimum value by using binary search on the 
+slope of f (i.e., f(n+1)-f(n)) to find a point where the slope is zero. This 
+also is O(log(sum t<SUB>i</SUB>) * N), and in practice has a better constant 
+(58% as many function calls) than ternary search (both should still get full 
+points, though). The implementation below uses ternary search. 
+<P>Of course, we haven't actually proved that f is convex yet, but now we at 
+least have some motivation for doing so because if f is convex, then we are 
+done. Here is the proof that f is convex: 
+<CENTER>
+<TABLE width="85%">
+  <TBODY>
+  <TR>
+    <TD>
+      <P>Let g(t) denote the cost of maintaining t toys enough to have the right 
+      number of toys each day. That is, g(t) is the best cost we can get using t 
+      toys, if we ignore the fact that we have to pay for the toys. Then f(t) = 
+      g(t)+c*t, where c is the cost of buying a toy. c*t is clearly a convex 
+      function, so f(t) will be convex if g(t) is convex (in fact, one can show 
+      that g is convex if and only if f is convex). 
+</P></TD></TR></TBODY></TABLE></CENTER>
+<P>g is clearly a decreasing function of t, since having more toys can't 
+possibly hurt. To be convex means that the improvement in g from adding each new 
+toy is no greater than the improvement from the last toy added. This is 
+intuitively clear, since if we add a toy, then anything we could've done with 
+this toy to cut down costs could also have been done with the last toy. This can 
+be made rigorous. Adding a toy just means that, at certain points, we can choose 
+the cheaper option to clean a toy. If adding a second toy gives us a bigger 
+savings than the first toy, we could've just chosen the cheaper option at all 
+the points we chose for the second toy, except instead when we added the first 
+toy. So, adding a later toy can never help us more than adding an earlier toy. 
+This shows that g is convex, so the algorithm we proposed works, and we are 
+done. 
+<P><B>Note:</B> To be even more explicit, on day i suppose that we use 
+a<SUB>i</SUB> toys cleaned with the cheap method and b<SUB>i</SUB> toys cleaned 
+with the expensive method. Let a<SUB>i</SUB><SUP>1</SUP>, 
+a<SUB>i</SUB><SUP>2</SUP>, a<SUB>i</SUB><SUP>3</SUP> denote the a<SUB>i</SUB> 
+for t, t+1, and t+2 toys. It is necessary and sufficient to show that sum( 
+a<SUB>i</SUB><SUP>3</SUP>-a<SUB>i</SUB><SUP>2</SUP> ) &lt;= sum( 
+a<SUB>i</SUB><SUP>2</SUP> - a<SUB>i</SUB><SUP>1</SUP> ). 
+<P>Indeed, if (a<SUB>1</SUB><SUP>1</SUP>,...,a<SUB>k</SUB><SUP>1</SUP>) is a 
+possible sequence of a<SUB>i</SUB> values for t toys, and similarly for 
+(a<SUB>1</SUB><SUP>2</SUP>, ...) and (a<SUB>1</SUB><SUP>3</SUP>, ...), then 
+(a<SUB>1</SUB><SUP>1</SUP>-a<SUB>1</SUB><SUP>2</SUP>+a<SUB>1</SUB><SUP>3</SUP>, 
+...) is easily seen to be a possible sequence for t+1 toys, so it follows that 
+sum( 
+a<SUB>i</SUB><SUP>1</SUP>-a<SUB>i</SUB><SUP>2</SUP>+a<SUB>i</SUB><SUP>3</SUP>-a<SUB>i</SUB><SUP>1</SUP>) 
+= sum( a<SUB>i</SUB><SUP>3</SUP>-a<SUB>i</SUB><SUP>2</SUP> ) &lt;= sum( 
+a<SUB>i</SUB><SUP>2</SUP>-a<SUB>i</SUB><SUP>1</SUP>), since the 
+a<SUB>i</SUB><SUP>2</SUP> are an optimal sequence of a<SUB>i</SUB> values for 
+t+1 toys. This is a more algebraic proof of the argument we just made. 
+<P>My sample code is shown below: <PRE>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+#define MAX (100005)
+#define INF (1000000000)
+
+int T[MAX];
+int queue[MAX], num[MAX];
+int sn,sm,so,en,em,eo;
+/* These variables control the queue and point to the start 
+ * and end of new, middle, and old toys, respectively. 
+ * New toys are ones washed less than N1 days ago, old toys are 
+ * washed at least N2 days ago, and middle toys are all the rest.
+ * We essentially keep three queues in a single array, but the manner
+ * in which we add/remove elements guarantees that we never have to
+ * worry about memory overlap.
+ */
+
+int D,N1,N2,C1,C2,Tc;
+
+inline void add_new(int x,int q){
+  queue[en]=x;
+  num[en++]=q;
+}
+
+void flush_new(int x){
+  while(sn!=en &amp;&amp; x-queue[sn] &gt;= N1) { num[em]=num[sn]; queue[em++]
+= queue[sn++]; }
+}
+
+void flush_mid(int x){
+  while(sm!=em &amp;&amp; x-queue[sm] &gt;= N2) { num[eo]=num[sm]; queue[eo++]
+= queue[sm++]; }
+}
+
+int f(int t){ //find the minimum cost given that we use t toys
+  sn=sm=so=en=em=eo=0;
+  int r = (Tc-C2)*t;
+  /*
+   * In the following algorithm, we pay even to wash the initial toys, so 
+   * we have to subtract this out of our initial cost estimate for 
+   * purchasing the toys. This is valid as long as we use all of the toys 
+   * we purchase (which is why we start the ternary search at tsum+1 
+   * instead of 5000001).
+   */
+  add_new(-200000,t);
+  for(int d=0;d&lt;D;d++){
+    flush_new(d); flush_mid(d); //move any toys toys whose status changes 
+      //from being new to middle or middle to old to the appropriate queue
+    int i = T[d];
+    while(i &gt; 0){ //we deal with the toys in batches to make 
+      //the runtime of this function O(N) instead of O(sum t<SUB>i</SUB>)
+      if(so!=eo){ //if there are any old toys
+        if(num[eo-1] &gt; i){ //if this batch has more toys than we need, we
+can stop here
+          r += C2*i;
+          num[eo-1]-=i;
+          break;
+        }
+        else { //otherwise, use all toys in this batch
+          r += C2*num[eo-1];
+          i -= num[eo-1];
+          eo--;
+        }
+      }
+      else if(sm!=em){ //else if there are any middle toys
+        if(num[em-1] &gt; i){
+          r += C1*i;
+          num[em-1]-=i;
+          break;
+        }
+        else {
+          r += C1*num[em-1];
+          i -= num[em-1];
+          em--;
+        }
+      }
+      else return INF; //if there are no available toys, 
+        //we can't find a solution with this many toys
+    }
+    add_new(d,T[d]); //put the toys we used today back into the queue of toys
+  }
+  return r;
+}
+
+int ternary_search(int s,int e){
+  while(1){
+    if(e-s &lt;= 2){ //when e-s is small enough that our ternary search 
+      //can get stuck, just handle the end manually
+      int m = f(s);
+      for(int i=s+1;i&lt;e;i++) m = min(m,f(i));
+      return m;
+    }
+    int x = s+(e-s)/3, y = s+2*(e-s)/3; //sample values 1/3 and 2/3 
+      //of the way through the remaining interval
+    int a = f(x); //f(x) = -1 if x was too few toys to have enough toys each day
+    if(a!= INF &amp;&amp; a &lt;= f(y)) e=y;
+    else s=x;
+  }
+}
+
+int main(){
+  FILE *fin = fopen("toy.in","r");
+  FILE *fout = fopen("toy.out","w");
+  fscanf(fin,"%d%d%d%d%d%d",&amp;D,&amp;N1,&amp;N2,&amp;C1,&amp;C2,&amp;Tc);
+  if(N1 &gt; N2){ //set N2 to be greater than N1
+    N1 ^= N2; N2 ^= N1; N1 ^= N2;
+    C1 ^= C2; C2 ^= C1; C1 ^= C2;
+  }
+  if(C1 &lt; C2){ //if faster way is cheaper
+    C2 = C1; //then set its cost to that of the slower way, 
+      //since we could always just use the slower way instead
+  }
+  int tsum = 0;
+  for(int i=0;i&lt;D;i++) { fscanf(fin,"%d",&amp;T[i]); tsum += T[i]; }
+  fprintf(fout,"%d\n",ternary_search(0,tsum+1));
+  fclose(fin); fclose(fout);
+  return 0;
+}
+</PRE>
+<P><I>Additional Comments by Richard</I> 
+<P>The following is a slightly technical approach to the problem that gives a 
+bit more insight to the structure behind the greedy/convexity. 
+<P>There is another approach one can take on this problem using minimum cost 
+network flow. It can generalize to situations where there are more than 2 
+cleaning methods, and can also be used to provide a nice justification to the 
+convexity of f(t) 
+<P>We try to formulate a network flow problem to track the path each toy takes, 
+in a graph with source s and sink t.<BR>
+<UL>
+  <LI>Have 2 vertices representing day i, v<SUB>i</SUB>(in) and 
+  v<SUB>i</SUB>(out) representing the incoming toy on that day and the toys that 
+  were used on that day <BR>
+  <LI>An edge from s to each vertex v<SUB>i</SUB>(in) with infinite capacity and 
+  cost equal to that of buying a new toy.<BR>
+  <LI>An edge from each vertex v<SUB>i</SUB>(out) to a terminal vertex t with 
+  infinite capacity and zero cost, representing that we no longer need this 
+  toy.<BR>
+  <LI>For each cleaning method, an edge from each vertex v<SUB>i</SUB>(out) to 
+  v_(i+x)(in) (x is equal to the number of days it takes to clean the toy), with 
+  infinite capacity and cost equal to the cost of cleaning the toy. <BR>
+  <LI>Have an edge from v<SUB>i</SUB>(in) to v<SUB>i</SUB>+1(in) to represent 
+  that any toy that's not used can be carried over to the next day.<BR>
+  <LI>A flow of t<SUB>i</SUB> unit is required to go through v<SUB>i</SUB>. This 
+  is the reason that we splitted the vertex into an 'in' vertex and an 'out' 
+  vertex. We add an edge between v<SUB>i</SUB>(in) and v<SUB>i</SUB>(out) that 
+  has both minimum and maximum capacity t<SUB>i</SUB> and cost 0. (we never use 
+  extra toys since we can just carry them over to the next day)<BR></LI></UL>
+<P><B>Note:</B> In general, we can set the minimum capacity of an edge by first 
+pushing flow through the edge and then deleting the backflow. However, as we 
+shall see this is unnecessary in this case. 
+<P>It's not difficult (just tedious) to prove that any feasible flow represents 
+a distribution of toys. Furthermore, we can find the optimal cost by 
+transforming the network to remove the lower bounds using standard techniques 
+(such as the one noted above), although the following much easier method also 
+exists. 
+<P>Note that the only edges with lower capacities are the ones from 
+v<SUB>i</SUB>(in) going into v<SUB>i</SUB>(out), and such edges also have a 
+maximum capacity of t<SUB>i</SUB>. So, we can just assign an extremely negative 
+cost to such edges to 'encourage' the algorithm to use them in a way such that 
+using any such edge would offset the cost incurred from buying/cleaning toys. 
+Then, in any solution where each day got enough toys, we must go through such 
+edges exactly sum(t<SUB>i</SUB>) times, which is just an added constant to the 
+cost of our flow. 
+<P>This gives a fast algorithm provided an efficient implementation of min cost 
+flow is used. It is less involved than the greedy algorithm in terms of 
+thinking, but harder to implement. As a result, it is also expected to receive 
+about 70% points. 
+<P>This flow formulation can also be used to provide a short proof of the 
+convexity of f. Consider the mincost flow algorithm of finding the cheapest 
+augmenting path each time. It can be shown that if we start with an empty flow, 
+finding the cheapest cost augmenting path each time yields a non-decreasing cost 
+to such paths each time. The argument is basically consider the first time the 
+cost of an augmenting path decreases, then look at how the two paths interact 
+and use some inequality manipulation to obtain a contradiction. Since f(x) is 
+the sum of these values after we pushed x units of flow, it's convex. 
+</P></BODY></HTML>

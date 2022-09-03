@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int a[1000], n, cnt, p;
+int a[1000], n, cnt, p = -1;
 int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
@@ -8,9 +8,9 @@ int main() {
         if (i == 0) continue;
         if (a[i - 1] > a[i]) {
             cnt++;
-            if (p == 0) p = i - 1;
+            if (p < 0) p = i - 1;
         }
     }
-    cout << cnt << " " << p;
+    cout << cnt << " " << p << endl;
 }
 

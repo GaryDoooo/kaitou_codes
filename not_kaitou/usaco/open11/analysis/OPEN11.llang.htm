@@ -1,0 +1,144 @@
+<html>
+<head> <title>USACO OPEN11 llang Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'llang' Analysis</h2>
+<h4>by Fatih Gelgi and Albert Gu</h4>
+<p>To solve the problem, you need to notice that the communication network can
+be represented as a graph: vertices correspond to cows and there is an edge
+between two cows if they speak a common
+language. The crucial point is the transitive property of communication, i.e.
+passing messages. That means all cows in a connected component can communicate
+each other. Hence, the problem turns out to be finding the connected
+components. In the next step, we need to establish communication between
+connected components. Choosing two arbitrary cows each from different
+components establishes a communication between these two components.
+Thus, if the number of connected components in the graph is C, C-1 books will
+be sufficient. To create a working solution, the language of cow 1 can be
+taught to one cow in each connected component.
+
+<p>Consider the example below:
+
+<pre>
+1 ----- 2                        8 ------ 9
+|       |      5 --- 6 --- 7     |
+3 ----- 4                       10
+   
+   C1                C2             C3
+</pre>
+
+<p>The graph above has 3 connected components: C1={1,2,3,4}, C2={5,6,7},
+C3={8,9,10}.  
+Teaching the language of cow 1 to cow 5 in C2 and cow 8 in C3 will yield a 
+valid
+solution.
+
+<p>The biggest trick is constructing the graph fast enough. A naive method of
+directly comparing every pair of cows to see if they have a common language
+takes time at least O(n^2), which is too slow. One improvement is to look at
+language 1 and connect all cows that speak language 1, and repeat for all the
+languages. However, it is too slow in extreme cases when many cows speak the
+same language.
+<p>There are many ways to speed this up to speed this up to linear
+time; the method presented below just creates a new set of vertices for
+languages, and draws edges between cows and languages (this is known as a
+bipartite graph). The number of edges then equals the total number of languages
+spoken by the cows, which in the problem is given to be at most 100,000.
+
+<p>For example, for the sample input, the graph would look as follows:
+
+<pre>
+Cows   Languages
+1 ------ 3 
+  \_ _ _
+        \
+2 ------ 2
+   
+   
+3 ------ 1
+</pre>
+
+<p>In this case, there are 2 connected components: one contains cows 1 and 2 
+and
+languages 2 and 3, and the other contains cow 3 and language 1.
+
+
+<p>Connected components can be identified using DFS that requires O(V + E)
+memory and time on an adjacency list.
+The final step, establishing communication between connected components can be
+done in linear time. </p>
+
+<p>Below is Albert's code:</p>
+
+<pre>
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+using namespace std;
+const int MAXN = 10005, MAXM = 30005;
+
+int n, m, ans;
+vector&lt;int&gt; adj[MAXN+MAXM], sol;
+
+bool seen[MAXN+MAXM];
+void dfs(int v) {
+	seen[v] = true;
+	for (int i = 0; i &lt; adj[v].size(); i++) {
+		if (!seen[adj[v][i]])
+			dfs(adj[v][i]);
+	}
+}
+
+int main() {
+	FILE *fin = fopen("llang.in", "r");
+	FILE *fout = fopen("llang.out", "w");
+
+	fscanf(fin, "%d %d", &n, &m);
+	for (int i = 1; i &lt;= n; i++) {
+		int a, b;
+		fscanf(fin, "%d", &a);
+		for (int j = 0; j &lt; a; j++) {
+			fscanf(fin, "%d", &b);
+			// adjacency list
+			//   cow i is connected to language b
+			adj[i].push_back(b+n);
+			adj[b+n].push_back(i);
+		}
+	}
+
+	// identify connected components
+	for (int i = 1; i &lt;= n; i++) {
+		if (!seen[i]) {
+			dfs(i);
+			sol.push_back(i);
+			ans++;
+		}
+	}
+
+	// solution: # of connected components - 1
+	fprintf(fout, "%d\n", ans-1);
+	for (int i = 1; i &lt; sol.size(); i++) {
+		// first cow in each component learns 
+                //   the first language of the cow 1 
+		fprintf(fout, "%d %d\n", adj[sol[0]][0]-n, sol[i]);
+	}
+
+	return 0;
+}
+</pre>
+
+
+
+
+
+
+
+
+
+
+

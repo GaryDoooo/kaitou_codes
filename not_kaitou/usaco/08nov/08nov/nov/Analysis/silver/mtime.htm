@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://ace.delos.com/TESTDATA/NOV08.mtime.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 mtime Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="mtime.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'mtime' Analysis</H2>
+<H4>by Fatih Gelgi</H4>
+<P>Greedy methods are very effective in job scheduling problems, and that 
+applies to this problem as well. First, we sort jobs from largest to smallest 
+with respect to their deadlines. For any job J_i, J_i cannot be started later 
+than S_i-T_i to finish it on time. If S_i-T_i is later than or equal to the 
+deadline of the next job (S_i-T_i &gt; S_(i+1)), job J_(i+1) can start at 
+regular time S_(i+1)-T_(i+1). Otherwise, J_(i+1) has to start at time 
+S_i-T_i-T_(i+1). That is, the difference is propagated to the next earliest job. 
+</P>
+<P>For example, consider the latest two jobs with deadlines 18 and 14, and with 
+process times 8 and 6. The last job cannot start later than 18-8=10, so the 
+other one has to start at time 10-6=4 at worst. </P>
+<P>Loop continues until the earliest job. At the end, if the latest starting 
+time is less than 0, it is impossible to finish the work on time. </P><PRE>#include &lt;fstream&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+struct Job
+{
+	int t,s;
+} *job;
+
+// sort function uses less operator
+//	to sort from largest to smallest 
+//		with respect to the deadlines
+// 	overload less operator as greater
+bool operator&lt;(const Job&amp; a,const Job&amp; b)
+{ return a.s &gt; b.s; };
+
+int n,latesttime;
+
+// read jobs
+void readFile(char *inpFile)
+{
+	ifstream f(inpFile);
+	
+	f &gt;&gt; n;
+	job=new Job[n];
+	for (int i=0; i&lt;n; i++)
+		f &gt;&gt; job[i].t &gt;&gt; job[i].s;
+	f.close();
+}
+
+// write solution
+void writeFile(char *outFile)
+{
+	ofstream f(outFile);
+	
+	// if time is 
+	f &lt;&lt; (latesttime &lt; 0 ? -1 : latesttime) &lt;&lt; "\n";
+	f.close();
+}
+
+void solve()
+{
+	sort(job,job+n);	// sort jobs from largest to smallest
+	latesttime=1000000;	// 	with respect to their deadlines  
+	for (int i=0; i&lt;n; i++)
+		// current_latest_time = min(S_i,current_latest_time)-T_i
+		latesttime=min(job[i].s,latesttime)-job[i].t;
+}
+
+int main()
+{
+	readFile("mtime.in");
+	solve();
+	writeFile("mtime.out");
+}
+</PRE></BODY></HTML>

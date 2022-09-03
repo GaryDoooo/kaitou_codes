@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://ace.delos.com/TESTDATA/FEB08.hotel.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 hotel Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="hotel.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'hotel' Analysis</H2>
+<H4>by Richard Peng</H4>
+<P>This problem is intended as an exercise in the mechanics of range tree. The 
+information we need to track are fairly complicated, so it's best to break it 
+into several operations on a 0,1 array: 
+<P>* Find the first group of k consecutive 1s<BR>* Set an entire range to 0 (or 
+1). 
+<P>The first operation can be further reduced to finding the longest segment of 
+consecutive 1s in a range as we could search down the ranges. To track this, we 
+need the following information in order to allow this information to propagate 
+up the tree: 
+<P>
+<UL>
+  <LI>maximum segment of 1s within the range 
+  <LI>maximum segment of 1s starting from the left point of the range 
+  <LI>maximum segment of 1s starting from the right point of a range </LI></UL>
+<P>The 2nd and 3rd are fairly easy to propagate up the tree. The 1st is slightly 
+trickier since there are 2 possibilities: range completely contained in 
+left/right subrange, range crosses midpoint. In the 2nd case, the answer must be 
+the maximum segment of 1s at the right end of the left sub-range and the maximum 
+segment of 1s at the left end of the right sub-range merged together. 
+<P>We also need to support 'fills'. To do this, we put a flag on each node to 
+indicate whether it has been filled. Every time we update downwards from the 
+root and we encounter these flags, we set the maximum values in that range 
+accordingly and push the range onto its children as if a range if filled, so is 
+any subrange of it. 
+<P>All the above operations runs in time proportional to the height of the tree. 
+So if we use an array-based binary indexed tree, we get O(logN) per query for a 
+total runtime of O(MlogN). 
+<P>Here is a working version of David Benjamin's code. The fields in the node 
+structure are precisely the information listed above: <PRE>#include &lt;assert.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;algorithm&gt;
+
+int realn;
+int n;
+
+enum { EMPTY, FULL, MIXED };
+struct node {
+    char state;
+    int lmax;
+    int rmax;
+    int cmax;
+
+    int start;
+    unsigned size;
+};
+const int NMAX = 2*160000+1;
+const int ROOT = 1;
+node tree[NMAX];
+inline int left(int v) { return 2*v; }
+inline int right(int v) { return 2*v+1; }
+inline int parent(int v) { return v/2; }
+inline unsigned size(int v) { return tree[v].size; }
+inline int start(int v) { return tree[v].start; }
+inline int end(int v) { return start(v) + size(v); }
+void propogate(int v) {
+    if (left(v) &gt;= 2*n) return;
+    if (tree[v].state == EMPTY) {
+	unsigned s = size(left(v));
+	tree[left(v)].state = EMPTY;
+	tree[left(v)].lmax = s;
+	tree[left(v)].rmax = s;
+	tree[left(v)].cmax = s;
+	tree[right(v)].state = EMPTY;
+	tree[right(v)].lmax = s;
+	tree[right(v)].rmax = s;
+	tree[right(v)].cmax = s;
+    } else if (tree[v].state == FULL) {
+	tree[left(v)].state = FULL;
+	tree[left(v)].lmax = 0;
+	tree[left(v)].rmax = 0;
+	tree[left(v)].cmax = 0;
+	tree[right(v)].state = FULL;
+	tree[right(v)].lmax = 0;
+	tree[right(v)].rmax = 0;
+	tree[right(v)].cmax = 0;
+    }
+}
+
+void inherit(int v) { // assert - left &amp; right are up-to-date
+    if (left(v) &gt;= 2*n) return;
+    if (tree[left(v)].state == EMPTY
+	    &amp;&amp; tree[right(v)].state == EMPTY) {
+	tree[v].state = EMPTY;
+	tree[v].lmax = tree[v].rmax = tree[v].cmax = size(v);
+	return;
+    }
+    if (tree[left(v)].state == FULL
+	    &amp;&amp; tree[right(v)].state == FULL) {
+	tree[v].state = FULL;
+	tree[v].lmax = tree[v].rmax = tree[v].cmax = 0;
+	return;
+    }
+    
+    tree[v].state = MIXED;
+
+    tree[v].lmax = tree[left(v)].lmax;
+    if (tree[left(v)].state == EMPTY)
+	tree[v].lmax = tree[right(v)].lmax + size(left(v));
+
+    tree[v].rmax = tree[right(v)].rmax;
+    if (tree[right(v)].state == EMPTY)
+	tree[v].rmax = tree[left(v)].rmax + size(right(v));
+
+    tree[v].cmax = std::max(std::max(
+		tree[left(v)].cmax, tree[right(v)].cmax),
+	    tree[left(v)].rmax + tree[right(v)].lmax);
+}
+
+int query(int d, int v) {
+    if (v &gt;= 2*n) return -1;
+    if (tree[v].state == EMPTY &amp;&amp; tree[v].size &lt;= d) return tree[v].start;
+    propogate(v);
+    if (tree[left(v)].cmax &gt;= d) return query(d, left(v));
+    if (tree[left(v)].rmax + tree[right(v)].lmax &gt;= d) return
+end(left(v))-tree[left(v)].rmax;
+    if (tree[right(v)].cmax &gt;= d) return query(d, right(v));
+    return -1;
+}
+
+void fill(int a, int b, int v) {
+    //printf("f %d %d\n", a,b);
+    int s = start(v);
+    int e = end(v)-1;
+    if (v &gt;= 2*n || b &lt; a || s &gt; b || e &lt; a) return;
+    propogate(v);
+    if (s &gt;= a &amp;&amp; e &lt;= b) {
+	tree[v].state = FULL;
+	tree[v].lmax = tree[v].rmax = tree[v].cmax = 0;
+	return;
+    }
+    fill(a,b, left(v));
+    fill(a,b, right(v));
+    inherit(v);
+}
+void empty(int a, int b, int v) {
+    //printf("e %d %d\n", a,b);
+    int s = start(v);
+    int e = end(v)-1;
+    if (v &gt;= 2*n || b &lt; a || s &gt; b || e &lt; a) return;
+    propogate(v);
+    if (s &gt;= a &amp;&amp; e &lt;= b) {
+	tree[v].state = EMPTY;
+	tree[v].lmax = tree[v].rmax = tree[v].cmax = size(v);
+	return;
+    }
+    empty(a,b, left(v));
+    empty(a,b, right(v));
+    inherit(v);
+}
+
+int main() {
+    FILE * fin = fopen("hotel.in", "r");
+    FILE * fout = fopen("hotel.out", "w");
+    assert(fin != NULL); assert(fout != NULL);
+
+    int m;
+    fscanf(fin, "%d %d\n", &amp;realn, &amp;m);
+    n = 1; while (n &lt; realn) n *= 2;
+
+    for (int i=n;i&lt;2*n;i++) {
+	tree[i].size = 1;
+	tree[i].start = i-n;
+    }
+    for (int i=n-1;i&gt;0;i--) {
+	tree[i].size = 2*tree[left(i)].size;
+	tree[i].start = tree[left(i)].start;
+    }
+    for (int i=1;i&lt;2*n;i++) {
+	tree[i].state = EMPTY;
+	tree[i].lmax = size(i);
+	tree[i].rmax = size(i);
+	tree[i].cmax = size(i);
+    }
+    fill(realn, n-1, ROOT);
+
+    for (int i=0;i&lt;m;i++) {
+	int type;
+	fscanf(fin, "%d", &amp;type);
+	if (type == 1) {
+	    int d;
+	    fscanf(fin, "%d", &amp;d);
+	    int p = query(d, ROOT);
+	    fprintf(fout, "%d\n", p+1);
+	    if (p &gt;= 0)
+		fill(p, p+d-1, ROOT);
+	} else {
+	    int x,d;
+	    fscanf(fin, "%d %d", &amp;x, &amp;d); x--;
+	    empty(x, x+d-1, ROOT);
+	}
+    }
+
+    return 0;
+}
+</PRE></BODY></HTML>

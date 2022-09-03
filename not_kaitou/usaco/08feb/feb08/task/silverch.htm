@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://ace.delos.com/ioiupload?d=silver&a=jl19fZt7G5u&lang=ch -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY background=silverch.files/bg9silver.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="silverch.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: FEB08 <B>SILVER</B> Division</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>**********************************************************************
+                                银组题目
+**********************************************************************
+                             编号6~8，共3题
+**********************************************************************
+
+题目 6: 连线游戏 [Neal Wu, 2007]
+
+    Farmer John最近发明了一个游戏，来考验自命不凡的贝茜。游戏开始的时
+候，FJ会给贝茜一块画着N (2 &lt;= N &lt;= 200)个不重合的点的木板，其中第i个点
+的横、纵坐标分别为X_i和Y_i (-1,000 &lt;= X_i &lt;=1,000；
+-1,000 &lt;= Y_i &lt;= 1,000)。
+
+    贝茜可以选两个点画一条过它们的直线，当且仅当平面上不存在与画出直线
+平行的直线。游戏结束时贝茜的得分，就是她画出的直线的总条数。为了在游戏
+中胜出，贝茜找到了你，希望你帮她计算一下最大可能得分。
+
+程序名: lines
+
+输入格式:
+
+* 第1行: 输入1个正整数：N
+
+* 第2..N+1行: 第i+1行用2个用空格隔开的整数X_i、Y_i，描述了点i的坐标
+
+输入样例 (lines.in):
+
+4
+-1 1
+-2 0
+0 0
+1 1
+
+输出格式:
+
+* 第1行: 输出1个整数，表示贝茜的最大得分，即她能画出的互不平行的直线数
+
+输出样例 (lines.out):
+
+4
+
+输出说明:
+
+    贝茜能画出以下4种斜率的直线：-1，0，1/3以及1。
+
+**********************************************************************
+
+题目 7: 流星雨 [Jeffrey Wang, 2007]
+
+    贝茜听说了一个骇人听闻的消息：一场流星雨即将袭击整个农场，由于流星
+体积过大，它们无法在撞击到地面前燃烧殆尽，届时将会对它撞到的一切东西
+造成毁灭性的打击。很自然地，贝茜开始担心自己的安全问题。以FJ牧场中最
+聪明的奶牛的名誉起誓，她一定要在被流星砸到前，到达一个安全的地方（也就
+是说，一块不会被任何流星砸到的土地）。如果将牧场放入一个直角坐标系中，
+贝茜现在的位置是原点，并且，贝茜不能踏上一块被流星砸过的土地。
+
+    根据预报，一共有M颗流星(1 &lt;= M &lt;= 50,000)会坠落在农场上，其中第i颗
+流星会在时刻T_i (0 &lt;= T_i &lt;= 1,000)砸在坐标为(X_i, Y_i) 
+(0 &lt;= X_i &lt;= 300；0 &lt;= Y_i &lt;= 300)的格子里。流星的力量会将它所在的格子
+，以及周围4个相邻的格子都化为焦土，当然贝茜也无法再在这些格子上行走。
+
+    贝茜在时刻0开始行动，它只能在第一象限中，平行于坐标轴行动，每1个时刻中，
+，她能移动到相邻的（一般是4个）
+格子中的任意一个，当然目标格子要没有被烧焦才行。如果一个格子在时刻t被
+流星撞击或烧焦，那么贝茜只能在t之前的时刻在这个格子里出现。
+
+    请你计算一下，贝茜最少需要多少时间才能到达一个安全的格子。
+
+程序名: meteor
+
+输入格式:
+
+* 第1行: 1个正整数：M
+
+* 第2..M+1行: 第i+1行为3个用空格隔开的整数：X_i，Y_i，以及T_i
+
+输入样例 (meteor.in):
+
+4
+0 0 2
+2 1 2
+1 1 2
+0 3 5
+
+输入说明:
+
+    一共有4颗流星将坠落在农场，它们落地点的坐标分别是(0, 0)，(2, 1)，
+(1, 1)以及(0, 3)，时刻分别为2，2，2，5。
+                                                                          
+       
+    t = 0                t = 2              t = 5
+5|. . . . . . .     5|. . . . . . .     5|. . . . . . .    
+4|. . . . . . .     4|. . . . . . .     4|# . . . . . .   * = 流星落点
+3|. . . . . . .     3|. . . . . . .     3|* # . . . . .  
+2|. . . . . . .     2|. # # . . . .     2|# # # . . . .   # = 行走禁区
+1|. . . . . . .     1|# * * # . . .     1|# # # # . . .   
+0|B . . . . . .     0|* # # . . . .     0|# # # . . . .   
+  --------------      --------------      -------------- 
+  0 1 2 3 4 5 6       0 1 2 3 4 5 6       0 1 2 3 4 5 6 
+
+输出格式:
+
+* 第1行: 输出1个整数，即贝茜逃生所花的最少时间。如果贝茜无论如何都无法
+         在流星雨中存活下来，输出-1
+
+输出样例 (meteor.out):
+
+5
+
+输出说明:
+
+    如果我们观察在t=5时的牧场，可以发现离贝茜最近的安全的格子是(3,0)
+——不过由于早在第二颗流星落地时，贝茜直接跑去(3,0)的路线就被封死了。
+离贝茜第二近的安全格子为(4,0)，但它的情况也跟(3,0)一样。再接下来的格子
+就是在(0,5)-(5,0)这条直线上。在这些格子中，(0,5)，(1,4)以及(2,3)都能在
+5个单位时间内到达。
+
+       5|. . . . . . .   
+       4|. . . . . . .   
+       3|3 4 5 . . . .    某个合法的逃生方案中
+       2|2 . . . . . .    贝茜每个时刻所在地点
+       1|1 . . . . . .   
+       0|0 . . . . . .   
+         -------------- 
+         0 1 2 3 4 5 6  
+
+**********************************************************************
+
+题目 8: 麻烦的聚餐 [Ionescu Victor, 2007]
+
+    为了避免餐厅过分拥挤，FJ要求奶牛们分3批就餐。每天晚饭前，奶牛们都
+会在餐厅前排队入内，按FJ的设想，所有第3批就餐的奶牛排在队尾，队伍的前
+端由设定为第1批就餐的奶牛占据，中间的位置就归第2批就餐的奶牛了。由于奶
+牛们不理解FJ的安排，晚饭前的排队成了一个大麻烦。
+
+    第i头奶牛有一张标明她用餐批次D_i(1 &lt;= D_i &lt;= 3)的卡片。虽然所有N
+(1 &lt;= N &lt;= 30,000)头奶牛排成了很整齐的队伍，但谁都看得出来，卡片上的
+号码是完全杂乱无章的。
+
+    在若干次混乱的重新排队后，FJ找到了一种简单些的方法：奶牛们不动，他
+沿着队伍从头到尾走一遍，把那些他认为排错队的奶牛卡片上的编号改掉，最终
+得到一个他想要的每个组中的奶牛都站在一起的队列，例如111222333或者
+333222111。哦，你也发现了，FJ不反对一条前后颠倒的队列，那样他可以让
+所有奶牛向后转，然后按正常顺序进入餐厅。
+
+    你也晓得，FJ是个很懒的人。他想知道，如果他想达到目的，那么他最少得
+改多少头奶牛卡片上的编号。所有奶牛在FJ改卡片编号的时候，都不会挪位置。
+
+程序名: egroup
+
+输入格式:
+
+* 第1行: 1个整数：N
+
+* 第2..N+1行: 第i+1行是1个整数，为第i头奶牛的用餐批次D_i
+
+输入样例 (egroup.in):
+
+5
+1
+3
+2
+1
+1
+
+输入说明:
+
+    队列中共有5头奶牛，第1头以及最后2头奶牛被设定为第一批用餐，第2头
+奶牛的预设是第三批用餐，第3头则为第二批用餐。
+
+输出格式:
+
+* 第1行: 输出1个整数，为FJ最少要改几头奶牛卡片上的编号，才能让编号变成
+         他设想中的样子
+
+输出样例 (egroup.out):
+
+1
+
+输出说明:
+
+    如果FJ想把当前队列改成一个不下降序列，他至少要改2头奶牛的编号，一
+种可行的方案是：把队伍中2头编号不是1的奶牛的编号都改成1。不过，如果FJ
+选择把第1头奶牛的编号改成3，就能把奶牛们的队伍改造成一个合法的不上升序
+列了。
+
+**********************************************************************
+Translation by Yan Long
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=jl19fZt7G5u name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program or file for grading:&nbsp;<B><INPUT 
+                  type=file name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD>Nothing is currently saved for grading. 
+</TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=jl19fZt7G5u">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=jl19fZt7G5u">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 8:10:23 GMT. 
+</CENTER></FORM></BODY></HTML>

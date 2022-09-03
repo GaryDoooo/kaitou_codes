@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://ace.delos.com/ioiupload?d=bronze&a=jl19fZt7G5u&lang=ch -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY background=bronzech.files/bg9silver.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="bronzech.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: FEB08 <B>SILVER</B> Division</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>**********************************************************************
+                                铜组题目
+**********************************************************************
+                            编号11~13，共3题
+**********************************************************************
+
+题目 11: 晚餐队列安排 (铜组) [Ionescu Victor and Brian Dean, 2007]
+
+    为了避免餐厅过分拥挤，FJ要求奶牛们分2批就餐。每天晚饭前，奶牛们都
+会在餐厅前排队入内，按FJ的设想，所有第2批就餐的奶牛排在队尾，队伍的前
+半部分则由设定为第1批就餐的奶牛占据。由于奶牛们不理解FJ的安排，晚饭前
+的排队成了一个大麻烦。
+
+    第i头奶牛有一张标明她用餐批次D_i(1 &lt;= D_i &lt;= 2)的卡片。虽然所有N
+(1 &lt;= N &lt;= 30,000)头奶牛排成了很整齐的队伍，但谁都看得出来，卡片上的
+号码是完全杂乱无章的。
+
+    在若干次混乱的重新排队后，FJ找到了一种简单些的方法：奶牛们不动，他
+沿着队伍从头到尾走一遍，把那些他认为排错队的奶牛卡片上的编号改掉，最终
+得到一个他想要的每个组中的奶牛都站在一起的队列，例如112222或111122。有
+的时候，FJ会把整个队列弄得只有1组奶牛（比方说，1111或222）。
+
+    你也晓得，FJ是个很懒的人。他想知道，如果他想达到目的，那么他最少得
+改多少头奶牛卡片上的编号。所有奶牛在FJ改卡片编号的时候，都不会挪位置。
+
+程序名: diningb
+
+输入格式:
+
+* 第1行: 1个整数：N
+
+* 第2..N+1行: 第i+1行是1个整数，为第i头奶牛的用餐批次D_i
+
+输入样例 (diningb.in):
+
+7
+2
+1
+1
+1
+2
+2
+1
+
+输入说明:
+
+    一共有7头奶牛，其中有3头奶牛原来被设定为第二批用餐。
+
+输出格式:
+
+* 第1行: 输出1个整数，为FJ最少要改几头奶牛卡片上的编号，才能让编号变成
+         他设想中的样子
+
+输出样例 (diningb.out):
+
+2
+
+输出说明:
+
+    FJ选择改第1头和最后1头奶牛卡片上的编号。
+
+**********************************************************************
+
+题目 12: 越野跑 [Jeffrey Wang, 2008]
+
+    为了能在下一次跑步比赛中有好的发挥，贝茜在一条山路上开始了她的训练
+。贝茜希望能在每次训练中跑得尽可能远，不过她也知道农场中的一条规定：
+奶牛独自进山的时间不得超过M秒(1 &lt;= M &lt;= 10,000,000)。
+
+    整条山路被贝茜划分成T个长度相同的小段(1 &lt;= T &lt;= 100,000)，并且，
+贝茜用S_i表示第i个小段的路况。S_i为u，f，d这3个字母之一，它们分别表示
+第i个小段是上坡、平地，或是下坡。
+
+    贝茜要花U秒(1 &lt;= U &lt;= 100)才能跑完一段上坡路，跑完一段平地的耗时是
+F秒(1 &lt;= F &lt;= 100)，跑完一段下坡路要花D秒(1 &lt;= D &lt;= 100)。注意，沿山路
+原路返回的时候，原本是上坡路的路段变成了下坡路，原本是下坡路的路段变成
+了上坡路。
+
+    贝茜想知道，在能按时返回农场的前提下，她最多能在这条山路上跑多远。
+
+程序名: racing
+
+输入格式:
+
+* 第1行: 5个用空格隔开的整数：M，T，U，F，以及D
+
+* 第2..T+1行: 第i+1行为1个字母S_i，描述了第i段山路的路况
+
+输入样例 (racing.in):
+
+13 5 3 2 1
+u
+f
+u
+d
+f
+
+输入说明:
+
+    贝茜跑步的最大耗时为13秒（这么短...），她跑步的山路一共被划成5段。
+贝茜跑完一段上坡路的耗时为3秒，平地为2秒，下坡路为1秒。山路各段的走向
+如下图所示：
+
+ _/\_
+/
+
+输出格式:
+
+* 第1行: 输出1个整数，为贝茜在按时回到农场的前提下，最多能跑到多远
+
+输出样例 (racing.out):
+
+3
+
+输出说明:
+
+    贝茜跑完山路的前3段，然后返回，总耗时为3 + 2 + 3 + 1 + 2 + 1 = 12
+秒，只比她能在外面呆的时限少1秒。如果她跑得更远，就无法按时回到农场。
+
+**********************************************************************
+
+题目 13: 奶牛式乘法 [Jeffrey Wang, 2007]
+
+    做厌了乘法计算题的贝茜，自创了一种新的乘法运算法则。在这套法则里，
+A*B等于一个取自A、一个取自B的所有数字对的乘积的和。比方说，123*45等于
+1*4 + 1*5 + 2*4 + 2*5 + 3*4 + 3*5 = 54。对于2个给定的数A、B
+(1 &lt;= A, B &lt;= 1,000,000,000)，你的任务是，用新的乘法法则计算A*B的值。
+
+程序名: cowmult
+
+输入格式:
+
+* 第1行: 2个用空格隔开的整数：A、B
+
+输入样例 (cowmult.in):
+
+123 45
+
+输入说明:
+
+    相乘的2个数分别为123 和 45。
+
+输出格式:
+
+* 第1行: 输出1个整数，即新的乘法法则下A*B的值
+
+输出样例 (cowmult.out):
+
+54
+
+**********************************************************************
+Translation by Yan Long
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=jl19fZt7G5u name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program or file for grading:&nbsp;<B><INPUT 
+                  type=file name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD>Nothing is currently saved for grading. 
+</TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=jl19fZt7G5u">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=jl19fZt7G5u">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 8:11:02 GMT. 
+</CENTER></FORM></BODY></HTML>

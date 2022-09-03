@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://ace.delos.com/TESTDATA/FEB08.meteor.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 meteor Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="meteor.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'meteor' Analysis</H2>
+<H4>by Richard Peng</H4>
+<P>For each point on the farm, we can compute the time where it will first be 
+destroyed. Notice that there is no point not going into a point at the earliest 
+time we could since if we're safe at a location in time t, we're also safe at 
+time t-1 at that location. Then the problem becomes computing the shortest path 
+from a the starting point to any point which will never be destroyed. 
+<P>We accomplish this by doing a breadth-first-search from the starting point. 
+The only modification we need to make is to only add points whose earliest time 
+reachable is earlier than the time the point is destroyed. 
+<P>Rob points out that one can do a normal flood fill on the plane after sorting 
+the meteors so that you can destroy plane elements as each meteor arrives on its 
+schedule. 
+<P>The data were generated placing meteors in certain patterns to force Bessie 
+to take certain paths. 
+<P>Here is my implementation, which used a rather entertaining choice of 
+variable names: <PRE>#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+
+int kaboom[500][500],n,huge,q[150000][2],tail,dis[500][500];
+int dir[4][2]={-1,0,1,0,0,-1,0,1};
+
+void moo(int x,int y,int d){
+  if((x&gt;=0)&amp;&amp;(y&gt;=0)&amp;&amp;(d&lt;kaboom[x][y])&amp;&amp;(d&lt;dis[x][y])){
+    if(kaboom[x][y]==huge){
+      printf("%d\n",d);
+      exit(0);
+    }
+    dis[x][y]=d;
+    q[tail][0]=x;
+    q[tail++][1]=y;
+  }
+}
+
+int main(){
+  int i,j,a,b,t;
+  huge=1&lt;&lt;20;
+  freopen("meteor.in","r",stdin);
+  freopen("meteor.out","w",stdout);
+  scanf("%d",&amp;n);
+  for(i=0;i&lt;500;i++)
+    for(j=0;j&lt;500;j++)
+      dis[i][j]=kaboom[i][j]=huge;
+  for(i=0;i&lt;n;i++){
+    scanf("%d%d%d",&amp;a,&amp;b,&amp;t);
+    kaboom[a][b]&lt;?=t;
+    if(a&gt;0) kaboom[a-1][b]&lt;?=t;
+    if(b&gt;0) kaboom[a][b-1]&lt;?=t;
+    kaboom[a+1][b]&lt;?=t;
+    kaboom[a][b+1]&lt;?=t;
+  }
+  tail=0;
+  moo(0,0,0);
+  for(i=0;i&lt;tail;i++)
+    for(j=0;j&lt;4;j++)
+      moo(q[i][0]+dir[j][0],q[i][1]+dir[j][1],dis[q[i][0]][q[i][1]]+1);
+  puts("-1");
+  return 0;
+}  
+</PRE></BODY></HTML>

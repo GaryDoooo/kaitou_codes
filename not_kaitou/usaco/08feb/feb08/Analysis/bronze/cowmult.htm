@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://ace.delos.com/TESTDATA/FEB08.cowmult.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 cowmult Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="cowmult.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'cowmult' Analysis</H2>
+<H4>by Rob Kolstad </H4>
+<P>A straightforward ad hoc problem that requires implementation of a rule for 
+multiplication. Required insight to complete this problem includes the ability 
+to take apart the digits of numbers. This is easily accomplished by using the 
+mod 10 operator ('% 10' in C, C++, and Java) to see the last digit of a number. 
+The number can then easily be downsized by integer-dividing it by 10 (integer 
+divides discard remainders). 
+<P>My program uses a double-nested loop (which does require re-calculation of 
+b's digits, but since we know there won't be more than 10 or so, this is not too 
+efficient) to run through both a's digits and b's digits. The sum keeps a 
+running total of the sum of the digit products. <PRE>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+main () {
+    FILE *fin = fopen ("cowmult.in", "r");
+    FILE *fout = fopen ("cowmult.out", "w");
+    int a, b, i, sum, dig1, dig2;
+    fscanf (fin, "%d %d", &amp;a, &amp;b);
+    sum = 0;
+    for ( ; a ; a /= 10)
+        for (i = b; i ; i /= 10)
+            sum += (a % 10) * (i % 10);
+    fprintf (fout, "%d\n", sum);
+    exit (0);
+}
+</PRE></BODY></HTML>

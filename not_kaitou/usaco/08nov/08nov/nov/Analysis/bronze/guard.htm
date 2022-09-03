@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://ace.delos.com/TESTDATA/NOV08.guard.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 guard Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="guard.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'guard' Analysis</H2>
+<H4>by Fatih Gelgi</H4>
+<P>This is a classic FloodFill question.</P>
+<P>The idea is to choose a location first, and traverse through adjacent 
+locations with the same height. If that height is the peak, there cannot be any 
+higher location adjacent to the traversed locations. The idea can be considered 
+as traversing the contour line of the given location in a contour map. The 
+process is executed for all unvisited locations to detect all the peaks. </P>
+<P>The algorithm visits each location once and checks all adjacent cells hence 
+requires O(N*M) running time. Since it uses only two NxM matrices, and a queue 
+with maximum size of N*M, it requires O(N*M) memory.</P><PRE>#include &lt;fstream&gt;
+#include &lt;queue&gt;
+
+using namespace std;
+
+#define MAX 1000
+
+// 8 directions of the adjacent cells
+const int dir[8][2]={{-1,-1},{-1,0},{-1,1},{1,-1},{1,0},{1,1},{0,-1},{0,1}};
+
+int N,M,mat[MAX][MAX],cnt;
+bool mark[MAX][MAX];		// marker matrix for floodfill
+queue&lt;int&gt; que;		// floodfill queue
+
+// read input
+void readFile(char *inpFile)
+{
+	ifstream f;
+	f.open(inpFile);
+	f &gt;&gt; N &gt;&gt; M;
+	for (int i=0; i&lt;N; i++)
+		for (int j=0; j&lt;M; j++) f &gt;&gt; mat[i][j];
+	f.close();
+}
+
+// write peak counts
+void writeFile(char *outFile)
+{
+	ofstream f;
+	f.open(outFile);
+	f &lt;&lt; cnt &lt;&lt; "\n";
+	f.close();
+}
+
+// floodfill algorithm
+void floodfill(int y,int x)
+{
+	// add first location to the queue
+	que.push(y);
+	que.push(x);
+
+	bool peak=true;
+
+	// floodfill loop for the connected locations
+	//	that have the same height with the current location
+	do
+	{
+		// get the next location in the queue
+		y=que.front(); que.pop();
+		x=que.front(); que.pop();
+
+		// check all adjacent locations
+		for (int i=0; i&lt;8; i++)
+		{
+			int newY=y+dir[i][0],newX=x+dir[i][1];
+			if (newY&gt;=0 &amp;&amp; newX&gt;=0 &amp;&amp; newY&lt;n &amp;&amp; newX&lt;m)
+				// if an adjacent location is higher
+				//	the current location is not a peak
+				if (mat[y][x]&lt;mat[newY][newX]) peak=false;
+				// if an adjacent location has the same height
+				//	add it into the queue to visit
+				else if (mat[y][x]==mat[newY][newX] &amp;&amp; !mark[newY][newX])
+				{
+					mark[newY][newX]=true;	// mark the locations in the queue
+					que.push(newY);
+					que.push(newX);
+				}
+		}
+	}
+	while (!que.empty());
+
+	if (peak) cnt++;	// if the current height is peak, increment the peak counter
+}
+
+int main()
+{
+	readFile("guard.in");
+	
+	for (int i=0; i&lt;N; i++)
+		for (int j=0; j&lt;M; j++)
+			// visit any land that is not visited
+			if (mat[i][j]&gt;0 &amp;&amp; !mark[i][j]) floodfill(i,j);
+	
+	writeFile("guard.out");
+}
+</PRE></BODY></HTML>

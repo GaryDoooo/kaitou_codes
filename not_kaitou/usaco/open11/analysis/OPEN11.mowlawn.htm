@@ -1,0 +1,78 @@
+<html>
+<head> <title>USACO OPEN11 mowlawn Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'mowlawn' Analysis</h2>
+<h4>by Neal Wu</h4>
+<p>First compute partial sums, so that psum [i] = E<sub>0</sub> + ... +
+E<sub>i-1</sub>. Then, if we let dp [i] be the best possible total over all
+subsets of the first i cows, since we can choose at most K cows in a row we
+have the following recurrence:</p>
+
+<p>dp [i] = max over all j such that i - K <= j <= i of dp [j - 1] +
+E<sub>j</sub> +  ... + E<sub>i-1</sub> = dp [j - 1] + psum [i] - psum [j].</p>
+
+<p>This immediately gives us an O(NK) solution. However, note that the psum [i]
+term is independent of j, while dp [j - 1] - psum [j] depends only on j. Thus,
+we can store paired values of (dp [j - 1] - psum [j], j) in a heap, which
+allows us to quickly compute the maximum value of dp [j - 1] - psum [j] for j
+>= i - K in an amortized fashion. (In particular, we have a max heap sorted by
+dp [j - 1] - psum [j], and each time we perform a query we pop the heap until
+the index of the top is at least i - K.) This gives us an O(N log N) solution:</p>
+
+<pre>
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+FILE *fin = fopen ("mowlawn.in", "r"), *fout = fopen ("mowlawn.out", "w");
+
+const int MAXN = 100005;
+
+struct data
+{
+    int ind;
+    long long val;
+
+    inline bool operator &lt; (const data &amp;o) const
+    {
+        return val &lt; o.val;
+    }
+};
+
+int N, K;
+long long psum [MAXN], dp [MAXN];
+priority_queue &lt;data&gt; hp;
+
+int main ()
+{
+    fscanf (fin, "%d %d", &amp;N, &amp;K);
+
+    for (int cow, i = psum [0] = 0; i &lt; N; i++)
+    {
+        fscanf (fin, "%d", &amp;cow);
+        psum [i + 1] = psum [i] + cow;
+    }
+
+    hp.push ((data) {-1, 0});
+
+    for (int i = 0; i &lt;= N; i++)
+    {
+        while (hp.top ().ind &lt; i - K - 1)
+            hp.pop ();
+
+        dp [i] = hp.top ().val + psum [i];
+        hp.push ((data) {i, dp [i] - psum [i + 1]});
+    }
+
+    fprintf (fout, "%lld\n", dp [N]);
+    return 0;
+}
+</pre>
+

@@ -1,0 +1,154 @@
+<html>
+<head> <title>USACO OPEN11 cowcheck Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'cowcheck' Analysis</h2>
+<h4>by Albert Gu and Amlesh Jayakumar</h4>
+<p>This problem is an example of the classic "game theory" types of problems,
+which can be viewed as a form of dynamic programming.
+
+<p>Let a square (i, j) be called a "winning position" if it is possible for
+someone to win when the checker is currently on (i, j) and it is his turn to
+move. Clearly, (0, 0) is a losing position, and (i, 0), (0, i), and (i, i) are
+winning positions for all i. More generally, square (i, j) is a winning
+position if it is possible to transition to a losing position in one move, and
+it is a losing position if it is not possible to do so. For example, (1, 2) is
+a losing position because it can only move to (0, 2), (1, 0), and (1, 1), all
+of which are winning positions.
+
+<p>In this way, we can create a boolean array state[i][j] storing whether a
+square is winning or losing. This array starts off like this:
+
+<pre>
+  x 0 1 2 3 4 5 6 7 8 . . .
+y
+0   0 1 1 1 1 1 1 1 1
+1   1 1 0 1 1 1 1 1 1
+2   1 0 1 1 1 1 1 1 1
+3   1 1 1 1 1 0 1 1 1
+4   1 1 1 1 1 1 1 0 1
+5   1 1 1 0 1 1 1 1 1
+6   1 1 1 1 1 1 1 1 1
+7   1 1 1 1 0 1 1 1 1
+8   1 1 1 1 1 1 1 1 1
+.                    .
+.                     .
+.                      .
+
+
+</pre>
+
+<p> However, for the given bounds, it would require too much time and memory to
+create this array.
+
+<p> Instead, we make the following observation: for each diagonal, there exists
+at most one losing position on that diagonal, so there are at most n+m losing
+positions. Thus it suffices to track only the losing positions.
+
+<p> We can find these recursively as follows: Consider the current losing
+position (the first one would be (0, 0) ). Make a "knight's leap" by increasing
+the x coordinate by 1 and the y coordinate by 2, ensuring that we are now on a
+different diagonal, and then move along this diagonal until there are no losing
+positions on the current row or column. For clarity, look at Lewin's solution
+below:
+
+<pre>
+import java.io.*;
+import java.util.*;
+import static java.lang.Integer.parseInt;
+
+public class cowcheck
+{
+    private static BufferedReader in;
+    private static PrintWriter out;
+
+    public static void main (String [] args) throws IOException {
+        in = new BufferedReader (new FileReader ("cowcheck.in"));
+        out = new PrintWriter (new BufferedWriter (new FileWriter 
+("cowcheck.out")));
+        
+        StringTokenizer st = new StringTokenizer (in.readLine ());
+        int M = parseInt (st.nextToken ()), N = parseInt (st.nextToken ());
+        
+        int upper = Math.max (M, N);
+        int cx = 0, cy = 0;
+        int [] xval = new int [upper];
+        Arrays.fill (xval, -1);
+        int idx = 0;
+        
+        xval [y] = cx;
+        while (true) {
+            cx += 1; cy += 2;
+            while (cy < upper && xval [cx] != -1) { cx++; cy++; }
+            if (cy >= upper) break;
+            xval [cy] = cx;
+        }
+
+        int T = parseInt (in.readLine ());
+        for (int i = 0; i < T; i++) {
+            st = new StringTokenizer (in.readLine ());
+            int x = parseInt (st.nextToken ()), y = parseInt (st.nextToken ());
+            if (x > y) {y ^= x; x ^= y; y ^= x;}
+            out.println (xval [y] == x ? "Farmer John" : "Bessie");
+        }
+        
+        out.close ();
+        System.exit (0);
+    }
+}
+</pre>
+
+This game is a variant of  the classical game Nim called 'Wythoff's Game'. In 
+Nim, you are given a heap of coins and two players alternate taking up to a 
+certain number of coins until the heap runs out. This game is essentially the 
+same game but with two heaps instead. The observation that the x and y 
+positions of the checker can be decoupled makes it easier to see the connection 
+with Nim.
+
+As a final note, it is possible to derive an elegant closed form for the losing
+positions. It turns out that all positions of the form (floor(k*phi), 
+floor(k*phi^2)), where phi is the golden ratio (i.e. (1 + sqrt(5))/2) and k is 
+any non-negative integer, are the only losing positions that exist. Here is 
+Amlesh's concise code:
+
+<pre>
+#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+using namespace std;
+const double phi = (1 + sqrt(5))/2;
+int M, N, T, X, Y;
+set&lt;pair&lt;int, int&gt; &gt; cold;
+main()
+{
+    freopen("cowcheck.in", "r", stdin);
+    freopen("cowcheck.out", "w", stdout);
+    cin &gt;&gt; M &gt;&gt; N &gt;&gt; T;
+    for (int n = 0;; n++)
+    {
+        int x_n = floor(n*phi), y_n = floor(n*phi*phi);
+        if (x_n&gt;=M||y_n&gt;=N) break;
+        cold.insert(make_pair(x_n, y_n));
+    }
+    for (int i = 0; i &lt; T; i++)
+    {
+        cin &gt;&gt; X &gt;&gt; Y;
+        if (cold.find(make_pair(min(X, Y), max(X, Y)))==cold.end()) 
+            cout &lt;&lt; "Bessie" &lt;&lt; endl;
+        else cout &lt;&lt; "Farmer John" &lt;&lt; endl;
+    }
+}
+</pre>
+
+
+
+
+
+

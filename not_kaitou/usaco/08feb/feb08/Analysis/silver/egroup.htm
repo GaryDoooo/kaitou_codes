@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://ace.delos.com/TESTDATA/FEB08.egroup.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 egroup Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="egroup.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'egroup' Analysis</H2>
+<H4>by Christos Tzamos</H4>The problem asked to sort the dining groups in either 
+nonincreasing or nondecreasing order. Here we will discuss the nondecreasing 
+order as the other is equivalent. <BR><BR>A simple solution is to iterate 
+through every possible case, calculate the number of changes required and keep 
+the minimum of those numbers. The time complexity of this method is O(N^3) which 
+can be reduced in O(N^2) by either precalculating the number of changes for 
+every interval of every type or by calculating the number of changes for every 
+case based on the previous case so that we can calculate the number of changes 
+in O(1). <BR><BR>However this solution will get you 7-8 test cases but will not 
+give you full points. The constraint N &lt;= 30,000 asks for a faster method and 
+that is dynamic programming which gives as a time complexity of O(N). <BR><BR>By 
+noticing that if we know the minimum number of changes needed up to the cow i-1 
+so that she has a card a, we can calculate the minimum number of changes needed 
+up to the cow i so that she has a card of type b. Actually: <BR><BR>if cow i has 
+card of type l <BR>minchanges[i][b] = min( minchanges[i-1][a] ) for every 
+a&lt;=b <BR>else <BR>minchanges[i][b] = 1 + min( minchanges[i-1][a] ) for every 
+a&lt;=b <BR><BR>And then the answer is min( minchanges[N][k] ) for 1&lt;=k&lt;=3 
+
+<P>Below is my code: <PRE>#include&lt;cstdio&gt;
+
+int A[1000000],N,dp[1000000][3];
+int min(int a,int b) {return a&lt;b?a:b;}
+int fans() {
+    dp[0][0]=dp[0][1]=dp[0][2]=1;
+    dp[0][A[0]-1]=0;
+    for(int i=1;i&lt;N;i++) {
+        dp[i][0] = dp[i-1][0]+1-(A[i]==1);
+        dp[i][1] = min(dp[i-1][0],dp[i-1][1])+1-(A[i]==2);
+        dp[i][2] = min(min(dp[i-1][0],dp[i-1][1]),dp[i-1][2])+1-(A[i]==3);
+    }
+    return min(min(dp[N-1][0],dp[N-1][1]),dp[N-1][2]);
+}
+
+int main() {
+    freopen("egroup.in","r",stdin);
+    freopen("egroup.out","w",stdout);
+    scanf("%d",&amp;N);
+    int i,v;
+    for(i=0;i&lt;N;i++) scanf("%d",A+i);
+    v = fans();
+    for(i=0;i&lt;N;i++) A[i]=4-A[i];
+    v &lt;?= fans();
+    printf("%d\n",v);
+    return 0;
+}
+</PRE></BODY></HTML>

@@ -1,0 +1,483 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Pragma" content="no-cache">
+<script language="javascript">
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</script>
+
+<title>USACO Problems</title>
+<style type="text/css"><!--
+table,td,body {
+font-family: Helvetica, Verdana, Arial, SunSans-Regular, Sans-Serif;
+}
+--></style>
+</head>
+<body onload="" background="silver_files/bg9gold.jpg">
+
+<font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<table><tbody><tr>
+<td><img src="silver_files/cowhead2.gif">
+</td>
+<td valign="top">
+<table cellpadding="0" cellspacing="0">
+    <tbody><tr><td>Contest: OPEN11 <b>GOLD</b> Division</td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    
+</tbody></table>
+</td></tr>
+</tbody></table>
+<font color="red"><b>
+</b></font>
+
+<br><font <b="" size="6">ANALYSIS MODE</font><br>
+Submit solutions for your own enjoyment.
+
+</font><pre>**********************************************************************
+                           SILVER PROBLEMS
+**********************************************************************
+                  Four problems numbered 6 through 9
+**********************************************************************
+
+Problem 6: Corn Maze [Sweet Tea Dorminy, 2010]
+
+This past fall, Farmer John took the cows to visit a corn maze. But
+this wasn't just any corn maze: it featured several gravity-powered
+teleporter slides, which cause cows to teleport instantly from one
+point in the maze to another. The slides work in both directions:
+a cow can slide from the slide's start to the end instantly, or
+from the end to the start. If a cow steps on a space that hosts
+either end of a slide, she must use the slide.
+
+The outside of the corn maze is entirely corn except for a single
+exit.
+
+The maze can be represented by an N x M (2 &lt;= N &lt;= 300; 2 &lt;= M
+&lt;= 300) grid. Each grid element contains one of these items:
+
+   * Corn (corn grid elements are impassable)
+
+   * Grass (easy to pass through!)
+
+   * A slide endpoint (which will transport a cow to the other
+     endpoint)
+
+   * The exit
+
+A cow can only move from one space to the next if they are adjacent
+and neither contains corn. Each grassy space has four potential
+neighbors to which a cow can travel. It takes 1 unit of time to
+move from a grassy space to an adjacent space; it takes 0 units of
+time to move from one slide endpoint to the other.
+
+Corn-filled spaces are denoted with an octothorpe (#). Grassy spaces
+are denoted with a period (.). Pairs of slide endpoints are denoted
+with the same uppercase letter (A-Z), and no two different slides
+have endpoints denoted with the same letter. The exit is denoted
+with the equals sign (=).
+
+Bessie got lost. She knows where she is on the grid, and marked her
+current grassy space with the 'at' symbol (@). What is the minimum
+time she needs to move to the exit space?
+
+Consider the following grid, with N=5 and M=6:
+
+            ###=##
+            #.W.##
+            #.####
+            #.@W##
+            ######
+
+A single slide has endpoints denoted by an uppercase W. Her optimal
+strategy is to move right to the slide endpoint in 1 time, take the
+slide in 0 time to the other endpoint, and move right and up in 2
+more time to end on the exit.  This requires a total of 3 time, the
+minimum.
+
+PROBLEM NAME: cornmaze
+
+INPUT FORMAT:
+
+* Line 1: Two space separated integers: N and M
+
+* Lines 2..N+1: Line i+1 describes row i of the maze: M characters (no
+        spaces)
+
+SAMPLE INPUT (file cornmaze.in):
+
+5 6
+###=##
+#.W.##
+#.####
+#.@W##
+######
+
+OUTPUT FORMAT:
+
+* Line 1: An integer, corresponding to the shortest time that Bessie
+        needs to exit the maze.
+
+SAMPLE OUTPUT (file cornmaze.out):
+
+3
+
+**********************************************************************
+
+Problem 7: Cow Checkers [Amlesh Jayakumar, 2011]
+
+One day, Bessie decides to challenge Farmer John to a game of 'Cow
+Checkers'. The game is played on an M*N (1 &lt;= M &lt;= 1,000,000; 1 &lt;=
+N &lt;= 1,000,000) checkerboard that initially contains a single checker
+piece on the checkboard square coordinates (X, Y) (0 &lt;= X &lt; M; 0
+&lt;= Y &lt; N). The bottom leftmost square of the checkerboard has
+coordinates (0, 0), and the top rightmost square has coordinates
+(M-1, N-1). Bessie always moves first, and then the two players
+alternate turns.  Each turn comprises one of three types of moves:
+
+1) Move the checker piece to any square on the same row to the left
+   of its current position.
+
+2) Move the checker piece to any square on the same column below its
+   current position.
+
+3) Move the checker piece to any spot k squares below and k squares
+   to the left of the current square (where k is any positive integer
+   such that this new spot is still on the checkerboard).
+
+The first player unable to make a move (i.e., because the checker
+is at (0, 0)) loses. Given that Bessie always goes first, determine
+who will win the game if both play optimally.
+
+Play and report the winner for T games (1 &lt;= T &lt;= 1,000) reading
+in a new X,Y starting value for each new game.
+
+PROBLEM NAME: cowcheck
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: M and N
+
+* Line 2: A single integer: T
+
+* Lines 3..T+2: Two space-separated integers: X and Y
+
+SAMPLE INPUT (file cowcheck.in):
+
+3 3
+1
+1 1
+
+INPUT DETAILS:
+
+Farmer John and Bessie are playing one game on a 3*3 checkerboard with the 
+checker piece initially at (1, 1) (i.e. at the center of the board).
+
+OUTPUT FORMAT:
+
+* Lines 1..T: Should contain either "Farmer John" or "Bessie"
+        depending on who wins each  game.
+
+SAMPLE OUTPUT (file cowcheck.out):
+
+Bessie
+
+OUTPUT DETAILS:
+
+Bessie initially can only move the checker piece to either (1, 0) or (0, 
+1), or (0, 0). Bessie can immediately win by moving the piece to (0, 0).
+
+**********************************************************************
+
+Problem 8: Forgotten Password [Damon Doucet, 2011]
+
+As has happened to so many of us, Bessie has forgotten her cowtube
+password. She does, however, remember some handy bits of information
+about it.
+
+First, she remembers that her password (denoted as variable P) has
+length L (1 &lt;= L &lt;= 1,000) roman characters and can be split into
+one or more words (not necessarily unique) from a dictionary composed
+of NW (1 &lt;= NW &lt;= 1,000) unique words.  A word W_i is defined as a
+sequence of 1..20 lowercase letters of the Roman alphabet ('a'..'z').
+
+She also remembers certain letters from her password along with
+their positions.
+
+Consider the following example. Bessie knows that her password looks
+like "a??l?ban???????" ('?' represents a letter she cannot remember),
+and her dictionary has the following words:
+
+apple
+cow
+farmer
+banana
+bananas
+pies
+
+The two possible passwords for Bessie to have are "applebananapies" and 
+"applebananascow".
+
+Given the dictionary, and the letters that Bessie remembers, please
+find her password. If more than one password is valid, find the
+lexicographically least string that works.
+
+PROBLEM NAME: forgot
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: L and NW
+
+* Line 2: A string of length L: P
+
+* Lines 3..NW+2: Line i+2 contains the ith word in the dictionary: W_i
+
+SAMPLE INPUT (file forgot.in):
+
+15 6
+a??l?ban???????
+apple
+cow
+farmer
+banana
+bananas
+pies
+
+OUTPUT FORMAT:
+
+* Line 1: The lexicographically least password that fits
+
+SAMPLE OUTPUT (file forgot.out):
+
+applebananapies
+
+**********************************************************************
+
+Problem 9: Learning Languages [Albert Gu, 2011]
+
+Farmer John's N (2 &lt;= N &lt;= 10,000) cows, conveniently numbered 1..N,
+are fluent in some M (1 &lt;= M &lt;= 30,000) languages, also conveniently
+numbered from 1..M. Cow i can speak in K_i (1 &lt;= K_i &lt;= M) languages,
+namely L_i1, L_i2,..., L_{iK_i} (1 &lt;= L_ij &lt;= M). FJ's cows aren't
+THAT smart, so the sum of K_i over all cows i is at most 100,000.
+
+Two cows can't directly talk to each other unless both speak a
+common language. However, cows can pass messages along, translating
+if necessary. In other words, cows A and B can have a conversation
+if and only if there exists a sequence of cows T_1, T_2, ..., T_k
+such that A and T_1 share a language, T_1 and T_2 share a language,
+etc., and T_k and B share a language.
+
+Farmer John wishes that his cows could be even more social, so he
+wants all his cows to be able to socialize with any other cow. He
+can buy books to teach any one of his cows any language he pleases.
+Being a fairly frugal farmer, FJ wants to purchase the minimum
+number of books necessary to enable all of his cows to speak to
+each other. Help him determine:
+
+    * The minimum number of books he must purchase
+
+    * Any set of books assigned to cows in any order which will
+      help him meet this goal; a program will grade your output.
+
+By way of example, suppose there are three cows named Alberta,
+Bessie, and Contessa along with three languages denoted as #1, #2,
+and #3. Alberta can speak languages #2 and #3, Bessie can speak
+language #2, and Contessa can speak language #1. Currently, Alberta
+and Bessie can talk to each other, but Contessa is left alone.
+
+                   #1   #2   #3
+       Alberta           x    x
+       Bessie            x
+       Contessa     x
+
+FJ wants to fix this situation, so he can buy Contessa a book to
+teach her language #2. This will ensure all cows speak the same
+language, so they can all communicate with one another.
+
+Note that an alternate solution exists: instead, FJ could buy
+Contessa a book to teach her language #3. Not all cows would speak
+the same language, but this would still be a valid solution because
+Contessa could communicate through Alberta (who also speaks language
+#3) if she wants to talk to Bessie. Other alternatives exist, and any
+valid alternate solution will also be accepted.
+
+PROBLEM NAME: llang
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and M
+
+* Lines 2..N+1: Line i+1 describes the languages that cow i can speak
+        with (K_i)+1 space-separated integers: K_i, L_i1,
+        L_i2,...,L_i{K_i}.
+
+SAMPLE INPUT (file llang.in):
+
+3 3
+2 3 2
+1 2
+1 1
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer that is the minimum number of books that FJ
+        must purchase.
+
+* Lines 2..B+1: Line i+1 contains two space-separated integers: the
+        language id # and the id # of the cow to receive book i. If
+        multiple solutions exist, print any one.
+
+SAMPLE OUTPUT (file llang.out):
+
+1
+2 3
+
+**********************************************************************
+
+</pre><hr>
+<form action="/ioiupload" enctype="multipart/form-data" method="POST">
+<input name="a" value="pKdXOl8ztZv" type="hidden">
+
+<table>
+<tbody><tr><td>
+
+<table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td height="1"></td></tr>
+<tr><td width="1"></td><td>
+
+  <font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+  <table bgcolor="#bfffbf" cellpadding="5" width="100%">
+  <tbody><tr><td><b>Submit a program  for grading:&nbsp;<b><input name="filename" type="file">
+  &nbsp;&nbsp;
+  <input value="Submit" name="submit" type="submit"></b></b></td></tr>
+  </tbody></table>
+
+</font></td><td width="1"></td></tr>
+<tr height="1"><td></td></tr>
+</tbody></table>
+
+
+</td></tr>
+
+<tr><td><hr></td></tr>
+
+<tr><td>
+
+<table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td height="1"></td></tr>
+<tr><td width="1"></td><td>
+
+   <table bgcolor="#bfffbf" cellpadding="5" width="100%">
+   <tbody><tr><td colspan="2">
+   <font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+   <b>To run your program with your own test data, enter the program<br>
+   file name and input file name then click 'Test':</b></font></td></tr>
+
+  <tr><td>
+
+   <table>
+   <tbody><tr><td>
+     <table>
+     <tbody><tr><td>
+     <font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+     <b>Program&nbsp;File:&nbsp;</b></font></td>
+         <td><input name="testprogramname" type="file"></td></tr>
+     <tr><td align="right">
+         <font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+         <b>Input&nbsp;File:&nbsp;</b></font></td>
+         <td><input name="testfilename" type="file"></td></tr>
+     </tbody></table>
+   </td>
+   <td>&nbsp;&nbsp;</td>
+   <td><input value="Test" name="submit" type="submit"></td>
+   </tr>
+   </tbody></table>
+
+   </td></tr></tbody></table>
+
+</td><td width="1"></td></tr>
+<tr height="1"><td></td></tr>
+</tbody></table>
+
+</td></tr>
+<tr><td><hr></td></tr>
+
+<tr><td>
+
+  <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody><tr><td height="1"></td></tr>
+    <tr><td width="1"></td><td>
+
+    <table bgcolor="#bfffbf" cellpadding="5" width="100%">
+      <tbody><tr><td>
+      <font face="Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+      <b>Backup a file:&nbsp;</b><input name="backupfilename" type="file">
+      &nbsp;&nbsp;&nbsp;<input value="Backup" name="submit" type="submit">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="See Backups" name="submit" type="submit">
+      </font></td></tr>
+    </tbody></table>
+
+    </td><td width="1"></td></tr>
+    <tr><td height="1"></td><td></td></tr>
+  </tbody></table>
+
+</td></tr>
+<tr><td><hr></td></tr>
+
+</tbody></table>
+Nothing is currently saved for grading.<hr>
+<center>
+<a href="http://ace.delos.com/ioiedit?a=pKdXOl8ztZv">Edit your database record</a>&nbsp;|&nbsp;
+
+<a href="http://ace.delos.com/ioiupload?a=pKdXOl8ztZv&amp;logout=1"> Logout </a>
+<!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->
+&nbsp;|&nbsp;
+<a href="http://ace.delos.com/ioiupload?init=1&amp;a=pKdXOl8ztZv">Main contest index</a>
+</center>
+<!--&nbsp;|&nbsp;-->
+<center>
+<a href="http://ace.delos.com/ioiupload?a=pKdXOl8ztZv&amp;showsubmit">See submitted solutions</a>
+&nbsp;|&nbsp;
+<a href="http://ace.delos.com/ioiupload?a=pKdXOl8ztZv&amp;suggestionbox">Send message
+to operations staff</a>
+&nbsp;|&nbsp;
+Phone: +1 719-321-7333
+<br>
+Director is not online<br>
+This page was generated at 23:13:48 GMT.
+</center>
+
+</form></body></html>

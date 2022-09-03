@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://ace.delos.com/TESTDATA/NOV08.auction.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 auction Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="auction.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'auction' Analysis</H2>
+<H4>by Rob Kolstad</H4>
+<P>The goal is to maximize the total revenue of haybales sold -- <TT>bestrevenue 
+= bestprice * nbuyers</TT>. In case of ties, we want the smallest 
+<TT>bestprice</TT> (which presumably has a larger <TT>nbuyers</TT>). 
+<P>The general approach is brute force: for each price, calculate the total 
+revenue -- and choose the largest revenue from the lot. The simplest approach 
+would be: <PRE>    maxrevenue = 0;
+    for (price = 1; price &lt;= 1000000; price++) {
+                                        /* check all prices */
+        nbuyers = 0;
+        for (i = 0; i &lt; M; i++) {
+                                        /* check all farmers */
+            if (farmer i's limit &gt;= price) nbuyers++;
+                                        /* count farmer if price is OK */
+        }
+        if (nbuyers &gt; N) nbuyers = N;   /* have only N bales to sell */
+        totalrevenue = nbuyers * price;
+        if (totalrevenue &gt; maxrevenue) {
+                                        /* remember best revenue, price */
+            maxrevenue = totalrevenue;
+            bestprice = price;
+        }
+    }
+</PRE>
+<P>The program above has a problem -- the two nested loops require 1,000,000 * M 
+trips through the farmer-checking statement. Since M can be 1,000, that might 
+make for one billion trips -- too many to solve in 1 cpu second (which can 
+generally do a one to a few hundred million simple operations). 
+<P>There is no need, however, to check all the prices. Suppose four farmers are 
+willing to pay these prices: {2, 4, 6, 900}. We need only check <I>those</I> 
+values for the haybale, since a farmer who will pay 5 for a haybale will pay 6 
+or 900. There's no reason to check 7, 8, 10, ..., 898, 899 since we know farmer 
+4 will pay even more. 
+<P>This yields a much faster program: <PRE>    maxrevenue = 0;
+    for (j = 0; j &lt; N; j++) {
+        price = farmer (j+1)'s limit;   /* check all reasonable prices */
+        nbuyers = 0;
+        for (i = 0; i &lt; M; i++) {
+                                        /* check all farmers */
+            if (farmer (i+1)'s limit &gt;= price) nbuyers++;
+                                        /* count farmer if price is OK */
+        }
+        if (nbuyers &gt; N) nbuyers = N;   /* have only N bales to sell */
+        totalrevenue = nbuyers * price;
+        if (totalrevenue &gt; maxrevenue) {
+                                        /* remember best revenue, price */
+            maxrevenue = totalrevenue;
+            bestprice = price;
+        }
+    }
+</PRE>
+<P>And, indeed, this program makes only N*M trips through the innermost loop 
+(max N*M = 1,000,000) -- 1,000 times faster than the previous program. 
+<P>Can we do better? 
+<P>The inner loop compares each farmer's limit to the price -- and checks every 
+farmer's limit every time we get a new price. If the list of farmer's price 
+limits were sorted, we could just advance through that list with a counter that 
+told us how many farmers' limits were smaller than the current limit! By paying 
+an extra sorting cost of O(N log N) up front, we reduce the number of checks to 
+N for a total runtime of N + NlogN (vs. the old (M*M) and (N*M) from the 
+previous two examples). Numerically, since the logs in this approach are known 
+to be log base 2, this shows a dramatic speedup at the largest limits of the 
+program: 
+<CENTER>
+<TABLE cellPadding=4 border=1>
+  <TBODY>
+  <TR>
+    <TD><B>Method</B> 
+    <TD align=middle><B>O()</B> 
+    <TD align=middle><B>Numerically</B> 
+    <TD align=middle><B>Total</B> 
+  <TR>
+    <TD align=middle>Simplest 
+    <TD align=middle>N*M 
+    <TD align=middle>1,000 * 1,000,000
+    <TD align=right>1,000,000,000 
+  <TR>
+    <TD align=middle>Better 
+    <TD align=middle>N*N 
+    <TD align=right>1,000*1,000 
+    <TD align=right>1,000,000 
+  <TR>
+    <TD align=middle>Best 
+    <TD align=middle>NlogN+N 
+    <TD align=middle>1,000*~10 + 1,000 
+    <TD align=right>~11,000 </TR></TBODY></TABLE></CENTER>
+<P>Choosing a better algorithm results in a speed of up about ~100,000x! 
+<P>The example below illustrates this speedy approach: <PRE>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int compare (a, b) int *a, *b; { return *b - *a; }
+
+int price[1000];
+
+main () {
+    FILE *fin = fopen ("auction.in", "r");
+    FILE *fout = fopen ("auction.out", "w");
+    int n, m, i, sum, maxrevenue, p, thisprice, bestprice, nbuyers;
+
+    fscanf (fin, "%d %d", &amp;n, &amp;m);
+    for (i = 0; i &lt; m; i++)
+        fscanf (fin, "%d", &amp;price[i]);
+    qsort(price, m, sizeof(int), compare);
+    /*for (i = 0; i &lt; m; i++) printf("&gt;%d\n", price[i]);*/
+
+    bestprice = price[0];
+    maxrevenue = price[0];
+    for (p = 0; p &lt; m; p++) {
+        thisprice = price[p];
+        nbuyers = p+1;
+        if (nbuyers &gt; n) nbuyers = n;
+        sum = nbuyers * thisprice;
+        if (sum &gt; maxrevenue) {
+            maxrevenue = sum;
+            bestprice = thisprice;
+        }
+    }
+    fprintf (fout, "%d %d\n", bestprice, maxrevenue);
+    exit (0);
+}
+<PRE>
+</PRE></PRE></BODY></HTML>

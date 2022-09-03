@@ -1,0 +1,112 @@
+<html>
+<head> <title>USACO OPEN11 oddd Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'oddd' Analysis</h2>
+<h4>by Neal Wu</h4>
+<p>Suppose we have chosen a subset of the paths that satisfies the constraint
+that all towns have odd degree. Since the sum of the degree of each town must
+be even (as we are counting each chosen path twice), we can immediately see
+that if N is odd there does not exist a solution, as the sum of an odd number
+of odd degrees must be odd.</p>
+
+<p>Furthermore, we can see that if we decompose the graph into its connected
+components, since we must solve each component independently, there cannot
+exist a solution if any component has an odd number of towns. (Indeed this
+makes sense, as an odd-sized graph cannot be broken down into only even-sized
+subgraphs.) We now claim that if every connected component of the graph has an
+even number of towns, then a solution exists. We provide a construction as
+follows:</p>
+
+<p>For a connected component of size <i>n</i> (<i>n</i> even), find any
+spanning tree of the graph and root it at an arbitrary node <i>R</i>. We assign
+edges of the tree to be either <b>on</b> or <b>off</b> as follows:</p>
+
+<ul>
+<li>For each vertex <i>v</i> from the bottom leaves up to (but not including)
+<i>R</i>, we assign the edge from <i>v</i> to its parent to be either <b>on</b>
+or <b>off</b> so that <i>v</i> has an odd number of <b>on</b> edges adjacent to
+it.</li>
+<li>Since the other <i>n</i> - 1 vertices of the tree have odd degree and
+<i>n</i> is even, by parity <i>R</i> must have an odd number of adjacent
+<b>on</b> edges as well, so we are done.</li>
+</ul>
+
+<p>To implement the above algorithm we can simply perform a depth-first search
+on each component. Sample code (from Travis Hance) follows:</p>
+
+<pre>
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+#define nmax 50005
+
+vector&lt;int&gt; edges[nmax];
+vector&lt;int&gt; edgesi[nmax];
+bool visited[nmax];
+vector&lt;int&gt; answer;
+
+bool dfs(int a, int pa, int edgei) {
+	if(visited[a]) {
+		return false;
+	}
+	visited[a] = true;
+
+	int count = 0;
+	for(int i = 0; i &lt; edges[a].size(); i++) {
+		if(edges[a][i] != pa) {
+			if(dfs(edges[a][i], a, edgesi[a][i]))
+				count++;
+		}
+	}
+
+	if(count % 2 == 0) {
+		answer.push_back(edgei);
+		return true;
+	}
+	return false;
+}
+
+int main() {
+	freopen("oddd.in","r",stdin);
+	freopen("oddd.out","w",stdout);
+
+	int n, m;
+	scanf("%d", &amp;n);
+	scanf("%d", &amp;m);
+	for(int i = 0; i &lt; n; i++)
+		visited[i] = false;
+	for(int i = 0; i &lt; m; i++) {
+		int a, b;
+		scanf("%d", &amp;a);
+		scanf("%d", &amp;b);
+		a--;
+		b--;
+		edges[a].push_back(b);
+		edges[b].push_back(a);
+		edgesi[a].push_back(i);
+		edgesi[b].push_back(i);
+	}
+
+	for(int i = 0; i &lt; n; i++) {
+		if(!visited[i]) {
+			if(dfs(i, -1, -1)) {
+				printf("-1\n");
+				return 0;
+			}
+		}
+	}
+
+	printf("%d\n", answer.size());
+	for(int i = 0; i &lt; answer.size(); i++)
+		printf("%d\n", answer[i] + 1);
+}
+</pre>
+
