@@ -1,35 +1,11 @@
-[01m[Ka124.cpp:[m[K In function ‘[01m[Kvoid build(int, int, int)[m[K’:
-[01m[Ka124.cpp:15:17:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around ‘[01m[K+[m[K’ inside ‘[01m[K>>[m[K’ [[01;35m[K-Wparentheses[m[K]
-   15 |     int mid = [01;35m[Kl + r[m[K >> 1;
-      |               [01;35m[K~~^~~[m[K
-[01m[Ka124.cpp:[m[K In function ‘[01m[Klong long unsigned int get_sum(int, int, int)[m[K’:
-[01m[Ka124.cpp:32:22:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around ‘[01m[K+[m[K’ inside ‘[01m[K>>[m[K’ [[01;35m[K-Wparentheses[m[K]
-   32 |     int mid = [01;35m[Kt[u].l + t[u].r[m[K >> 1;
-      |               [01;35m[K~~~~~~~^~~~~~~~[m[K
-[01m[Ka124.cpp:[m[K In function ‘[01m[Kvoid add(int, int, int, int)[m[K’:
-[01m[Ka124.cpp:43:22:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around ‘[01m[K+[m[K’ inside ‘[01m[K>>[m[K’ [[01;35m[K-Wparentheses[m[K]
-   43 |     int mid = [01;35m[Kt[u].l + t[u].r[m[K >> 1;
-      |               [01;35m[K~~~~~~~^~~~~~~~[m[K
-[01m[Ka124.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
-[01m[Ka124.cpp:54:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   54 |     [01;35m[Kscanf("%d%d", &n, &f)[m[K;
+[01m[K1374.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[K1374.cpp:132:27:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around ‘[01m[K+[m[K’ inside ‘[01m[K>>[m[K’ [[01;35m[K-Wparentheses[m[K]
+  132 |         ll mid = [01;35m[K1 + left + right[m[K >> 1;
+      |                  [01;35m[K~~~~~~~~~^~~~~~~[m[K
+[01m[K1374.cpp:122:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  122 |     [01;35m[Kscanf("%d%d", &n, &m)[m[K;
       |     [01;35m[K~~~~~^~~~~~~~~~~~~~~~[m[K
-[01m[Ka124.cpp:55:39:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   55 |     for (int i = 1; i <= n; i++) [01;35m[Kscanf("%d", k + i)[m[K;
-      |                                  [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
-[01m[Ka124.cpp:58:14:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   58 |         [01;35m[Kscanf("%d", &a)[m[K;
-      |         [01;35m[K~~~~~^~~~~~~~~~[m[K
-[01m[Ka124.cpp:60:18:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   60 |             [01;35m[Kscanf("%d%d%d\n", &a, &b, &c)[m[K;
-      |             [01;35m[K~~~~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
-[01m[Ka124.cpp:63:18:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   63 |             [01;35m[Kscanf("%d\n", &b)[m[K;
-      |             [01;35m[K~~~~~^~~~~~~~~~~~[m[K
-[01m[Ka124.cpp:66:18:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   66 |             [01;35m[Kscanf("%d\n", &b)[m[K;
-      |             [01;35m[K~~~~~^~~~~~~~~~~~[m[K
-[01m[Ka124.cpp:69:18:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-   69 |             [01;35m[Kscanf("%d%d\n", &a, &b)[m[K;
-      |             [01;35m[K~~~~~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K1374.cpp:124:14:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  124 |         [01;35m[Kscanf("%d%d%d\n", &u, &v, &w)[m[K;
+      |         [01;35m[K~~~~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
 Compiled successfully.
