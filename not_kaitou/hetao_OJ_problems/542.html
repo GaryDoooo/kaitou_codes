@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html data-page="problem_detail" data-layout="basic" class="layout--basic page--problem_detail theme--light nojs" lang="" data-app="Hydro">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <meta name="theme-color" content="#56758f">
+    <meta property="og:site_name" content="核OJ_核桃编程" />
+  <meta property="og:title" content="Problem Detail - 【提高】比分 (score) - 核OJ_核桃编程" />
+  <meta property="og:url" content="oj.hetao101.com/p/542" />
+  <meta property="og:image" content="/favicon-96x96.png" />
+    <title>Problem Detail - 【提高】比分 (score) - 核OJ_核桃编程</title>
+  <style>
+    body {
+      --font-family: "Open Sans", "Open Sans", "Seravek", "Segoe UI", "Verdana", "PingFang SC", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans";
+      --code-font-family: "Source Code Pro", "monaco", "Source Code Pro", "Consolas", "Lucida Console", "monospace";
+      --font-ligatures: none !important;
+    }
+  </style>
+      <link rel="stylesheet" media="all" href="/default-4.38.3.theme.css">
+        <script>
+      var _htmlNode = document.documentElement;
+      _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+      try {
+        import('data:text/javascript,');Object.fromEntries([]);window.matchMedia('all').addEventListener('change',()=>{});
+      } catch(e) {
+        const s = document.createElement('script');
+        s.async = false;
+        s.src = "/polyfill-4.38.3.js";
+        document.head.appendChild(s);
+      }
+    </script>
+  </head>
+<body>
+  <nav class="nav slideout-menu" id="menu">
+  <div class="row"><div class="columns clearfix">
+    <ol class="nav__list nav__list--main clearfix">
+      <li class="nav__list-item"><a href="/" class="nav__logo" style="background-size: 100% 100%;">&nbsp;</a></li>        <li class="nav__list-item">
+  <a href="/d/training/" class="nav__item">
+    Home
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/p" class="nav__item nav--active">
+    Problem Set
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/training" class="nav__item">
+    Training
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/homework" class="nav__item">
+    Homework
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/discuss" class="nav__item">
+    Discussion
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/contest" class="nav__item">
+    Contest
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/record?uidOrName=71" class="nav__item">
+    Record
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/ranking" class="nav__item">
+    Ranking
+  </a>
+</li>
+      </ol>
+    <ol class="nav__list nav__list--secondary clearfix">
+          <li class="nav__list-item" data-dropdown-pos="bottom right" data-dropdown-custom-class="nav__dropdown" data-dropdown-target="#menu-nav-user" data-dropdown-disabledconstrainToWindow data-dropdown-trigger-desktop-only>
+        <a href="/d/training/user/71" class="nav__item">hetao7745825 <span class="icon icon-expand_more nojs--hide"></span></a>
+        <ol class="dropdown-target menu" id="menu-nav-user">
+          <li class="menu__item">
+            <a href="/d/training/user/71" class="menu__link">
+              <span class="icon icon-account--circle"></span> My Profile
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/messages" class="menu__link">
+              <span class="icon icon-comment--multiple"></span> Messages
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/domain" class="menu__link">
+              <span class="icon icon-web"></span> @ 练习题库
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/account" class="menu__link">
+              <span class="icon icon-wrench"></span> Account Settings
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/preference" class="menu__link">
+              <span class="icon icon-sliders"></span> Preference
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/security" class="menu__link">
+              <span class="icon icon-security"></span> Security
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/domain" class="menu__link">
+              <span class="icon icon-web"></span> My Domains
+            </a>
+          </li>
+                      <li class="menu__item">
+              <a href="/d/training/file" class="menu__link">
+                <span class="icon icon-file"></span> My Files
+              </a>
+            </li>
+                                <li class="menu__item">
+              <a href="/d/training/blog/71" class="menu__link">
+                <span class="icon icon-book"></span> Blog
+              </a>
+            </li>
+                    <li class="menu__seperator"></li>
+                    <li class="menu__item">
+            <a href="/d/training/logout" class="menu__link" name="nav_logout">
+              <span class="icon icon-logout"></span> Logout
+            </a>
+          </li>
+        </ol>
+      </li>
+        </ol>
+  </div></div>
+</nav>
+<nav class="nav--shadow"></nav>
+<div class="slideout-panel" id="panel">
+  <div class="slideout-overlay"></div>
+  <div class="header--mobile">
+  <div class="row"><div class="columns clearfix">
+    <div class="float-left">
+      <a class="header--mobile__domain" href="/" target="_self">&nbsp;</a>
+    </div>
+    <div class="float-right">
+      <button type="button" class="header__hamburger">
+  <div class="hamburger hamburger--spin">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </div>
+</button>
+    </div>
+  </div></div>
+</div>
+  <div class="main">
+    <script>
+
+  
+  
+  
+  
+  
+</script>
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header" style="align: center">
+        <h1 class="section__title">
+                      <a href="/d/training/record/62f3245139e79ec979df5ec2">
+              <span class="icon record-status--icon pass"></span>
+              <span class="record-status--text pass">100</span>
+            </a>
+                                <form class="form--inline" action="/d/training/p" method="post">
+              <input type="hidden" name="pid" value="542">
+              <input type="hidden" name="operation" value="star">
+              <button class="star" type="submit">
+                <span class="starred--hide"><span class="icon icon-star--outline" data-tooltip="Star"></span></span>
+                <span class="starred--show"><span class="icon icon-star" data-tooltip="Unstar"></span></span>
+              </button>
+            </form>
+                    #542. 【提高】比分 (score)
+        </h1>
+      </div>
+      <div class="section__body">
+        <ul class="problem__tags">
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">ID: 542</span>
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-book">Type: Default</span>
+                      <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-stopwatch">1000ms</span>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-comparison">16MiB</span>
+                                <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=542">Tried: 8</a>
+            <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=542&amp;status=1">Accepted: 2</a>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">Difficulty: 10</span>
+                    <span class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item">Uploaded By: <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="https://hydro.ac/file/518/pic.jpg" width="20" height="20">
+    <a class="user-profile-name" href="/d/training/user/2">
+          33DAI
+      </a>
+  </span>
+</span>
+                      <span name="show_tags" class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item nojs--hide icon icon-tag">Tags&gt;</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">模拟</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">区赛</span>        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
+        <div class="section__header non-scratchpad--hide">
+          <h1 class="section__title">【提高】比分 (score)</h1>
+        </div>
+                <div class="section__body typo" data-fragment-id="problem-description">
+        <h2>说明</h2>
+<p>
+	小花在乒乓球馆里最喜欢一个叫樊振东的选手，今天它趴在窗户上看了一下午他们的训练，直到被打扫卫生的大叔赶走。小花的记性非常好，能够记录一整个下午的比赛情况，比如它记录的情况是（其中
+F
+表示樊振东选手获得一分，A 表示樊振东的对手获得一分）：FFFFFFFFFFFFFFFFFFFFFFAF。在当前的赛制下，此时比赛的结果是樊振东第一局 11 比 0 获胜，第二局 11 比 0 获胜，正在进行第三局，当前比分 1 比 1。因为小花看得太全神贯注了，完全没有注意比分，以至于它完全不知道一下午的具体比分，于是小花找了它的好朋友编程兔来帮忙。可是编程兔去挖萝卜了，于是小花来求助聪明的小朋友们。你的程序就是要对于一系列比赛信息的输入（FA 形式），输出正确的结果。 <span></span> 
+</p>
+<p>
+	注： <span></span> 
+</p>
+<p>
+	1）当前使用的是 11 分制，到 10 平后，需要胜出 2 分后，才算胜，如：12：10； <span></span> 
+</p>
+<p>
+	17：15 等。 <span></span> 
+</p>
+<p>
+	2）如果一局比赛刚开始，则此时比分不必输出。 <span></span> 
+</p>
+<p>
+	3）输入数据每行至多 20 个字母，行数可能很多，最多可能有 10000 行。 <span></span> 
+</p>
+<h2>输入格式</h2>
+<p>
+	输入包含若干行字符串（每行至多
+20
+个字母），字符串由大写的
+F、A 和 E 组成。 <span></span> 
+</p>
+<p>
+	其中
+E
+表示比赛信息结束，程序应该忽略
+E
+之后的所有内容。 <span></span> 
+</p>
+<h2>输出格式</h2>
+<p>输出有若干行，每一行对应一局比赛的比分（按输入顺序）。</p>
+<h2>样例</h2>
+<pre><code class="language-input1">FFFFFFFFFFFFFFFFFFFF 
+FFAFE</code></pre><pre><code class="language-output1">11:0 
+11:0 
+1:1
+</code></pre>
+<h2>提示</h2>
+<p>
+	前
+11
+分都是 F，所以第一局 11:0，之后 11 分也都是 F，所以第二句也是 11:0，最
+</p>
+<p>
+	后两分分别是
+A
+和 F，所以是 1:1，E 表示结束。 <span></span> 
+</p>
+<p>
+	数据规模： <span></span> 
+</p>
+<p>
+	每行最多有
+20
+个字符，只有 F、A 和 E 三种字母，没有其他多余的字母。 <span></span> 
+</p>
+<p>
+	对于
+30%的数据，输入只有一行。 <span></span> 
+</p>
+<p>
+	对于
+60%的数据，输入不超过 10 行。 <span></span> 
+</p>
+<p>
+	对于 100%的数据，输入数据不超过 10000 行。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<br />
+</p>
+<p>
+	来源：
+</p>
+<p>
+	【2019<span>常州市</span>天宁区选拔赛】
+</p>
+<p>
+	<br />
+</p>
+</div>      </div></div>
+    </div>
+  </div>
+  <div class="medium-3 columns">
+          <div class="section side section--problem-sidebar">
+  <div>
+    <ol class="menu">
+                  <li class="menu__item scratchpad--hide"><a class="menu__link highlight" name="problem-sidebar__open-scratchpad" href="javascript:;" data-global-hotkey="alt+e">
+        <span class="icon icon-enlarge"></span> Open Scratchpad (Alt+E)
+      </a></li>
+      <li class="menu__item non-scratchpad--hide"><a class="menu__link" name="problem-sidebar__quit-scratchpad" href="javascript:;" data-global-hotkey="alt+q">
+        <span class="icon icon-enlarge"></span> Quit Scratchpad (Alt+Q)
+      </a></li>
+                  <li class="menu__item scratchpad--hide"><a class="menu__link" href="/d/training/p/542/submit">
+        <span class="icon icon-send"></span> Submit
+      </a></li>
+                  <li class="menu__seperator"></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/discuss/problem/542">
+        <span class="icon icon-comment--text"></span> Discussions (0)      </a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/p/542/solution">
+        <span class="icon icon-comment--text"></span> Solutions (0)      </a></li>
+          <li class="menu__item"><a class="menu__link" href="/d/training/p/542/files">
+        <span class="icon icon-file"></span> Files
+      </a></li>
+              <li class="menu__seperator nojs--hide"></li>
+                    <li class="menu__item nojs--hide"><a class="menu__link" href="javascript:;" name="problem-sidebar__copy">
+          <span class="icon icon-copy"></span> Copy
+        </a></li>
+              </ol>
+  </div>
+</div>
+<div class="section side nojs--hide">
+  <div class="section__header">
+    <h1 class="section__title">Statistics</h1>
+  </div>
+  <div id="submission-status-placeholder" style="width: 100%; height:230px"></div>
+  <div id="submission-score-placeholder" style="width: 100%; height:230px"></div>
+</div>
+  </div>
+</div>
+<div style="display:none" class="outer-loader-container"><div class="loader"></div></div>
+<div class="scratchpad-container" style="display:none">
+  <div style="display:none" class="loader-container"><div class="loader"></div></div>
+  <div id="scratchpad" style="opacity:0"></div>
+</div>
+  </div>
+  <div class="footer">
+  <div class="row"><div class="columns">
+      <div class="row footer__links">
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Status
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/record">Judging Queue</a></li>
+          <li class="footer__category__item"><a href="/d/training/status">Service Status</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Development
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="https://github.com/hydro-dev/Hydro" target="_blank">Open Source</a></li>
+          <li class="footer__category__item"><a href="/d/training/api">API</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <h1>
+          Support
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/wiki/help">Help</a></li>
+          <!--<li class="footer__category__item"><a href="#">Blog</a></li>-->
+          <li class="footer__category__item"><a href="/d/training/wiki/about#contact">QQ Group</a></li>
+        </ul></div>
+      </div>
+    </div>
+      <div class="footer__extra-link clearfix">
+      <div class="footer__extra-left">
+        <ol class="clearfix">
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about">About</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#contact">Contact Us</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#privacy">Privacy</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#tos">Terms of Service</a></li>
+          <li class="footer__extra-link-item"><a href="https://hydro.js.org/#%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">Copyright Complaint</a></li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-lang">
+            <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-lang"><li class="menu__item"><a class="menu__link" href="/d/training/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh_TW">正體中文</a></li></ol>
+          </li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-theme">
+            <span><span class="icon icon-global"></span> Theme <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-theme">
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/light">Light</a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/dark">Dark</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div class="footer__extra-right">
+        <ol class="clearfix"><li class="footer__extra-link-item"></li><li class="footer__extra-link-item"></li><li class="footer__extra-link-item">Worker 0 in 6ms</li>
+          <!-- Prepare 2ms -->
+          <!-- Method 1ms -->
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro v3.14.5</a> Community</li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</div>
+</div>
+      <script>
+      var UiContext = '{"cdn_prefix":"/","url_prefix":"/","domainId":"training","domain":{"_id":"training","lower":"training","owner":2,"name":"\u7EC3\u4E60\u9898\u5E93","bulletin":"# \u6838OJ_\u6838\u6843\u7F16\u7A0B - \u7EC3\u4E60\u9898\u5E93\\r\\n\\r\\n[\u21D0 \u8FD4\u56DE\u6839\u9898\u5E93](http://oj.hetao101.com/)\\r\\n\\r\\n## \u57FA\u672C\u4F7F\u7528\u65B9\u6CD5\\r\\n\\r\\nP \u7CFB\u5217\u9898\u76EE\u6765\u81EA\u7F51\u7EDC\uFF0C\u53EF\u80FD\u4F1A\u6709\u9898\u76EE\u6392\u7248\u6570\u636E\u95EE\u9898\uFF0C\u90E8\u5206\u7EAF\u8F93\u51FA\u7684\u9898\u76EE\u53EF\u80FD\u7F3A\u5C11\u6570\u636E\uFF0C\u7BA1\u7406\u5458\u770B\u5230\u7F3A\u5C11\u6570\u636E\u7CFB\u7EDF\u9519\u8BEF\u7684\u63D0\u4EA4\u540E\u4F1A\u53CA\u65F6\u4FEE\u590D\u3002\u9047\u5230\u95EE\u9898\u53EF\u4EE5\u5728\u8BA8\u8BBA\u533A\u53D1\u5E03\u5E16\u5B50\u3002\\r\\n\\r\\n1. \u901A\u8FC7\u9898\u5E93\u70B9\u51FB\u67D0\u9053\u60F3\u505A\u7684\u9898\u76EE\\r\\n2. \u8BFB\u9898\\r\\n3. \u70B9\u51FB\u8FDB\u5165\u5728\u7EBF\u7F16\u7A0B\u6A21\u5F0F\\r\\n4. \u70B9\u51FB\u53F3\u4E0A\u65B9\u7684\u81EA\u6D4B\u6253\u5F00\u81EA\u6D4B\u7A97\u53E3\\r\\n5. \u5C06\u9898\u76EE\u7684\u6837\u4F8B\u8F93\u5165\u590D\u5236\u8FDB\u8F93\u5165\u6846\u4E2D\\r\\n6. \u70B9\u51FB\u8FD0\u884C\u81EA\u6D4B\uFF0C\u67E5\u770B\u662F\u5426\u4E0E\u8F93\u51FA\u4E00\u81F4\\r\\n7. \u5982\u679C\u7ED3\u679C\u6CA1\u6709\u95EE\u9898\uFF0C\u53EF\u4EE5\u70B9\u51FB\u9012\u4EA4\u8BC4\u6D4B\u67E5\u770B\u8BC4\u6D4B\u7ED3\u679C\\r\\n8. \u5982\u679C\u663E\u793A\u9519\u8BEF\u3001\u53EF\u4EE5\u5BF9\u5E94\u5730\u4FEE\u6539\u4EE3\u7801\u518D\u6B21\u81EA\u6D4B\\r\\n\\r\\n![](http://oj.hetao101.com/file/2/t.png)\\r\\n\\r\\n## \u5E38\u89C1\u8BBE\u7F6E\\r\\n\\r\\n0. \u8BBE\u7F6E\u5F53\u524D\u9898\u5E93\u7684\u663E\u793A\u540D\uFF1A<http://oj.hetao101.com/d/training/home/settings/domain>\\r\\n1. \u8FDB\u5165\u5F53\u524D\u9898\u5E93\u7684\u504F\u597D\u8BBE\u7F6E\u9875\u9762\uFF1A<http://oj.hetao101.com/d/training/home/settings/preference>\\r\\n2. \u5C06\u663E\u793A\u504F\u597D\u4E2D\u7684**\u7528\u6237\u754C\u9762\u8BED\u8A00**\u8BBE\u7F6E\u6210**\u7B80\u4F53\u4E2D\u6587**\\r\\n3. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u4EE3\u7801\u8BED\u8A00**\u8BBE\u7F6E\u6210\u81EA\u5DF1\u5E38\u7528\u7684\u8BED\u8A00\\r\\n4. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u9ED8\u8BA4\u4EE3\u7801\u6A21\u677F**\u6539\u6210\u81EA\u5DF1\u4E60\u60EF\u7684\u4EE3\u7801\u6846\u67B6\uFF0C\u6BD4\u5982\u4E0B\u9762\u8FD9\u6BB5\\r\\n\\r\\n```cpp\\r\\n#include<bits/stdc++.h>\\r\\nusing namespace std;\\r\\nint main(){\\r\\n\\r\\n\\r\\n\\r\\n    return 0;\\r\\n}\\r\\n```\\r\\n","roles":{"teacher":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652630151444198802323445","guest":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624967874125500547201","default":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","root":"-1","cpp":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652641680659602963691511","contest_creator":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629953004340186416069"},"avatar":"","langs":"cc,cc.std98,cc.std11,cc.std14,py,py.py3","share":"*"},"extraTitleContent":"\u3010\u63D0\u9AD8\u3011\u6BD4\u5206 (score)","constantVersion":"40d7cc7454c37f5c1cf381ecdfd9f83e1c73a32f","problemId":542,"problemNumId":542,"codeLang":"cc.std11","codeTemplate":"","pdoc":{"_id":"60e6cb471340ac06ced3501a","content":"<h2>\u8BF4\u660E</h2>\\r\\n\\r\\n<p class=\\"Default\\">\\r\\n\\t\u5C0F\u82B1\u5728\u4E52\u4E53\u7403\u9986\u91CC\u6700\u559C\u6B22\u4E00\u4E2A\u53EB\u6A0A\u632F\u4E1C\u7684\u9009\u624B\uFF0C\u4ECA\u5929\u5B83\u8DB4\u5728\u7A97\u6237\u4E0A\u770B\u4E86\u4E00\u4E0B\u5348\u4ED6\u4EEC\u7684\u8BAD\u7EC3\uFF0C\u76F4\u5230\u88AB\u6253\u626B\u536B\u751F\u7684\u5927\u53D4\u8D76\u8D70\u3002\u5C0F\u82B1\u7684\u8BB0\u6027\u975E\u5E38\u597D\uFF0C\u80FD\u591F\u8BB0\u5F55\u4E00\u6574\u4E2A\u4E0B\u5348\u7684\u6BD4\u8D5B\u60C5\u51B5\uFF0C\u6BD4\u5982\u5B83\u8BB0\u5F55\u7684\u60C5\u51B5\u662F\uFF08\u5176\u4E2D\\r\\nF\\r\\n\u8868\u793A\u6A0A\u632F\u4E1C\u9009\u624B\u83B7\u5F97\u4E00\u5206\uFF0CA \u8868\u793A\u6A0A\u632F\u4E1C\u7684\u5BF9\u624B\u83B7\u5F97\u4E00\u5206\uFF09\uFF1AFFFFFFFFFFFFFFFFFFFFFFAF\u3002\u5728\u5F53\u524D\u7684\u8D5B\u5236\u4E0B\uFF0C\u6B64\u65F6\u6BD4\u8D5B\u7684\u7ED3\u679C\u662F\u6A0A\u632F\u4E1C\u7B2C\u4E00\u5C40 11 \u6BD4 0 \u83B7\u80DC\uFF0C\u7B2C\u4E8C\u5C40 11 \u6BD4 0 \u83B7\u80DC\uFF0C\u6B63\u5728\u8FDB\u884C\u7B2C\u4E09\u5C40\uFF0C\u5F53\u524D\u6BD4\u5206 1 \u6BD4 1\u3002\u56E0\u4E3A\u5C0F\u82B1\u770B\u5F97\u592A\u5168\u795E\u8D2F\u6CE8\u4E86\uFF0C\u5B8C\u5168\u6CA1\u6709\u6CE8\u610F\u6BD4\u5206\uFF0C\u4EE5\u81F3\u4E8E\u5B83\u5B8C\u5168\u4E0D\u77E5\u9053\u4E00\u4E0B\u5348\u7684\u5177\u4F53\u6BD4\u5206\uFF0C\u4E8E\u662F\u5C0F\u82B1\u627E\u4E86\u5B83\u7684\u597D\u670B\u53CB\u7F16\u7A0B\u5154\u6765\u5E2E\u5FD9\u3002\u53EF\u662F\u7F16\u7A0B\u5154\u53BB\u6316\u841D\u535C\u4E86\uFF0C\u4E8E\u662F\u5C0F\u82B1\u6765\u6C42\u52A9\u806A\u660E\u7684\u5C0F\u670B\u53CB\u4EEC\u3002\u4F60\u7684\u7A0B\u5E8F\u5C31\u662F\u8981\u5BF9\u4E8E\u4E00\u7CFB\u5217\u6BD4\u8D5B\u4FE1\u606F\u7684\u8F93\u5165\uFF08FA \u5F62\u5F0F\uFF09\uFF0C\u8F93\u51FA\u6B63\u786E\u7684\u7ED3\u679C\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u6CE8\uFF1A <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t1\uFF09\u5F53\u524D\u4F7F\u7528\u7684\u662F 11 \u5206\u5236\uFF0C\u5230 10 \u5E73\u540E\uFF0C\u9700\u8981\u80DC\u51FA 2 \u5206\u540E\uFF0C\u624D\u7B97\u80DC\uFF0C\u5982\uFF1A12\uFF1A10\uFF1B <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t17\uFF1A15 \u7B49\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t2\uFF09\u5982\u679C\u4E00\u5C40\u6BD4\u8D5B\u521A\u5F00\u59CB\uFF0C\u5219\u6B64\u65F6\u6BD4\u5206\u4E0D\u5FC5\u8F93\u51FA\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t3\uFF09\u8F93\u5165\u6570\u636E\u6BCF\u884C\u81F3\u591A 20 \u4E2A\u5B57\u6BCD\uFF0C\u884C\u6570\u53EF\u80FD\u5F88\u591A\uFF0C\u6700\u591A\u53EF\u80FD\u6709 10000 \u884C\u3002 <span></span> \\r\\n</p>\\r\\n<h2>\u8F93\u5165\u683C\u5F0F</h2>\\r\\n\\r\\n<p class=\\"Default\\">\\r\\n\\t\u8F93\u5165\u5305\u542B\u82E5\u5E72\u884C\u5B57\u7B26\u4E32\uFF08\u6BCF\u884C\u81F3\u591A\\r\\n20\\r\\n\u4E2A\u5B57\u6BCD\uFF09\uFF0C\u5B57\u7B26\u4E32\u7531\u5927\u5199\u7684\\r\\nF\u3001A \u548C E \u7EC4\u6210\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u5176\u4E2D\\r\\nE\\r\\n\u8868\u793A\u6BD4\u8D5B\u4FE1\u606F\u7ED3\u675F\uFF0C\u7A0B\u5E8F\u5E94\u8BE5\u5FFD\u7565\\r\\nE\\r\\n\u4E4B\u540E\u7684\u6240\u6709\u5185\u5BB9\u3002 <span></span> \\r\\n</p>\\r\\n<h2>\u8F93\u51FA\u683C\u5F0F</h2>\\r\\n\\r\\n\u8F93\u51FA\u6709\u82E5\u5E72\u884C\uFF0C\u6BCF\u4E00\u884C\u5BF9\u5E94\u4E00\u5C40\u6BD4\u8D5B\u7684\u6BD4\u5206\uFF08\u6309\u8F93\u5165\u987A\u5E8F\uFF09\u3002\\r\\n<h2>\u6837\u4F8B</h2>\\r\\n<pre><code class=\\"language-input1\\">FFFFFFFFFFFFFFFFFFFF \\r\\nFFAFE</code></pre><pre><code class=\\"language-output1\\">11:0 \\r\\n11:0 \\r\\n1:1\\r\\n</code></pre>\\r\\n\\r\\n<h2>\u63D0\u793A</h2>\\r\\n\\r\\n<p class=\\"Default\\">\\r\\n\\t\u524D\\r\\n11\\r\\n\u5206\u90FD\u662F F\uFF0C\u6240\u4EE5\u7B2C\u4E00\u5C40 11:0\uFF0C\u4E4B\u540E 11 \u5206\u4E5F\u90FD\u662F F\uFF0C\u6240\u4EE5\u7B2C\u4E8C\u53E5\u4E5F\u662F 11:0\uFF0C\u6700\\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u540E\u4E24\u5206\u5206\u522B\u662F\\r\\nA\\r\\n\u548C F\uFF0C\u6240\u4EE5\u662F 1:1\uFF0CE \u8868\u793A\u7ED3\u675F\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u6570\u636E\u89C4\u6A21\uFF1A <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u6BCF\u884C\u6700\u591A\u6709\\r\\n20\\r\\n\u4E2A\u5B57\u7B26\uFF0C\u53EA\u6709 F\u3001A \u548C E \u4E09\u79CD\u5B57\u6BCD\uFF0C\u6CA1\u6709\u5176\u4ED6\u591A\u4F59\u7684\u5B57\u6BCD\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u5BF9\u4E8E\\r\\n30%\u7684\u6570\u636E\uFF0C\u8F93\u5165\u53EA\u6709\u4E00\u884C\u3002 <span></span> \\r\\n</p>\\r\\n<p class=\\"Default\\">\\r\\n\\t\u5BF9\u4E8E\\r\\n60%\u7684\u6570\u636E\uFF0C\u8F93\u5165\u4E0D\u8D85\u8FC7 10 \u884C\u3002 <span></span> \\r\\n</p>\\r\\n<p>\\r\\n\\t\u5BF9\u4E8E 100%\u7684\u6570\u636E\uFF0C\u8F93\u5165\u6570\u636E\u4E0D\u8D85\u8FC7 10000 \u884C\u3002\\r\\n</p>\\r\\n<p>\\r\\n\\t<br />\\r\\n</p>\\r\\n<p>\\r\\n\\t<br />\\r\\n</p>\\r\\n<p class=\\"MsoNormal\\">\\r\\n\\t\u6765\u6E90\uFF1A\\r\\n</p>\\r\\n<p class=\\"MsoNormal\\">\\r\\n\\t\u30102019<span>\u5E38\u5DDE\u5E02</span>\u5929\u5B81\u533A\u9009\u62D4\u8D5B\u3011\\r\\n</p>\\r\\n<p>\\r\\n\\t<br />\\r\\n</p>","owner":2,"domainId":"training","docType":10,"docId":542,"title":"\u3010\u63D0\u9AD8\u3011\u6BD4\u5206 (score)","tag":["\u6A21\u62DF","\u533A\u8D5B"],"hidden":false,"nSubmit":8,"nAccept":2,"data":[{"_id":"config.yaml","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/542/testdata/config.yaml","size":21,"etag":"4bb7dc344f9d4f67bab1933e85dc50b1","lastModified":"2021-07-08T09:54:15.483Z","lastUsage":"2021-07-08T09:54:15.487Z","name":"config.yaml","prefix":"problem/training/542/testdata/"},{"_id":"1.in","name":"1.in","size":22,"lastModified":"2021-10-18T07:20:01.859Z","etag":"46e02134bed8932afcfd9be50f1c7141"},{"_id":"1.out","name":"1.out","size":5,"lastModified":"2021-10-18T07:20:01.869Z","etag":"093df37211e4136e15186ad6ea0003b0"},{"_id":"10.in","name":"10.in","size":220000,"lastModified":"2021-10-18T07:20:01.884Z","etag":"71ac6ad9f91863370f4e49b13940e6f1"},{"_id":"10.out","name":"10.out","size":65572,"lastModified":"2021-10-18T07:20:01.894Z","etag":"481bac191dc9133936806a0c363c4e7d"},{"_id":"2.in","name":"2.in","size":22,"lastModified":"2021-10-18T07:20:01.903Z","etag":"bf75fed477f213f70627eed72095e105"},{"_id":"2.out","name":"2.out","size":6,"lastModified":"2021-10-18T07:20:01.912Z","etag":"6f4e1ba18bc32ebb41294594c7721fb2"},{"_id":"3.in","name":"3.in","size":22,"lastModified":"2021-10-18T07:20:01.921Z","etag":"7eda11a46ab98f8c10dada81e73004ac"},{"_id":"3.out","name":"3.out","size":11,"lastModified":"2021-10-18T07:20:01.932Z","etag":"c228541fee1bfa3164cf94d409c0c760"},{"_id":"4.in","name":"4.in","size":220,"lastModified":"2021-10-18T07:20:01.941Z","etag":"7674dc92ea24965ff0ba58e412fd75e5"},{"_id":"4.out","name":"4.out","size":71,"lastModified":"2021-10-18T07:20:01.951Z","etag":"81b3cb896ba147a2c8135e92ad79db87"},{"_id":"5.in","name":"5.in","size":220,"lastModified":"2021-10-18T07:20:01.961Z","etag":"0cf7403c927ba33bf97f03203b1b563a"},{"_id":"5.out","name":"5.out","size":54,"lastModified":"2021-10-18T07:20:01.971Z","etag":"f17464566b7f1d3ddc904c8c9f34831d"},{"_id":"6.in","name":"6.in","size":220,"lastModified":"2021-10-18T07:20:01.982Z","etag":"1967d535d84a2bef789f8e8870a1fb81"},{"_id":"6.out","name":"6.out","size":73,"lastModified":"2021-10-18T07:20:01.995Z","etag":"524e6d2cb3c9b53fd1c67e894c0e60fa"},{"_id":"7.in","name":"7.in","size":220000,"lastModified":"2021-10-18T07:20:02.008Z","etag":"a8ab8a378cc2911ba6225b77f2d0cfb6"},{"_id":"7.out","name":"7.out","size":65530,"lastModified":"2021-10-18T07:20:02.019Z","etag":"d3861878796a93722ad412517441b4a8"},{"_id":"8.in","name":"8.in","size":220000,"lastModified":"2021-10-18T07:20:02.032Z","etag":"1e0e15ec55b74dc7b89cbddf4d8c9afc"},{"_id":"8.out","name":"8.out","size":65550,"lastModified":"2021-10-18T07:20:02.043Z","etag":"c99bbd6a1afa4e767ca58badb97ab798"},{"_id":"9.in","name":"9.in","size":220000,"lastModified":"2021-10-18T07:20:02.056Z","etag":"38d67bc9296fa19d721bbe83c41194f6"},{"_id":"9.out","name":"9.out","size":65557,"lastModified":"2021-10-18T07:20:02.067Z","etag":"92a279c3046fd3fe5b8ea8f09eb38750"}],"config":{"count":0,"memoryMin":16,"memoryMax":16,"timeMin":1000,"timeMax":1000,"type":"default","langs":["cc","cc.std98","cc.std11","cc.std14","py","py.py3"]},"additional_file":[],"stats":{"AC":2,"WA":1,"TLE":2,"MLE":1,"RE":0,"SE":0,"IGN":0,"CE":2,"s0":2,"s10":1,"s20":1,"s60":2,"s100":2},"assign":[]},"canViewRecord":true,"postSubmitUrl":"/d/training/p/542/submit","getSubmissionsUrl":"/d/training/record?fullStatus=true&pid=542","getRecordDetailUrl":"/d/training/record/{rid}","pretestConnUrl":"/record-conn?pretest=1&uidOrName=71&pid=542&domainId=training"}';
+      var UserContext = '{"_id":71,"mail":"7745825@hetao101.com.cn","uname":"hetao7745825","hashType":"hydro","priv":17367108,"regat":"2021-07-17T07:41:48.744Z","loginat":"2022-09-09T21:56:08.996Z","perm":"BigInt::10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","scope":"BigInt::-1","role":"default","tfa":false,"group":["71","71"],"viewLang":"en","timeZone":"America/New_York","codeLang":"cc.std11","codeTemplate":"","avatar":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128","qq":"","gender":"2","bio":"\u539F\u795E1.0 OG UID: 605032876","backgroundImage":"/components/profile/backgrounds/1.jpg","unreadMsg":0,"fontFamily":"Open Sans","codeFontFamily":"Source Code Pro","preferredEditorType":"monaco","monacoTheme":"vs-dark","theme":"light","showInvisibleChar":false,"formatCode":true,"nAccept":232,"nSubmit":256,"rp":274.68981576224417,"rpInfo":{"problem":248.83044076224417,"contest":25.859375},"rank":1,"level":10,"avatarUrl":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128"}';
+    </script>
+    <script type="text/javascript" src="/l/en"></script>
+          <script src="/default.theme.js?version=4.38.3"></script>
+              <script type="text/javascript" src="/hydro-4.38.3.js"></script>
+            </body>
+</html>

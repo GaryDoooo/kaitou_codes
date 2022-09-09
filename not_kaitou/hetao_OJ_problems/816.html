@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html data-page="problem_detail" data-layout="basic" class="layout--basic page--problem_detail theme--light nojs" lang="" data-app="Hydro">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <meta name="theme-color" content="#56758f">
+    <meta property="og:site_name" content="核OJ_核桃编程" />
+  <meta property="og:title" content="Problem Detail - 【提高】金明的预算方案 - 核OJ_核桃编程" />
+  <meta property="og:url" content="oj.hetao101.com/p/816" />
+  <meta property="og:image" content="/favicon-96x96.png" />
+    <title>Problem Detail - 【提高】金明的预算方案 - 核OJ_核桃编程</title>
+  <style>
+    body {
+      --font-family: "Open Sans", "Open Sans", "Seravek", "Segoe UI", "Verdana", "PingFang SC", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans";
+      --code-font-family: "Source Code Pro", "monaco", "Source Code Pro", "Consolas", "Lucida Console", "monospace";
+      --font-ligatures: none !important;
+    }
+  </style>
+      <link rel="stylesheet" media="all" href="/default-4.38.3.theme.css">
+        <script>
+      var _htmlNode = document.documentElement;
+      _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+      try {
+        import('data:text/javascript,');Object.fromEntries([]);window.matchMedia('all').addEventListener('change',()=>{});
+      } catch(e) {
+        const s = document.createElement('script');
+        s.async = false;
+        s.src = "/polyfill-4.38.3.js";
+        document.head.appendChild(s);
+      }
+    </script>
+  </head>
+<body>
+  <nav class="nav slideout-menu" id="menu">
+  <div class="row"><div class="columns clearfix">
+    <ol class="nav__list nav__list--main clearfix">
+      <li class="nav__list-item"><a href="/" class="nav__logo" style="background-size: 100% 100%;">&nbsp;</a></li>        <li class="nav__list-item">
+  <a href="/d/training/" class="nav__item">
+    Home
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/p" class="nav__item nav--active">
+    Problem Set
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/training" class="nav__item">
+    Training
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/homework" class="nav__item">
+    Homework
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/discuss" class="nav__item">
+    Discussion
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/contest" class="nav__item">
+    Contest
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/record?uidOrName=71" class="nav__item">
+    Record
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/ranking" class="nav__item">
+    Ranking
+  </a>
+</li>
+      </ol>
+    <ol class="nav__list nav__list--secondary clearfix">
+          <li class="nav__list-item" data-dropdown-pos="bottom right" data-dropdown-custom-class="nav__dropdown" data-dropdown-target="#menu-nav-user" data-dropdown-disabledconstrainToWindow data-dropdown-trigger-desktop-only>
+        <a href="/d/training/user/71" class="nav__item">hetao7745825 <span class="icon icon-expand_more nojs--hide"></span></a>
+        <ol class="dropdown-target menu" id="menu-nav-user">
+          <li class="menu__item">
+            <a href="/d/training/user/71" class="menu__link">
+              <span class="icon icon-account--circle"></span> My Profile
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/messages" class="menu__link">
+              <span class="icon icon-comment--multiple"></span> Messages
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/domain" class="menu__link">
+              <span class="icon icon-web"></span> @ 练习题库
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/account" class="menu__link">
+              <span class="icon icon-wrench"></span> Account Settings
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/preference" class="menu__link">
+              <span class="icon icon-sliders"></span> Preference
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/security" class="menu__link">
+              <span class="icon icon-security"></span> Security
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/domain" class="menu__link">
+              <span class="icon icon-web"></span> My Domains
+            </a>
+          </li>
+                      <li class="menu__item">
+              <a href="/d/training/file" class="menu__link">
+                <span class="icon icon-file"></span> My Files
+              </a>
+            </li>
+                                <li class="menu__item">
+              <a href="/d/training/blog/71" class="menu__link">
+                <span class="icon icon-book"></span> Blog
+              </a>
+            </li>
+                    <li class="menu__seperator"></li>
+                    <li class="menu__item">
+            <a href="/d/training/logout" class="menu__link" name="nav_logout">
+              <span class="icon icon-logout"></span> Logout
+            </a>
+          </li>
+        </ol>
+      </li>
+        </ol>
+  </div></div>
+</nav>
+<nav class="nav--shadow"></nav>
+<div class="slideout-panel" id="panel">
+  <div class="slideout-overlay"></div>
+  <div class="header--mobile">
+  <div class="row"><div class="columns clearfix">
+    <div class="float-left">
+      <a class="header--mobile__domain" href="/" target="_self">&nbsp;</a>
+    </div>
+    <div class="float-right">
+      <button type="button" class="header__hamburger">
+  <div class="hamburger hamburger--spin">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </div>
+</button>
+    </div>
+  </div></div>
+</div>
+  <div class="main">
+    <script>
+
+  
+  
+  
+  
+  
+</script>
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header" style="align: center">
+        <h1 class="section__title">
+                      <a href="/d/training/record/61297fda5cb6d52420afdcd3">
+              <span class="icon record-status--icon pass"></span>
+              <span class="record-status--text pass">100</span>
+            </a>
+                                <form class="form--inline" action="/d/training/p" method="post">
+              <input type="hidden" name="pid" value="816">
+              <input type="hidden" name="operation" value="star">
+              <button class="star" type="submit">
+                <span class="starred--hide"><span class="icon icon-star--outline" data-tooltip="Star"></span></span>
+                <span class="starred--show"><span class="icon icon-star" data-tooltip="Unstar"></span></span>
+              </button>
+            </form>
+                    #816. 【提高】金明的预算方案
+        </h1>
+      </div>
+      <div class="section__body">
+        <ul class="problem__tags">
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">ID: 816</span>
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-book">Type: Default</span>
+                      <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-stopwatch">1000ms</span>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-comparison">128MiB</span>
+                                <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=816">Tried: 24</a>
+            <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=816&amp;status=1">Accepted: 3</a>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">Difficulty: 9</span>
+                    <span class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item">Uploaded By: <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="https://hydro.ac/file/518/pic.jpg" width="20" height="20">
+    <a class="user-profile-name" href="/d/training/user/2">
+          33DAI
+      </a>
+  </span>
+</span>
+                      <span name="show_tags" class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item nojs--hide icon icon-tag">Tags&gt;</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">动态规划</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">背包问题</span>        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
+        <div class="section__header non-scratchpad--hide">
+          <h1 class="section__title">【提高】金明的预算方案</h1>
+        </div>
+                <div class="section__body typo" data-fragment-id="problem-description">
+        <h2>说明</h2>
+<p>
+	<span>金明今天很开心，家里购置的新房就要领钥匙了，新房里有一间金明自己专用的很宽敞的房间。更让他高兴的是，妈妈昨天对他说：“你的房间需要购买哪些物品，怎么布置，你说了算，只要不超过</span><span>N</span><span>元钱就行”。今天一早<span>，</span>金明就开始做预算了，他把想买的物品分为两类：主件与附件，附件是从属于某个主件的，下表就是一些主件与附件的例子：<span></span></span> 
+</p>
+<table border="0">
+	<tbody>
+		<tr>
+			<td width="81" valign="top">
+				<p>
+					<span>主件<span></span></span> 
+				</p>
+			</td>
+			<td width="132" valign="top">
+				<p>
+					<span>附件<span></span></span> 
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="81" valign="top">
+				<p>
+					<span>电脑<span></span></span> 
+				</p>
+			</td>
+			<td width="132" valign="top">
+				<p>
+					<span>打印机，扫描仪<span></span></span> 
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="81" valign="top">
+				<p>
+					<span>书柜<span></span></span> 
+				</p>
+			</td>
+			<td width="132" valign="top">
+				<p>
+					<span>图书<span></span></span> 
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="81" valign="top">
+				<p>
+					<span>书桌<span></span></span> 
+				</p>
+			</td>
+			<td width="132" valign="top">
+				<p>
+					<span>台灯，文具<span></span></span> 
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="81" valign="top">
+				<p>
+					<span>工作椅<span></span></span> 
+				</p>
+			</td>
+			<td width="132" valign="top">
+				<p>
+					<span>无<span></span></span> 
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	<span>如果要买归类为附件的物品，必须先买该附件所属的主件。每个主件可以有</span><span>0</span><span>个、</span><span>1</span><span>个或</span><span>2</span><span>个附件。附件不再有从属于自己的附件。金明想买的东西很多，肯定会超过妈妈限定的</span><span>N</span><span>元。于是，他把每件物品规定了一个重要度，分为</span><span>5</span><span>等：用整数</span><span>1<b><span>~</span></b>5</span><span>表示，第</span><span>5</span><span>等最重要。他还从因特网上查到了每件物品的价格（都是</span><span>10</span><span>元的整数倍）。他希望在不超过</span><span>N</span><span>元（可以等于</span><span>N</span><span>元）的前提下，使每件物品的价格与重要度的乘积的总和最大。<span></span></span> 
+</p>
+<p>
+	<span>设第</span><span>j</span><span>件物品的价格为</span><span>v[j]</span><span>，重要度为</span><span>w[j]</span><span>，共选中了</span><span>k</span><span>件物品，编号依次为</span><span>j<sub>1</sub></span><span>，</span><span>j<sub>2</sub></span><span>，……，</span><span>j<sub>k</sub></span><span>，则所求的总和为：<span></span></span> 
+</p>
+<p>
+	<span>v[j<sub>1</sub>]*w[j<sub>1</sub>]+v[j<sub>2</sub>]*w[j<sub>2</sub>]+ </span><span>…</span><span>+v[j<sub>k</sub>]*w[j<sub>k</sub>]</span><span>。（其中</span><span>*</span><span>为乘号）<span></span></span> 
+</p>
+<p>
+	<span>请你帮助金明设计一个满足要求的购物单。<span></span></span> 
+</p>
+<h2>输入格式</h2>
+<p>
+	<span>输入</span><span>的第</span><span>1</span><span>行，为两个正整数，用一个空格隔开：</span><span>N m</span><span></span><span>，（其中</span><span>N</span><span>（</span><span>&lt;32000</span><span>）表示总钱数，</span><span>m</span><span>（</span><span>&lt;60</span><span>）为希望购买物品的个数。）<span></span></span> 
+</p>
+<p>
+	<span>从第</span><span>2</span><span>行到第</span><span>m+1</span><span>行，第</span><span>j</span><span>行给出了编号为</span><span>j-1</span><span>的物品的基本数据，每行有</span><span>3</span><span>个非负整数：</span><span>v p q</span><span></span>，<span>（其中</span><span>v</span><span>表示该物品的价格（</span><span>v&lt;10000</span><span>），</span><span>p</span><span>表示该物品的重要度（</span><span>1<b><span>~</span></b>5</span><span>），</span><span>q</span><span>表示该物品是主件还是附件。如果</span><span>q=0</span><span>，表示该物品为主件，如果</span><span>q&gt;0</span><span>，表示该物品为附件，</span><span>q</span><span>是所属主件的编号）<span></span></span> 
+</p>
+<h2>输出格式</h2>
+<p>
+	<span>输出</span><span></span><span>只有一个正整数，为不超过总钱数的物品的价格与重要度乘积的总和的最大值（</span><span>&lt;200000</span><span>）。<span></span></span> 
+</p>
+<h2>样例</h2>
+<pre><code class="language-input1">1000 5
+800 2 0
+400 5 1
+300 5 1
+400 3 0
+500 2 0</code></pre><pre><code class="language-output1">2200</code></pre>
+<h2>提示</h2>
+<p>来源：noip2006提高组第2题。</p>
+
+</div>      </div></div>
+    </div>
+  </div>
+  <div class="medium-3 columns">
+          <div class="section side section--problem-sidebar">
+  <div>
+    <ol class="menu">
+                  <li class="menu__item scratchpad--hide"><a class="menu__link highlight" name="problem-sidebar__open-scratchpad" href="javascript:;" data-global-hotkey="alt+e">
+        <span class="icon icon-enlarge"></span> Open Scratchpad (Alt+E)
+      </a></li>
+      <li class="menu__item non-scratchpad--hide"><a class="menu__link" name="problem-sidebar__quit-scratchpad" href="javascript:;" data-global-hotkey="alt+q">
+        <span class="icon icon-enlarge"></span> Quit Scratchpad (Alt+Q)
+      </a></li>
+                  <li class="menu__item scratchpad--hide"><a class="menu__link" href="/d/training/p/816/submit">
+        <span class="icon icon-send"></span> Submit
+      </a></li>
+                  <li class="menu__seperator"></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/discuss/problem/816">
+        <span class="icon icon-comment--text"></span> Discussions (0)      </a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/p/816/solution">
+        <span class="icon icon-comment--text"></span> Solutions (1)      </a></li>
+          <li class="menu__item"><a class="menu__link" href="/d/training/p/816/files">
+        <span class="icon icon-file"></span> Files
+      </a></li>
+              <li class="menu__seperator nojs--hide"></li>
+                    <li class="menu__item nojs--hide"><a class="menu__link" href="javascript:;" name="problem-sidebar__copy">
+          <span class="icon icon-copy"></span> Copy
+        </a></li>
+              </ol>
+  </div>
+</div>
+<div class="section side nojs--hide">
+  <div class="section__header">
+    <h1 class="section__title">Statistics</h1>
+  </div>
+  <div id="submission-status-placeholder" style="width: 100%; height:230px"></div>
+  <div id="submission-score-placeholder" style="width: 100%; height:230px"></div>
+</div>
+  </div>
+</div>
+<div style="display:none" class="outer-loader-container"><div class="loader"></div></div>
+<div class="scratchpad-container" style="display:none">
+  <div style="display:none" class="loader-container"><div class="loader"></div></div>
+  <div id="scratchpad" style="opacity:0"></div>
+</div>
+  </div>
+  <div class="footer">
+  <div class="row"><div class="columns">
+      <div class="row footer__links">
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Status
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/record">Judging Queue</a></li>
+          <li class="footer__category__item"><a href="/d/training/status">Service Status</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Development
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="https://github.com/hydro-dev/Hydro" target="_blank">Open Source</a></li>
+          <li class="footer__category__item"><a href="/d/training/api">API</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <h1>
+          Support
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/wiki/help">Help</a></li>
+          <!--<li class="footer__category__item"><a href="#">Blog</a></li>-->
+          <li class="footer__category__item"><a href="/d/training/wiki/about#contact">QQ Group</a></li>
+        </ul></div>
+      </div>
+    </div>
+      <div class="footer__extra-link clearfix">
+      <div class="footer__extra-left">
+        <ol class="clearfix">
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about">About</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#contact">Contact Us</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#privacy">Privacy</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#tos">Terms of Service</a></li>
+          <li class="footer__extra-link-item"><a href="https://hydro.js.org/#%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">Copyright Complaint</a></li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-lang">
+            <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-lang"><li class="menu__item"><a class="menu__link" href="/d/training/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh_TW">正體中文</a></li></ol>
+          </li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-theme">
+            <span><span class="icon icon-global"></span> Theme <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-theme">
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/light">Light</a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/dark">Dark</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div class="footer__extra-right">
+        <ol class="clearfix"><li class="footer__extra-link-item"></li><li class="footer__extra-link-item"></li><li class="footer__extra-link-item">Worker 0 in 9ms</li>
+          <!-- Prepare 2ms -->
+          <!-- Method 1ms -->
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro v3.14.5</a> Community</li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</div>
+</div>
+      <script>
+      var UiContext = '{"cdn_prefix":"/","url_prefix":"/","domainId":"training","domain":{"_id":"training","lower":"training","owner":2,"name":"\u7EC3\u4E60\u9898\u5E93","bulletin":"# \u6838OJ_\u6838\u6843\u7F16\u7A0B - \u7EC3\u4E60\u9898\u5E93\\r\\n\\r\\n[\u21D0 \u8FD4\u56DE\u6839\u9898\u5E93](http://oj.hetao101.com/)\\r\\n\\r\\n## \u57FA\u672C\u4F7F\u7528\u65B9\u6CD5\\r\\n\\r\\nP \u7CFB\u5217\u9898\u76EE\u6765\u81EA\u7F51\u7EDC\uFF0C\u53EF\u80FD\u4F1A\u6709\u9898\u76EE\u6392\u7248\u6570\u636E\u95EE\u9898\uFF0C\u90E8\u5206\u7EAF\u8F93\u51FA\u7684\u9898\u76EE\u53EF\u80FD\u7F3A\u5C11\u6570\u636E\uFF0C\u7BA1\u7406\u5458\u770B\u5230\u7F3A\u5C11\u6570\u636E\u7CFB\u7EDF\u9519\u8BEF\u7684\u63D0\u4EA4\u540E\u4F1A\u53CA\u65F6\u4FEE\u590D\u3002\u9047\u5230\u95EE\u9898\u53EF\u4EE5\u5728\u8BA8\u8BBA\u533A\u53D1\u5E03\u5E16\u5B50\u3002\\r\\n\\r\\n1. \u901A\u8FC7\u9898\u5E93\u70B9\u51FB\u67D0\u9053\u60F3\u505A\u7684\u9898\u76EE\\r\\n2. \u8BFB\u9898\\r\\n3. \u70B9\u51FB\u8FDB\u5165\u5728\u7EBF\u7F16\u7A0B\u6A21\u5F0F\\r\\n4. \u70B9\u51FB\u53F3\u4E0A\u65B9\u7684\u81EA\u6D4B\u6253\u5F00\u81EA\u6D4B\u7A97\u53E3\\r\\n5. \u5C06\u9898\u76EE\u7684\u6837\u4F8B\u8F93\u5165\u590D\u5236\u8FDB\u8F93\u5165\u6846\u4E2D\\r\\n6. \u70B9\u51FB\u8FD0\u884C\u81EA\u6D4B\uFF0C\u67E5\u770B\u662F\u5426\u4E0E\u8F93\u51FA\u4E00\u81F4\\r\\n7. \u5982\u679C\u7ED3\u679C\u6CA1\u6709\u95EE\u9898\uFF0C\u53EF\u4EE5\u70B9\u51FB\u9012\u4EA4\u8BC4\u6D4B\u67E5\u770B\u8BC4\u6D4B\u7ED3\u679C\\r\\n8. \u5982\u679C\u663E\u793A\u9519\u8BEF\u3001\u53EF\u4EE5\u5BF9\u5E94\u5730\u4FEE\u6539\u4EE3\u7801\u518D\u6B21\u81EA\u6D4B\\r\\n\\r\\n![](http://oj.hetao101.com/file/2/t.png)\\r\\n\\r\\n## \u5E38\u89C1\u8BBE\u7F6E\\r\\n\\r\\n0. \u8BBE\u7F6E\u5F53\u524D\u9898\u5E93\u7684\u663E\u793A\u540D\uFF1A<http://oj.hetao101.com/d/training/home/settings/domain>\\r\\n1. \u8FDB\u5165\u5F53\u524D\u9898\u5E93\u7684\u504F\u597D\u8BBE\u7F6E\u9875\u9762\uFF1A<http://oj.hetao101.com/d/training/home/settings/preference>\\r\\n2. \u5C06\u663E\u793A\u504F\u597D\u4E2D\u7684**\u7528\u6237\u754C\u9762\u8BED\u8A00**\u8BBE\u7F6E\u6210**\u7B80\u4F53\u4E2D\u6587**\\r\\n3. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u4EE3\u7801\u8BED\u8A00**\u8BBE\u7F6E\u6210\u81EA\u5DF1\u5E38\u7528\u7684\u8BED\u8A00\\r\\n4. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u9ED8\u8BA4\u4EE3\u7801\u6A21\u677F**\u6539\u6210\u81EA\u5DF1\u4E60\u60EF\u7684\u4EE3\u7801\u6846\u67B6\uFF0C\u6BD4\u5982\u4E0B\u9762\u8FD9\u6BB5\\r\\n\\r\\n```cpp\\r\\n#include<bits/stdc++.h>\\r\\nusing namespace std;\\r\\nint main(){\\r\\n\\r\\n\\r\\n\\r\\n    return 0;\\r\\n}\\r\\n```\\r\\n","roles":{"teacher":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652630151444198802323445","guest":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624967874125500547201","default":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","root":"-1","cpp":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652641680659602963691511","contest_creator":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629953004340186416069"},"avatar":"","langs":"cc,cc.std98,cc.std11,cc.std14,py,py.py3","share":"*"},"extraTitleContent":"\u3010\u63D0\u9AD8\u3011\u91D1\u660E\u7684\u9884\u7B97\u65B9\u6848","constantVersion":"40d7cc7454c37f5c1cf381ecdfd9f83e1c73a32f","problemId":816,"problemNumId":816,"codeLang":"cc.std11","codeTemplate":"","pdoc":{"_id":"60e6cbee1340ac06ced3512c","content":"<h2>\u8BF4\u660E</h2>\\r\\n\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;text-indent:21.75pt;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u91D1\u660E\u4ECA\u5929\u5F88\u5F00\u5FC3\uFF0C\u5BB6\u91CC\u8D2D\u7F6E\u7684\u65B0\u623F\u5C31\u8981\u9886\u94A5\u5319\u4E86\uFF0C\u65B0\u623F\u91CC\u6709\u4E00\u95F4\u91D1\u660E\u81EA\u5DF1\u4E13\u7528\u7684\u5F88\u5BBD\u655E\u7684\u623F\u95F4\u3002\u66F4\u8BA9\u4ED6\u9AD8\u5174\u7684\u662F\uFF0C\u5988\u5988\u6628\u5929\u5BF9\u4ED6\u8BF4\uFF1A\u201C\u4F60\u7684\u623F\u95F4\u9700\u8981\u8D2D\u4E70\u54EA\u4E9B\u7269\u54C1\uFF0C\u600E\u4E48\u5E03\u7F6E\uFF0C\u4F60\u8BF4\u4E86\u7B97\uFF0C\u53EA\u8981\u4E0D\u8D85\u8FC7</span><span style=\\"font-family:&quot;\\">N</span><span style=\\"font-family:&quot;\\">\u5143\u94B1\u5C31\u884C\u201D\u3002\u4ECA\u5929\u4E00\u65E9<span style=\\"color:blue;\\">\uFF0C</span>\u91D1\u660E\u5C31\u5F00\u59CB\u505A\u9884\u7B97\u4E86\uFF0C\u4ED6\u628A\u60F3\u4E70\u7684\u7269\u54C1\u5206\u4E3A\u4E24\u7C7B\uFF1A\u4E3B\u4EF6\u4E0E\u9644\u4EF6\uFF0C\u9644\u4EF6\u662F\u4ECE\u5C5E\u4E8E\u67D0\u4E2A\u4E3B\u4EF6\u7684\uFF0C\u4E0B\u8868\u5C31\u662F\u4E00\u4E9B\u4E3B\u4EF6\u4E0E\u9644\u4EF6\u7684\u4F8B\u5B50\uFF1A<span></span></span> \\r\\n</p>\\r\\n<table class=\\"MsoNormalTable ke-zeroborder\\" style=\\"border-collapse:collapse;\\" cellspacing=\\"0\\" cellpadding=\\"0\\" border=\\"0\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"81\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u4E3B\u4EF6<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"132\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u9644\u4EF6<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t</tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"81\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u7535\u8111<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"132\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u6253\u5370\u673A\uFF0C\u626B\u63CF\u4EEA<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t</tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"81\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u4E66\u67DC<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"132\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u56FE\u4E66<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t</tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"81\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u4E66\u684C<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"132\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u53F0\u706F\uFF0C\u6587\u5177<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t</tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"81\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u5DE5\u4F5C\u6905<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t\\t<td style=\\"border:solid windowtext 1.0pt;\\" width=\\"132\\" valign=\\"top\\">\\r\\n\\t\\t\\t\\t<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t\\t\\t\\t\\t<span style=\\"font-family:&quot;\\">\u65E0<span></span></span> \\r\\n\\t\\t\\t\\t</p>\\r\\n\\t\\t\\t</td>\\r\\n\\t\\t</tr>\\r\\n\\t</tbody>\\r\\n</table>\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;text-indent:21.85pt;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u5982\u679C\u8981\u4E70\u5F52\u7C7B\u4E3A\u9644\u4EF6\u7684\u7269\u54C1\uFF0C\u5FC5\u987B\u5148\u4E70\u8BE5\u9644\u4EF6\u6240\u5C5E\u7684\u4E3B\u4EF6\u3002\u6BCF\u4E2A\u4E3B\u4EF6\u53EF\u4EE5\u6709</span><span style=\\"font-family:&quot;\\">0</span><span style=\\"font-family:&quot;\\">\u4E2A\u3001</span><span style=\\"font-family:&quot;\\">1</span><span style=\\"font-family:&quot;\\">\u4E2A\u6216</span><span style=\\"font-family:&quot;\\">2</span><span style=\\"font-family:&quot;\\">\u4E2A\u9644\u4EF6\u3002\u9644\u4EF6\u4E0D\u518D\u6709\u4ECE\u5C5E\u4E8E\u81EA\u5DF1\u7684\u9644\u4EF6\u3002\u91D1\u660E\u60F3\u4E70\u7684\u4E1C\u897F\u5F88\u591A\uFF0C\u80AF\u5B9A\u4F1A\u8D85\u8FC7\u5988\u5988\u9650\u5B9A\u7684</span><span style=\\"font-family:&quot;\\">N</span><span style=\\"font-family:&quot;\\">\u5143\u3002\u4E8E\u662F\uFF0C\u4ED6\u628A\u6BCF\u4EF6\u7269\u54C1\u89C4\u5B9A\u4E86\u4E00\u4E2A\u91CD\u8981\u5EA6\uFF0C\u5206\u4E3A</span><span style=\\"font-family:&quot;\\">5</span><span style=\\"font-family:&quot;\\">\u7B49\uFF1A\u7528\u6574\u6570</span><span style=\\"font-family:&quot;\\">1<b><span style=\\"color:black;\\">~</span></b>5</span><span style=\\"font-family:&quot;\\">\u8868\u793A\uFF0C\u7B2C</span><span style=\\"font-family:&quot;\\">5</span><span style=\\"font-family:&quot;\\">\u7B49\u6700\u91CD\u8981\u3002\u4ED6\u8FD8\u4ECE\u56E0\u7279\u7F51\u4E0A\u67E5\u5230\u4E86\u6BCF\u4EF6\u7269\u54C1\u7684\u4EF7\u683C\uFF08\u90FD\u662F</span><span style=\\"font-family:&quot;\\">10</span><span style=\\"font-family:&quot;\\">\u5143\u7684\u6574\u6570\u500D\uFF09\u3002\u4ED6\u5E0C\u671B\u5728\u4E0D\u8D85\u8FC7</span><span style=\\"font-family:&quot;\\">N</span><span style=\\"font-family:&quot;\\">\u5143\uFF08\u53EF\u4EE5\u7B49\u4E8E</span><span style=\\"font-family:&quot;\\">N</span><span style=\\"font-family:&quot;\\">\u5143\uFF09\u7684\u524D\u63D0\u4E0B\uFF0C\u4F7F\u6BCF\u4EF6\u7269\u54C1\u7684\u4EF7\u683C\u4E0E\u91CD\u8981\u5EA6\u7684\u4E58\u79EF\u7684\u603B\u548C\u6700\u5927\u3002<span></span></span> \\r\\n</p>\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;text-indent:21.85pt;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u8BBE\u7B2C</span><span style=\\"font-family:&quot;\\">j</span><span style=\\"font-family:&quot;\\">\u4EF6\u7269\u54C1\u7684\u4EF7\u683C\u4E3A</span><span style=\\"font-family:&quot;\\">v[j]</span><span style=\\"font-family:&quot;\\">\uFF0C\u91CD\u8981\u5EA6\u4E3A</span><span style=\\"font-family:&quot;\\">w[j]</span><span style=\\"font-family:&quot;\\">\uFF0C\u5171\u9009\u4E2D\u4E86</span><span style=\\"font-family:&quot;\\">k</span><span style=\\"font-family:&quot;\\">\u4EF6\u7269\u54C1\uFF0C\u7F16\u53F7\u4F9D\u6B21\u4E3A</span><span style=\\"font-family:&quot;color:black;\\">j<sub>1</sub></span><span style=\\"font-family:&quot;color:black;\\">\uFF0C</span><span style=\\"font-family:&quot;\\">j<sub>2</sub></span><span style=\\"font-family:&quot;\\">\uFF0C\u2026\u2026\uFF0C</span><span style=\\"font-family:&quot;\\">j<sub>k</sub></span><span style=\\"font-family:&quot;\\">\uFF0C\u5219\u6240\u6C42\u7684\u603B\u548C\u4E3A\uFF1A<span></span></span> \\r\\n</p>\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;text-indent:21.85pt;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">v[j<sub>1</sub>]*w[j<sub>1</sub>]+v[j<sub>2</sub>]*w[j<sub>2</sub>]+ </span><span style=\\"font-family:&quot;\\">\u2026</span><span style=\\"font-family:&quot;\\">+v[j<sub>k</sub>]*w[j<sub>k</sub>]</span><span style=\\"font-family:&quot;\\">\u3002\uFF08\u5176\u4E2D</span><span style=\\"font-family:&quot;\\">*</span><span style=\\"font-family:&quot;\\">\u4E3A\u4E58\u53F7\uFF09<span></span></span> \\r\\n</p>\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;text-indent:21.75pt;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u8BF7\u4F60\u5E2E\u52A9\u91D1\u660E\u8BBE\u8BA1\u4E00\u4E2A\u6EE1\u8DB3\u8981\u6C42\u7684\u8D2D\u7269\u5355\u3002<span></span></span> \\r\\n</p>\\r\\n<h2>\u8F93\u5165\u683C\u5F0F</h2>\\r\\n\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u8F93\u5165</span><span style=\\"font-family:&quot;\\">\u7684\u7B2C</span><span style=\\"font-family:&quot;\\">1</span><span style=\\"font-family:&quot;\\">\u884C\uFF0C\u4E3A\u4E24\u4E2A\u6B63\u6574\u6570\uFF0C\u7528\u4E00\u4E2A\u7A7A\u683C\u9694\u5F00\uFF1A</span><span style=\\"font-family:&quot;\\">N m</span><span style=\\"font-family:&quot;\\"></span><span style=\\"font-family:&quot;\\">\uFF0C\uFF08\u5176\u4E2D</span><span style=\\"font-family:&quot;\\">N</span><span style=\\"font-family:&quot;\\">\uFF08</span><span style=\\"font-family:&quot;\\">&lt;32000</span><span style=\\"font-family:&quot;\\">\uFF09\u8868\u793A\u603B\u94B1\u6570\uFF0C</span><span style=\\"font-family:&quot;\\">m</span><span style=\\"font-family:&quot;\\">\uFF08</span><span style=\\"font-family:&quot;\\">&lt;60</span><span style=\\"font-family:&quot;\\">\uFF09\u4E3A\u5E0C\u671B\u8D2D\u4E70\u7269\u54C1\u7684\u4E2A\u6570\u3002\uFF09<span></span></span> \\r\\n</p>\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u4ECE\u7B2C</span><span style=\\"font-family:&quot;\\">2</span><span style=\\"font-family:&quot;\\">\u884C\u5230\u7B2C</span><span style=\\"font-family:&quot;\\">m+1</span><span style=\\"font-family:&quot;\\">\u884C\uFF0C\u7B2C</span><span style=\\"font-family:&quot;\\">j</span><span style=\\"font-family:&quot;\\">\u884C\u7ED9\u51FA\u4E86\u7F16\u53F7\u4E3A</span><span style=\\"font-family:&quot;\\">j-1</span><span style=\\"font-family:&quot;\\">\u7684\u7269\u54C1\u7684\u57FA\u672C\u6570\u636E\uFF0C\u6BCF\u884C\u6709</span><span style=\\"font-family:&quot;\\">3</span><span style=\\"font-family:&quot;\\">\u4E2A\u975E\u8D1F\u6574\u6570\uFF1A</span><span style=\\"font-family:&quot;\\">v p q</span><span style=\\"font-family:&quot;\\"></span>\uFF0C<span style=\\"font-family:&quot;\\">\uFF08\u5176\u4E2D</span><span style=\\"font-family:&quot;\\">v</span><span style=\\"font-family:&quot;\\">\u8868\u793A\u8BE5\u7269\u54C1\u7684\u4EF7\u683C\uFF08</span><span style=\\"font-family:&quot;\\">v&lt;10000</span><span style=\\"font-family:&quot;\\">\uFF09\uFF0C</span><span style=\\"font-family:&quot;\\">p</span><span style=\\"font-family:&quot;\\">\u8868\u793A\u8BE5\u7269\u54C1\u7684\u91CD\u8981\u5EA6\uFF08</span><span style=\\"font-family:&quot;\\">1<b><span style=\\"color:black;\\">~</span></b>5</span><span style=\\"font-family:&quot;\\">\uFF09\uFF0C</span><span style=\\"font-family:&quot;\\">q</span><span style=\\"font-family:&quot;\\">\u8868\u793A\u8BE5\u7269\u54C1\u662F\u4E3B\u4EF6\u8FD8\u662F\u9644\u4EF6\u3002\u5982\u679C</span><span style=\\"font-family:&quot;\\">q=0</span><span style=\\"font-family:&quot;\\">\uFF0C\u8868\u793A\u8BE5\u7269\u54C1\u4E3A\u4E3B\u4EF6\uFF0C\u5982\u679C</span><span style=\\"font-family:&quot;\\">q&gt;0</span><span style=\\"font-family:&quot;\\">\uFF0C\u8868\u793A\u8BE5\u7269\u54C1\u4E3A\u9644\u4EF6\uFF0C</span><span style=\\"font-family:&quot;\\">q</span><span style=\\"font-family:&quot;\\">\u662F\u6240\u5C5E\u4E3B\u4EF6\u7684\u7F16\u53F7\uFF09<span></span></span> \\r\\n</p>\\r\\n<h2>\u8F93\u51FA\u683C\u5F0F</h2>\\r\\n\\r\\n<p class=\\"MsoNormal\\" style=\\"text-align:left;\\" align=\\"left\\">\\r\\n\\t<span style=\\"font-family:&quot;\\">\u8F93\u51FA</span><span style=\\"font-family:&quot;\\"></span><span style=\\"font-family:&quot;\\">\u53EA\u6709\u4E00\u4E2A\u6B63\u6574\u6570\uFF0C\u4E3A\u4E0D\u8D85\u8FC7\u603B\u94B1\u6570\u7684\u7269\u54C1\u7684\u4EF7\u683C\u4E0E\u91CD\u8981\u5EA6\u4E58\u79EF\u7684\u603B\u548C\u7684\u6700\u5927\u503C\uFF08</span><span style=\\"font-family:&quot;\\">&lt;200000</span><span style=\\"font-family:&quot;\\">\uFF09\u3002<span></span></span> \\r\\n</p>\\r\\n<h2>\u6837\u4F8B</h2>\\r\\n<pre><code class=\\"language-input1\\">1000 5\\r\\n800 2 0\\r\\n400 5 1\\r\\n300 5 1\\r\\n400 3 0\\r\\n500 2 0</code></pre><pre><code class=\\"language-output1\\">2200</code></pre>\\r\\n\\r\\n<h2>\u63D0\u793A</h2>\\r\\n\\r\\n\u6765\u6E90\uFF1Anoip2006\u63D0\u9AD8\u7EC4\u7B2C2\u9898\u3002","owner":2,"domainId":"training","docType":10,"docId":816,"title":"\u3010\u63D0\u9AD8\u3011\u91D1\u660E\u7684\u9884\u7B97\u65B9\u6848","tag":["\u52A8\u6001\u89C4\u5212","\u80CC\u5305\u95EE\u9898"],"hidden":false,"nSubmit":24,"nAccept":3,"data":[{"_id":"1.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/1.in","size":122,"etag":"499fb34f92e4885626c2987465cecf9c","lastModified":"2021-07-08T09:57:02.885Z","lastUsage":"2021-07-08T09:57:02.887Z","name":"1.in","prefix":"problem/training/816/testdata/"},{"_id":"1.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/1.out","size":7,"etag":"d40ff51df7c8cc251099a1dda524691e","lastModified":"2021-07-08T09:57:02.918Z","lastUsage":"2021-07-08T09:57:02.919Z","name":"1.out","prefix":"problem/training/816/testdata/"},{"_id":"10.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/10.in","size":395,"etag":"b9ff2cee96cff44916e94059dea24504","lastModified":"2021-07-08T09:57:02.960Z","lastUsage":"2021-07-08T09:57:02.961Z","name":"10.in","prefix":"problem/training/816/testdata/"},{"_id":"10.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/10.out","size":7,"etag":"d1bd761cf43a56f7d4c338b837074f37","lastModified":"2021-07-08T09:57:03.009Z","lastUsage":"2021-07-08T09:57:03.010Z","name":"10.out","prefix":"problem/training/816/testdata/"},{"_id":"2.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/2.in","size":251,"etag":"6e6dc21fd1fea15d6ee852a37958180f","lastModified":"2021-07-08T09:57:03.041Z","lastUsage":"2021-07-08T09:57:03.043Z","name":"2.in","prefix":"problem/training/816/testdata/"},{"_id":"2.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/2.out","size":7,"etag":"ac60a1f67f0e724f0e61297c5e404bee","lastModified":"2021-07-08T09:57:03.072Z","lastUsage":"2021-07-08T09:57:03.073Z","name":"2.out","prefix":"problem/training/816/testdata/"},{"_id":"3.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/3.in","size":199,"etag":"201e66a6fb5a424eb424f54559e8d1b3","lastModified":"2021-07-08T09:57:03.115Z","lastUsage":"2021-07-08T09:57:03.116Z","name":"3.in","prefix":"problem/training/816/testdata/"},{"_id":"3.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/3.out","size":7,"etag":"d66b1376976c40a864b5aa3bfd62ea9c","lastModified":"2021-07-08T09:57:03.147Z","lastUsage":"2021-07-08T09:57:03.149Z","name":"3.out","prefix":"problem/training/816/testdata/"},{"_id":"4.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/4.in","size":151,"etag":"c332754e378b258cda76dc11ec30bfda","lastModified":"2021-07-08T09:57:03.183Z","lastUsage":"2021-07-08T09:57:03.184Z","name":"4.in","prefix":"problem/training/816/testdata/"},{"_id":"4.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/4.out","size":7,"etag":"428749ffbe583f521e3ce72d04b98db3","lastModified":"2021-07-08T09:57:03.221Z","lastUsage":"2021-07-08T09:57:03.222Z","name":"4.out","prefix":"problem/training/816/testdata/"},{"_id":"5.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/5.in","size":71,"etag":"9d5e8132d9ff537dfebf29cfdf5c6f98","lastModified":"2021-07-08T09:57:03.251Z","lastUsage":"2021-07-08T09:57:03.252Z","name":"5.in","prefix":"problem/training/816/testdata/"},{"_id":"5.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/5.out","size":6,"etag":"10c3b69f8eb7b94c72d14d6476d8c282","lastModified":"2021-07-08T09:57:03.308Z","lastUsage":"2021-07-08T09:57:03.310Z","name":"5.out","prefix":"problem/training/816/testdata/"},{"_id":"6.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/6.in","size":492,"etag":"b72c5a1e36c38f427cde36fb6f46bd99","lastModified":"2021-07-08T09:57:03.347Z","lastUsage":"2021-07-08T09:57:03.348Z","name":"6.in","prefix":"problem/training/816/testdata/"},{"_id":"6.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/6.out","size":8,"etag":"7d8ac77ea854c2c8e301218ad81ce8e1","lastModified":"2021-07-08T09:57:03.380Z","lastUsage":"2021-07-08T09:57:03.381Z","name":"6.out","prefix":"problem/training/816/testdata/"},{"_id":"7.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/7.in","size":99,"etag":"d8f6795383ec54b76939a4b8d65588a4","lastModified":"2021-07-08T09:57:03.419Z","lastUsage":"2021-07-08T09:57:03.421Z","name":"7.in","prefix":"problem/training/816/testdata/"},{"_id":"7.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/7.out","size":6,"etag":"09dbdadb9232a0cd124f70e4ee687aa8","lastModified":"2021-07-08T09:57:03.454Z","lastUsage":"2021-07-08T09:57:03.456Z","name":"7.out","prefix":"problem/training/816/testdata/"},{"_id":"8.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/8.in","size":298,"etag":"31c30673beb478a70c442f8474dea363","lastModified":"2021-07-08T09:57:03.487Z","lastUsage":"2021-07-08T09:57:03.489Z","name":"8.in","prefix":"problem/training/816/testdata/"},{"_id":"8.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/8.out","size":7,"etag":"e9eee6f6c206ef5460ea2602c960e60f","lastModified":"2021-07-08T09:57:03.526Z","lastUsage":"2021-07-08T09:57:03.527Z","name":"8.out","prefix":"problem/training/816/testdata/"},{"_id":"9.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/9.in","size":51,"etag":"8afc8afa2728e74d6b1f2065477681a1","lastModified":"2021-07-08T09:57:03.558Z","lastUsage":"2021-07-08T09:57:03.559Z","name":"9.in","prefix":"problem/training/816/testdata/"},{"_id":"9.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/9.out","size":6,"etag":"98ffd80f8c124a8dc3f92f875ab40b5f","lastModified":"2021-07-08T09:57:03.592Z","lastUsage":"2021-07-08T09:57:03.594Z","name":"9.out","prefix":"problem/training/816/testdata/"},{"_id":"config.yaml","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/816/testdata/config.yaml","size":22,"etag":"75ba9e99cfe4e42873579e5e10e76cab","lastModified":"2021-07-08T09:57:03.643Z","lastUsage":"2021-07-08T09:57:03.662Z","name":"config.yaml","prefix":"problem/training/816/testdata/"}],"config":{"count":0,"memoryMin":128,"memoryMax":128,"timeMin":1000,"timeMax":1000,"type":"default","langs":["cc","cc.std98","cc.std11","cc.std14","py","py.py3"]},"additional_file":[],"stats":{"AC":3,"WA":9,"TLE":9,"MLE":0,"RE":0,"SE":0,"IGN":0,"CE":3,"s0":8,"s10":1,"s20":2,"s30":1,"s40":2,"s60":1,"s70":3,"s80":3,"s100":3},"assign":[]},"canViewRecord":true,"postSubmitUrl":"/d/training/p/816/submit","getSubmissionsUrl":"/d/training/record?fullStatus=true&pid=816","getRecordDetailUrl":"/d/training/record/{rid}","pretestConnUrl":"/record-conn?pretest=1&uidOrName=71&pid=816&domainId=training"}';
+      var UserContext = '{"_id":71,"mail":"7745825@hetao101.com.cn","uname":"hetao7745825","hashType":"hydro","priv":17367108,"regat":"2021-07-17T07:41:48.744Z","loginat":"2022-09-09T21:56:08.996Z","perm":"BigInt::10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","scope":"BigInt::-1","role":"default","tfa":false,"group":["71","71"],"viewLang":"en","timeZone":"America/New_York","codeLang":"cc.std11","codeTemplate":"","avatar":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128","qq":"","gender":"2","bio":"\u539F\u795E1.0 OG UID: 605032876","backgroundImage":"/components/profile/backgrounds/1.jpg","unreadMsg":0,"fontFamily":"Open Sans","codeFontFamily":"Source Code Pro","preferredEditorType":"monaco","monacoTheme":"vs-dark","theme":"light","showInvisibleChar":false,"formatCode":true,"nAccept":232,"nSubmit":256,"rp":274.68981576224417,"rpInfo":{"problem":248.83044076224417,"contest":25.859375},"rank":1,"level":10,"avatarUrl":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128"}';
+    </script>
+    <script type="text/javascript" src="/l/en"></script>
+          <script src="/default.theme.js?version=4.38.3"></script>
+              <script type="text/javascript" src="/hydro-4.38.3.js"></script>
+            </body>
+</html>
