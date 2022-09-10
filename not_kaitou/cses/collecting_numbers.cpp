@@ -30,27 +30,48 @@ inline void write(int x) {
     putchar(' ');
 }
 ////////////////////////
-
+int b[212345];
 int main() {
     int n = read(), res = 0;
-    vector<vector<int>> f(n);
+    // multiset<int> s;
     for (int i = 0; i < n; i++) {
-        int a = read(), line = 0;
-        while (true) {
-            // if (line == f.size()) {
-            //     vector<int> t{a};
-            //     f.push_back(t);
-            //     break;
-            // }
-            auto it = upper_bound(f[line].begin(), f[line].end(), a);
-            if (it == f[line].end()) {
-                f[line].push_back(a);
-                break;
-            }
-            swap(*it, a);
-            res = max(res, ++line);
-        }
-        // cout << i << endl;
+        int a = read();
+        if (a == 1)
+            res++;
+        else if (b[a - 1] == 0)
+            res++;
+        b[a] = 1;
+        // if (s.size() > 0) {
+        // auto it = s.upper_bound(a);
+        // if (it != s.begin()) {
+        //     it--;
+        //     cout << *it << ">" << a << " ";
+        //     s.erase(it);
+        // }
+        // // }
+        // s.insert(a);
     }
-    cout << res + 1;
+    cout << res << endl;
+    // cout << s.size() << endl;
+
+    // vector<vector<int>> f(n);
+    // for (int i = 0; i < n; i++) {
+    //     int a = read(), line = 0;
+    //     while (true) {
+    //         // if (line == f.size()) {
+    //         //     vector<int> t{a};
+    //         //     f.push_back(t);
+    //         //     break;
+    //         // }
+    //         auto it = upper_bound(f[line].begin(), f[line].end(), a);
+    //         if (it == f[line].end()) {
+    //             f[line].push_back(a);
+    //             break;
+    //         }
+    //         swap(*it, a);
+    //         res = max(res, ++line);
+    //     }
+    //     // cout << i << endl;
+    // }
+    // cout << res + 1;
 }
