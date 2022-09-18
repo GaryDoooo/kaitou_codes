@@ -15,14 +15,14 @@ int main() {
     multiset<int> s(w, w + n);
     q.push({0, s});
     while (!q.empty()) {
-        cout << q.size() << endl;
+        // cout << q.size() << endl;
         s   = q.front().s;
         res = q.front().res;
-        cout << s.size() << " " << res << endl;
+        // cout << s.size() << " " << res << endl;
         q.pop();
         bool forked = false;
         while (!forked) {
-            cout << s.size() << endl;
+            // cout << s.size() << endl;
             auto it = s.end();
             it--;
             int a = *it;
@@ -44,9 +44,10 @@ int main() {
                     continue;
                 }
             it--;
-            cout << "start here" << endl;
+            // cout << *it << " " << distance(it, s.begin()) << endl;
+            // cout << "start here" << endl;
             if (x - a < (*s.begin()) * 2) {
-                cout << "keep" << endl;
+                // cout << "keep" << endl;
                 a += *it;
                 s.erase(it);
                 s.insert(a);
@@ -54,18 +55,18 @@ int main() {
                 forked = true;
                 node t = {res, s};
                 int b  = a + *it;
-                t.s.erase(it);
+                t.s.erase(t.s.lower_bound(*it));
                 t.s.insert(b);
                 q.push(t);
                 cout << "pushed q" << q.size() << endl;
                 int last = *it;
-                for (; distance(s.begin(), it) > 0; it--) {
+                for (; it != s.begin(); it--) {
                     cout << *it << " " << distance(s.begin(), it) << endl;
                     if (*it == last or *it + a + *s.begin() > x) continue;
-                    last   = *it;
+                    last = *it;
                     node t = {res, s};
                     int b  = a + *it;
-                    t.s.erase(it);
+                    t.s.erase(t.s.lower_bound(*it));
                     t.s.insert(b);
                     q.push(t);
                 }
