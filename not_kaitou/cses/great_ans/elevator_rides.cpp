@@ -3,7 +3,7 @@ using namespace std;
 typedef pair<int, int> pii;
 #define x first
 #define y second
-//把pair定义成一个由第一个变量排序的struct。
+//把pair定义成一个由 tie(first, second) 排序的struct。
 int main() {
 	int n, c, i, j, t, w, num;
 	cin >> n >> c;
@@ -27,6 +27,7 @@ int main() {
 				dp[i] = min(dp[i], {dp[i-(j&-j)].x, w});
 			else
 				dp[i] = min(dp[i], {dp[i-(j&-j)].x+1, dp[j&-j].y});
+                                // When first bag# is same, the smaller second number (existing weight) wins
 		}
 	}
 	cout << dp[N-1].first << endl; //N-1就是包含所有物品的组合，第一个变量就是用几个包裹
