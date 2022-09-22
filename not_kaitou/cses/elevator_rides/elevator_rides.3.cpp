@@ -13,6 +13,7 @@ int get_available_sum() {
     }
     return 0;
 }
+
 vector<int> remove(int x) {
     vector<int> res;
     for (auto it = m.begin(); it != m.end(); ++it) {
@@ -30,13 +31,14 @@ void dfs(int person_left, int sum, int cart_on_loading) {
     if (cart_on_loading > res) return;
     if (person_left == 0) {
         res = min(res, cart_on_loading);
-        if (++res_cnt > 20) {
+        // cout << "intermediate " << res << endl;
+        if (++res_cnt > 200) {
             cout << res << endl;
             exit(0);
         } else
             return;
     }
-    if (sum == 0 or m[sum].size() == 0 and sum < *person.begin())
+    if (sum == 0 or m[sum].size() == 0)  // and sum < *person.begin())
         dfs(person_left, get_available_sum(), cart_on_loading + 1);
     else {
         // cout << m[sum].size() << endl;
