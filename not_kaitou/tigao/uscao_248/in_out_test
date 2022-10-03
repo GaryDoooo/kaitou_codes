@@ -1,0 +1,25 @@
+#!/bin/bash
+
+rm __a.out
+flags="-D__ALGORITHM__=OBLKIO_OPT -D__AUTO__ \
+    -O3 -std=c++14 -m64 \
+    -ffast-math -fassociative-math \
+    -ftree-vectorize -ftree-vectorizer-verbose=0 \
+    -fopenmp -fopenmp-simd \
+    -march=broadwell -Wall  
+"
+
+g++ $flags -std=c++11 -o __a.out $1 && echo "Compiled successfully."
+
+if [ ! -f __a.out ]
+then
+exit 1
+fi
+
+for infile in *in
+do
+outfile=$(echo $infile | sed 's/in/out/g')
+echo "TEST "$infile
+cat $infile | ./__a.out | diff - $outfile
+done
+

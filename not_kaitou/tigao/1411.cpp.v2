@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+int const MOD = 1000000007;
+int n, m, k, tf;
+static int a[1005], b[205], s[1001][201][201], f[1001][201][201];
+vector<int> ob[26];  // occurance position
+char input[1005];
+int main() {
+    scanf("%d%d%d", &n, &m, &k);
+    // int f[n + 1][m + 1][k + 1];
+    int mem_size = sizeof(int) * 201 * 201;
+    // memset(f, 0, sizeof(f));
+    // f[i,j,k] upto i in a, accumulated to j in b, and k cuts
+    scanf("%s\n", input);
+    for (int i = 0; i < n; i++) {
+        char c   = input[i];
+        a[i + 1] = c - 'a';
+    }
+    scanf("%s\n", input);
+    for (int i = 0; i < m; i++) {
+        char c   = input[i];
+        b[i + 1] = c - 'a';
+        ob[b[i + 1]].push_back(i + 1);
+    }
+    f[0][0][0] = 1;
+    for (register int ap = 1; ap <= n; ap++) {
+        memcpy(f[ap], f[ap - 1], mem_size);
+        for (register int bp : ob[a[ap]]) {
+            if (bp > ap) break;
+            for (register int c = min(k, bp); c > 0; c--) {
+                // if ((f[ap - 1][bp - 1][c - 1]) == 0) break;
+                f[ap][bp][c] = (f[ap][bp][c] + f[ap - 1][bp - 1][c - 1]) % MOD;
+                // if (ap > 1 and bp > 1 and
+                if (a[ap - 1] == b[bp - 1])
+                    f[ap][bp][c] = (f[ap][bp][c] + f[ap - 1][bp - 1][c]) % MOD;
+            }
+            // for (int ext = 0; ext < min(bp, ap); ext++) {
+            //     register int ape = ap - ext;
+            //     register int bpe = bp - ext;
+            //     if (a[ape] != b[bpe]) break;
+            //     for (register int c = min(k, bpe); c > 0; c--) {
+            //         if ((tf = f[ape - 1][bpe - 1][c - 1]) == 0) break;
+            //         f[ap][bp][c] = (f[ap][bp][c] + tf) % MOD;
+            //     }
+            // }
+            cout << ap << "ap " << bp << endl;
+            for (int i = 0; i <= m; i++) {
+                for (int j = 0; j <= k; j++) cout << f[ap][i][j] << " ";
+                cout << endl;
+            }
+        }
+    }
+    printf("%d\n", f[n][m][k]);
+}

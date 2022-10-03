@@ -1,0 +1,11 @@
+[01m[K1374.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[K1374.cpp:132:27:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around ‘[01m[K+[m[K’ inside ‘[01m[K>>[m[K’ [[01;35m[K-Wparentheses[m[K]
+  132 |         ll mid = [01;35m[K1 + left + right[m[K >> 1;
+      |                  [01;35m[K~~~~~~~~~^~~~~~~[m[K
+[01m[K1374.cpp:122:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  122 |     [01;35m[Kscanf("%d%d", &n, &m)[m[K;
+      |     [01;35m[K~~~~~^~~~~~~~~~~~~~~~[m[K
+[01m[K1374.cpp:124:14:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  124 |         [01;35m[Kscanf("%d%d%d\n", &u, &v, &w)[m[K;
+      |         [01;35m[K~~~~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+Compiled successfully.

@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://ace.delos.com/ioiupload?d=gold&a=jl19fZt7G5u&lang=ch -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY background=gold_ch.files/bg9silver.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="gold_ch.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: FEB08 <B>SILVER</B> Division</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>**********************************************************************
+                                金组题目
+**********************************************************************
+                             编号1~3，共3题
+**********************************************************************
+
+题目 1: 路面修整 [Brian Dean, 2008]
+
+    FJ打算好好修一下农场中某条凹凸不平的土路。按奶牛们的要求，修好后的
+路面高度应当单调上升或单调下降，也就是说，高度上升与高度下降的路段不能
+同时出现在修好的路中。
+
+    整条路被分成了N段，N个整数A_1, ... , A_N (1 &lt;= N &lt;= 2,000)依次描述
+了每一段路的高度(0 &lt;= A_i &lt;= 1,000,000,000)。FJ希望找到一个恰好含N个
+元素的不上升或不下降序列B_1, ... , B_N，作为修过的路中每个路段的高度。
+由于将每一段路垫高或挖低一个单位的花费相同，修路的总支出可以表示为：
+
+         |A_1 - B_1| + |A_2 - B_2| + ... + |A_N - B_N|
+
+    请你计算一下，FJ在这项工程上的最小支出是多少。FJ向你保证，这个支出
+不会超过2^31-1。
+
+程序名: grading
+
+输入格式:
+
+* 第1行: 输入1个整数：N
+
+* 第2..N+1行: 第i+1行为1个整数：A_i
+
+输入样例 (grading.in):
+
+7
+1
+3
+2
+4
+5
+3
+9
+
+输出格式:
+
+* 第1行: 输出1个正整数，表示FJ把路修成高度不上升或高度不下降的最小花费
+
+输出样例 (grading.out):
+
+3
+
+输出说明:
+
+    FJ将第一个高度为3的路段的高度减少为2，将第二个高度为3的路段的高度
+增加到5，总花费为|2-3|+|5-3| = 3，并且各路段的高度为一个不下降序列
+1,2,2,4,5,5,9。
+
+**********************************************************************
+
+题目 2: 奶牛的游戏 [Shravas Rao, 2007]
+
+    FJ的奶牛们最近发明了一个新的游戏，以此考验FJ。
+
+    所有N (2 &lt;= N &lt;= 50,000)头奶牛都站在平面内的某个整点上，奶牛1站在
+点(0,0)，FJ知道奶牛2与奶牛1的x坐标的距离(0 &lt;= X_i &lt;= 1,000,000)，以及
+她们y坐标的距离(0 &lt;= Y_i &lt;= 1,000,000)。
+
+    比如说，奶牛1与奶牛2的x、y坐标的距离为(3, 2)，那么奶牛2的位置可能
+为(3, 2)，(-3, 2)，(3, -2)或是(-3, -2)，因为奶牛1的位置为(0, 0)。随后
+，FJ依次被告知奶牛2与奶牛3的距离，奶牛3与奶牛4的距离，...，奶牛N-1与
+奶牛N的距离。
+
+    Farmer John的任务是，在不改动各头奶牛间距离的情况下，通过合理地
+安排各头奶牛的位置，使奶牛N与奶牛1之间的x、y坐标距离的和最小。
+
+    这是一道提交答案题。对于每一组输入，保证能找到一种安排奶牛的方案，
+使得奶牛N所在点恰好就是奶牛1所在点。如果你给出的奶牛安排方案中，奶牛N
+与奶牛1之间的x、y坐标距离的和为x，那么你的得分为(1000-x)/1000。输出的
+第一行按样例输出的格式，标明当前数据为第CASE (1 &lt;= CASE &lt;= 25)组。
+
+    输入数据在此<A href="http://ace.delos.com/cgame.zip">下载</A>.
+
+程序名: cgame
+
+输入格式:
+
+* 第1行: 2个用空格隔开的整数：CASE、N
+
+* 第2..N行: 第i+1行为2个用空格隔开的整数，分别为奶牛i与奶牛i+1的x、y
+            坐标的距离
+
+输入样例 (cgame.in):
+
+1 5
+2 6
+3 1
+1 4
+4 3
+
+输入说明:
+
+    一共有5头奶牛。奶牛1与奶牛2的距离为(2, 6)，奶牛2与奶牛3的距离为
+(3, 1)，奶牛3与奶牛4的距离为(1, 4)，奶牛4与奶牛5的距离为(4, 3)。
+
+输出格式:
+
+* 第1行: 按该格式输出1行信息：#FILE cgame ID，其中ID为数据编号
+
+* 第2..N+1行: 输出程序求出的最优解中，各头奶牛的位置。第i行为2个用空格
+              隔开的整数x、y，表示奶牛i的位置
+
+输出样例 (cgame.out):
+
+#FILE cgame 1
+0 0
+2 -6
+5 -7
+4 -3
+0 0
+
+输出说明:
+
+    这个输出可以拿到这个点的满分，因为奶牛1和奶牛N在同一个点，并且奶牛
+的相对位置没有违反输入中的规定。
+
+**********************************************************************
+
+题目 3: Hotel [周源, 2007]
+
+    奶牛们最近的旅游计划，是到苏必利尔湖畔，享受那里的湖光山色，以及
+明媚的阳光。作为整个旅游的策划者和负责人，贝茜选择在湖边的一家著名的
+旅馆住宿。这个巨大的旅馆一共有N (1 &lt;= N &lt;= 50,000)间客房，它们在同一层
+楼中顺次一字排开，在任何一个房间里，只需要拉开窗帘，就能见到波光粼粼的
+湖面。
+
+    贝茜一行，以及其他慕名而来的旅游者，都是一批批地来到旅馆的服务台，
+希望能订到D_i (1 &lt;= D_i &lt;= N)间连续的房间。服务台的接待工作也很简单：
+如果存在r满足编号为r..r+D_i-1的房间均空着，他就将这一批顾客安排到这些
+房间入住；如果没有满足条件的r，他会道歉说没有足够的空房间，请顾客们另
+找一家宾馆。如果有多个满足条件的r，服务员会选择其中最小的一个。
+
+    旅馆中的退房服务也是批量进行的。每一个退房请求由2个数字X_i、D_i
+描述，表示编号为X_i..X_i+D_i-1 (1 &lt;= X_i &lt;= N-D_i+1)房间中的客人全部
+离开。退房前，请求退掉的房间中的一些，甚至是所有，可能本来就无人入住。
+
+    而你的工作，就是写一个程序，帮服务员为旅客安排房间。你的程序一共
+需要处理M (1 &lt;= M &lt; 50,000)个按输入次序到来的住店或退房的请求。第一个
+请求到来前，旅店中所有房间都是空闲的。
+
+程序名: hotel
+
+输入格式:
+
+* 第1行: 2个用空格隔开的整数：N、M
+
+* 第2..M+1行: 第i+1描述了第i个请求，如果它是一个订房请求，则用2个数字
+              1、D_i描述，数字间用空格隔开；如果它是一个退房请求，用3
+              个以空格隔开的数字2、X_i、D_i描述
+
+输入样例 (hotel.in):
+
+10 6
+1 3
+1 3
+1 3
+1 3
+2 5 5
+1 6
+
+输出格式:
+
+* 第1..??行: 对于每个订房请求，输出1个独占1行的数字：如果请求能被满足  
+             ，输出满足条件的最小的r；如果请求无法被满足，输出0
+
+输出样例 (hotel.out):
+
+1
+4
+7
+0
+5
+
+**********************************************************************
+Translation by Yan Long
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=jl19fZt7G5u name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program or file for grading:&nbsp;<B><INPUT 
+                  type=file name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD>Nothing is currently saved for grading. 
+</TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=jl19fZt7G5u">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=jl19fZt7G5u">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 8:05:32 GMT. 
+</CENTER></FORM></BODY></HTML>

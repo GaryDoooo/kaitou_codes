@@ -1,0 +1,50 @@
+<html>
+<head> <title>USACO OPEN11 stringe Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'stringe' Analysis</h2>
+<h4>by Lewin Gan</h4>
+<p>There is one method that will be very useful, which is the substring method. 
+If S is the string, then it is called, in C/C++ "S.substr(a,b)", in Java, 
+"S.substring(a,b)", and in Pascal "SubStr(S,a,b)", where a represents the 
+starting point, and b represents the ending point (except in pascal, where it 
+represents the number of characters). The parameter b is actually optional, since 
+if we leave it out, it will just take all the characters to the end. Using this 
+method, and string concatenation, one iteration of the function will look like:
+</p>
+<pre>
+S = S.substr(n)+S;
+</pre>
+<p> where n is given in the original problem statement. It's now a simple manner 
+of iterating this function until we get our desired answer.</p>
+<p> A C++ implementation by Fatih is shown below: </p>
+<pre class = code cpp>
+#include &lt;fstream&gt;
+using namespace std;
+
+int main()
+{
+	ifstream fin("stringe.in");
+	ofstream fout("stringe.out");
+	int z,n,c;
+	string s;
+	fin >> z;
+	for (int i=0; i&lt;z; i++)
+	{
+		fin >> n >> c >> s;
+		for (int j=0; j&lt;c; j++)
+			s=s.substr(n)+s;
+		fout << s << endl;
+	}
+
+	fin.close();
+	fout.close();
+}
+</pre>
+

@@ -1,0 +1,24 @@
+// Pine scripts for Tradingview
+//
+// VIX Correlation
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © RolandoSantos
+
+//@version=4
+study("VIX Correlation")
+
+sym = input(title="Default Value is VIX, change this to VVIX to compare to SPY or also to VIX", defval="VIX")
+symprice = security(sym, "D", close)
+
+corrlen = input(15, title="Length")
+
+vixcorr = correlation(close, symprice, corrlen)
+vixcolor = vixcorr > 0 ? color.red : color.green
+plot(vixcorr, color=vixcolor, style=plot.style_histogram)
+
+corrthresh = input(0.2, title="Thresh Hold")
+
+
+barcolor(vixcorr > corrthresh ? color.red : color.green)
+
+

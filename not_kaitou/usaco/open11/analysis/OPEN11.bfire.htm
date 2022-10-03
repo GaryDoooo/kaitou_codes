@@ -1,0 +1,97 @@
+<html>
+<head> <title>USACO OPEN11 bfire Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'bfire' Analysis</h2>
+<h4>by Amlesh Jayakumar and Lewin Gan</h4>
+<p>This problem is a straightforward simulation, which includes keeping track 
+of which cow is 
+currently moving, the position she is moving from and to, and which positions 
+are empty. You then report the last cow to move.</p>
+ 
+<p>Here is Mr.Kolstad's self-explanatory code:</p>
+
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int seat[250+1];
+int status[250+1];	/* status[i]==1 -&gt; cow i has moved */
+int ncows, moving, curseat;
+
+main () {
+    int i, prevmoving, nextseat;
+    FILE *fin = fopen ("bfire.in", "r");
+    FILE *fout = fopen ("bfire.out", "w");
+
+    fscanf (fin, "%d", &ncows);
+    for (i = 1; i &lt;= ncows; i++) seat[i] = i;
+
+    moving = 1;		/* a cow number */
+    curseat = 1;	/* came from this seat */
+    seat[moving] = 0;	/* which is now empty */
+    status[moving] = 1;	/* and this cow has moved */
+    for (;;) {
+	nextseat = curseat + moving;
+	if (nextseat &gt; ncows)	/* around the circle? */
+	    nextseat -= ncows;
+	if (seat[nextseat] == 0)	/* empty seat? */
+	    break;	
+	if (status [seat[nextseat]] == 1)
+			/* cow there already moved? */
+	    break;
+	prevmoving = moving;		/* cow to be seated */
+	moving = seat[nextseat];	/* new cow to move */
+	seat[moving] =  prevmoving;	/* seat the cow */
+	curseat = nextseat;		/* bookkeep seating */
+	status[prevmoving] = 1;		/* bookkeep the moving */
+    }
+    fprintf (fout, "%d\n", moving);
+    exit (0);
+}
+</pre>
+
+<p>Another way to solve this is to notice that we can simply get rid of the 
+fact that a cow will be reseated, 
+and assume that once a cow goes, it leaves the circle permanently. Then, we 
+know our answer when we visit 
+our first empty space. Another observation is that if we are currently at 
+position x in the circle, we will 
+move to position x+x or 2x mod N. Let C be the highest power of 2 that divides 
+N. Then, we know that the cows 
+will cycle back to 2^C at some point in time. Then, it's just a matter of 
+solving 2a = 2^C mod N, where a != 
+2^(C-1), which can be solved in constant time.</p>
+
+<p>Here is a very short solution by Lewin that implements this idea. The C++ 
+equivalent of 
+"Integer.numberOfTrailingZeros" is "__builtin_ctz". </p>
+
+<pre>
+import java.io.*;
+import java.util.*;
+import static java.lang.Integer.parseInt;
+
+public class bfire
+{
+    private static BufferedReader in;
+    private static PrintWriter out;
+
+    public static void main (String [] args) throws IOException {
+        in = new BufferedReader (new FileReader ("bfire.in"));
+        out = new PrintWriter (new BufferedWriter (new FileWriter ("bfire.out")));
+        int N = parseInt (in.readLine ()), C = Integer.numberOfTrailingZeros (N);
+        out.println ((N + (1 << C)) >> 1);
+        out.close ();
+        System.exit (0);
+    }
+}
+</pre>
+
+

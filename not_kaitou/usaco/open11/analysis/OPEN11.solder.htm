@@ -1,0 +1,390 @@
+<html>
+<head> <title>USACO OPEN11 solder Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'solder' Analysis</h2>
+<h4>by Michael Cohen</h4>
+The starting point here is a dynamic programming algorithm.  Arbitrarily root
+the tree and consider "cutting off" a particular subtree in a soldering.  This
+leaves one (or none if a wire was cut off at its endpoints) "cut wire" which
+extends out of the subtree to the parent and a set of wires that are wholly
+within the subtree.  Now, note that all that is relevant is the length of the
+"cut wire" within the subtree and the total cost of all the other wires.  This
+is because the cut wire is the only wire whose cost depends on the rest of the
+soldering.
+<p>
+This gives a relatively simple dynamic programming solution: for each vertex
+(defining a subtree) store, for each possible cut wire length, the minimum cost
+of the other wires; if there is no cut wire this can be taken as a wire of
+length 0.  We will compute these from the bottom up.  To compute these values,
+note that if there is a cut wire it must extend down to one of the children;
+the cost for a cut wire going through a particular child is the cost for the
+cut wire through the child's subtree plus the minimum cost soldering covering
+each of the other subtrees.  If there is no cut wire, then the edge going to
+the parent must be soldered onto the middle of another wire; then one can just
+check all pairs of lengths and distinct children to find two "cut wires" for
+two children to merge into into one wire.  Now, note that the maximum length
+cut wire for each subtree is the number of nodes it contains, so the number of
+pairs of lengths for any two distinct children is at most the number of pairs
+of nodes in the two children; summing over all children this is the number of
+nodes whose lowest common ancestor is the root of the subtree.  Then the total
+work done over the whole algorithm is only the total number of pairs of nodes,
+or O(N<sup>2</sup>).
+<p>
+Now, at this point it will be convenient to assume, in the discussion of the
+algorithm, that each vertex has at most two children.  In fact, this is not a
+problem: a vertex V with more children can be "split up" by giving it a direct
+edge to one of its children and attaching the remainder to a new vertex V' with
+an edge to it from V of length 0 (the length does not break the algorithm
+although all edges in the problem were of length 1), then iterating this until
+no vertex has more than two children.
+<p>
+To further reduce the runtime, one must note the convexity properties of the
+squaring of the length.  If one looks at a length/cost pair (l, c) for a
+subtree, it corresponds to the function (L+l)<sup>2</sup>+c where L is the
+length of the cut wire outside the subtree.  But one only cares about those
+functions that are the minimum for some value of L: since (L+l)<sup>2</sup> + c
+= L<sup>2</sup> + 2L * l + (l<sup>2</sup>+ c), this is the lower envelope of
+these functions, equivalent to a convex hull. All pairs not in the envelope can
+be deleted.  One can then binary search the convex hull to find the optimal
+pairing with any particular length of the wire outside the subtree.  Then to
+find the optimal pair of lengths in the two children to merge into one wire,
+one can simply take all the lengths in the smaller subtree and binary search
+the convex hull in the larger subtree to find the best thing within that
+subtree to pair it with.  Finally, to efficiently find the convex hulls for all
+subtrees, one can represent the convex hulls with binary search trees (std::set
+does fine here) and to get the possibilities from either child, one can offset
+the values in the larger child subtree's convex hull (by storing offset values
+that are added to all the pairs in the hull, since both length and cost change
+as you merge subtrees) and then insert each pair (offset) from the smaller
+subtree into it.  The total number of operations on the binary search trees is
+then at most the sum of the sizes of the smaller child subtree from each node
+(in fact it can be smaller as the convex hull can have fewer elements than the
+size of the subtree). This can be shown to be O(N log N): one can consider the
+number of times each position gets merged into a larger group, and note that it
+is always less than log N since with each merge only the values in the smaller
+half are incremented.  Each tree operation is O(log N), so the overall runtime
+is O(N log<sup>2</sup> N).
+<p>
+Below is Neal Wu's N<sup>2</sup> implementation:
+
+<pre>
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+FILE *in = fopen ("solder.in", "r"), *out = fopen ("solder.out", "w");
+
+const int MAXN = 50005;
+const long long LLINF = 1LL &lt;&lt; 60;
+
+int N, down [MAXN];
+long long *dp [MAXN], mindp [MAXN];
+vector &lt;int&gt; adj [MAXN];
+
+void init_dfs (int num, int par)
+{
+    down [num] = 1;
+    int par_ind = -1;
+
+    for (int i = 0; i &lt; (int) adj [num].size (); i++)
+    {
+        int child = adj [num][i];
+
+        if (child == par)
+        {
+            par_ind = i;
+            continue;
+        }
+
+        init_dfs (child, num);
+        down [num] = max (down [num], down [child] + 1);
+    }
+
+    if (par_ind != -1)
+        adj [num].erase (adj [num].begin () + par_ind);
+}
+
+void solve_dfs (int num)
+{
+    for (int i = 0; i &lt; (int) adj [num].size (); i++)
+        solve_dfs (adj [num][i]);
+
+    long long dp1 = 1;
+
+    if (adj [num].size () &gt; 1)
+    {
+        for (int i = 0; i &lt; (int) adj [num].size (); i++)
+            dp1 += mindp [adj [num][i]];
+
+        long long best_two = LLINF;
+
+        for (int i = 0; i &lt; (int) adj [num].size (); i++)
+            for (int j = i + 1; j &lt; (int) adj [num].size (); j++)
+            {
+                int child1 = adj [num][i], child2 = adj [num][j];
+
+                for (int a = 1; a &lt;= down [child1]; a++)
+                    for (int b = 1; b &lt;= down [child2]; b++)
+                        best_two = min (best_two, dp [child1][a] + dp
+[child2][b] + 2LL * a * b - mindp [child1] - mindp [child2]);
+            }
+
+        dp1 += best_two;
+    }
+
+    dp [num] = new long long [down [num] + 1];
+    dp [num][1] = dp1;
+
+    if (adj [num].size () == 1)
+    {
+        dp [num][1] = LLINF;
+        dp [num][0] = mindp [adj [num][0]];
+    }
+    else
+        dp [num][0] = dp [num][1] - 1;
+
+    for (int k = 1; k &lt; down [num]; k++)
+    {
+        long long sum = 0, best_link = LLINF;
+
+        for (int i = 0; i &lt; (int) adj [num].size (); i++)
+        {
+            int child = adj [num][i];
+            sum += mindp [child];
+
+            if (k &lt;= down [child])
+                best_link = min (best_link, dp [child][k] - mindp [child]);
+        }
+
+        dp [num][k + 1] = sum + best_link + 2 * k + 1;
+    }
+
+    mindp [num] = LLINF;
+
+    for (int k = 1; k &lt;= down [num]; k++)
+        mindp [num] = min (mindp [num], dp [num][k]);
+
+    for (int i = 0; i &lt; (int) adj [num].size (); i++)
+        delete dp [adj [num][i]];
+}
+
+int main ()
+{
+    fscanf (in, "%d", &amp;N);
+
+    for (int i = 1, a, b; i &lt; N; i++)
+    {
+        fscanf (in, "%d %d", &amp;a, &amp;b); a--; b--;
+        adj [a].push_back (b);
+        adj [b].push_back (a);
+    }
+
+    init_dfs (0, -1);
+    solve_dfs (0);
+    fprintf (out, "%lld\n", dp [0][0]);
+    return 0;
+}
+</pre>
+
+And below is Michael Cohen's impressive full implementation:
+
+<pre>
+#include &lt;fstream&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define endl '\n'
+using namespace std;
+
+struct poss {
+	long long depth;
+	long long cost;
+	long long takeover;
+	bool tcheck;
+};
+
+bool operator&lt;(poss a, poss b) {
+	if (a.tcheck || b.tcheck) return (a.takeover &lt; b.takeover);
+	if (a.depth &gt; b.depth) return true;
+	if (a.depth &lt; b.depth) return false;
+	return (a.cost &lt; b.cost);
+}
+
+int N;
+vector&lt;int&gt; edges[50000];
+bool visited[50000];
+long long depth[50000];
+long long offset[50000];
+set&lt;poss&gt;* best[50000];
+
+void recurse(int node) {
+	visited[node] = true;
+	long long bestPair = -1;
+	long long allSoFar = 0;
+	for (int i = 0; i &lt; edges[node].size(); i++) {
+		if (visited[edges[node][i]]) continue;
+		depth[edges[node][i]] = depth[node]+1;
+		recurse(edges[node][i]);
+		
+		long long tadd;
+		{
+			poss when = { 0, 0, -depth[node], true };
+			set&lt;poss&gt;::iterator which = best[edges[node][i]]-&gt;upper_bound(when);
+			which--;
+			tadd =
+(depth[node]-which-&gt;depth)*(depth[node]-which-&gt;depth)+which-&gt;cost+offset[edges[node][i]];
+		}
+		if (bestPair != -1) bestPair += tadd;
+		
+		if (best[node] == NULL) {
+			best[node] = best[edges[node][i]];
+			offset[node] = offset[edges[node][i]];
+		}
+		else {
+			set&lt;poss&gt;* s = best[node], * t = best[edges[node][i]];
+			long long os = offset[node]+tadd, ot = offset[edges[node][i]]+allSoFar;
+			if (s-&gt;size() &lt; t-&gt;size()) {
+				set&lt;poss&gt;* tem = s;
+				s = t;
+				t = tem;
+				int to = os;
+				os = ot;
+				ot = to;
+			}
+			
+			for (set&lt;poss&gt;::iterator it = t-&gt;begin(); it != t-&gt;end(); it++) {
+				poss when = { 0, 0, it-&gt;depth-2*depth[node], true };
+				set&lt;poss&gt;::iterator which = s-&gt;upper_bound(when);
+				which--;
+				long long thisPair =
+(it-&gt;depth+which-&gt;depth-2*depth[node])*(it-&gt;depth+which-&gt;depth-2*depth[node])+it-&gt;cost+which-&gt;cost+offset[node]+offset[edges[node][i]];
+				if (bestPair == -1 || thisPair &lt; bestPair) bestPair = thisPair;
+			}
+			
+			for (set&lt;poss&gt;::iterator it = t-&gt;begin(); it != t-&gt;end(); it++) {
+				poss p = *it;
+				p.cost += ot-os;
+				set&lt;poss&gt;::iterator where = s-&gt;insert(p).first;
+				bool killed = false;
+				while (where != s-&gt;begin()) {
+					set&lt;poss&gt;::iterator prev = where;
+					prev--;
+					if (prev-&gt;depth == where-&gt;depth) {
+						s-&gt;erase(where);
+						killed = true;
+						break;
+					}
+					p.takeover =
+(where-&gt;cost-prev-&gt;cost+where-&gt;depth*where-&gt;depth-prev-&gt;depth*prev-&gt;depth)/(2*prev-&gt;depth-2*where-&gt;depth);
+					while ((2*prev-&gt;depth-2*where-&gt;depth)*p.takeover &lt;
+where-&gt;cost-prev-&gt;cost+where-&gt;depth*where-&gt;depth-prev-&gt;depth*prev-&gt;depth)
+p.takeover++;
+					s-&gt;erase(where);
+					where = s-&gt;insert(p).first;
+					
+					if (where-&gt;takeover &lt;= prev-&gt;takeover) s-&gt;erase(prev);
+					else break;
+				}
+				if (killed) continue;
+				if (where == s-&gt;begin()) {
+					p.takeover = -1000000000;
+					s-&gt;erase(where);
+					where = s-&gt;insert(p).first;
+				}
+				set&lt;poss&gt;::iterator next = where;
+				next++;
+				while (next != s-&gt;end()) {
+					if (next-&gt;depth == where-&gt;depth) {
+						s-&gt;erase(next);
+						next = where;
+						next++;
+						continue;
+					}
+					poss n = *next;
+					n.takeover =
+(next-&gt;cost-where-&gt;cost+next-&gt;depth*next-&gt;depth-where-&gt;depth*where-&gt;depth)/(2*where-&gt;depth-2*next-&gt;depth);
+					while ((2*where-&gt;depth-2*next-&gt;depth)*n.takeover &lt;
+next-&gt;cost-where-&gt;cost+next-&gt;depth*next-&gt;depth-where-&gt;depth*where-&gt;depth)
+n.takeover++;
+					if (n.takeover &lt;= where-&gt;takeover) {
+						s-&gt;erase(where);
+						break;
+					}
+					s-&gt;erase(next);
+					next = s-&gt;insert(n).first;
+					set&lt;poss&gt;::iterator nnext = next;
+					nnext++;
+					if (nnext != s-&gt;end() &amp;&amp; nnext-&gt;takeover &lt;=
+next-&gt;takeover) {
+						s-&gt;erase(next);
+						next = nnext;
+					}
+					else break;
+				}
+			}
+			
+			best[node] = s;
+			offset[node] = os;
+			delete t;
+		}
+		allSoFar += tadd;
+	}
+	
+	if (best[node] == NULL) {
+		best[node] = new set&lt;poss&gt;();
+		poss p = { depth[node], 0, -1000000000, false };
+		best[node]-&gt;insert(p);
+	}
+	else if (bestPair != -1) {
+		poss p = { depth[node], bestPair-offset[node], 0, false };
+		while (!best[node]-&gt;empty()) {
+			p.takeover =
+(p.cost-best[node]-&gt;rbegin()-&gt;cost+p.depth*p.depth-best[node]-&gt;rbegin()-&gt;depth*best[node]-&gt;rbegin()-&gt;depth)/(2*best[node]-&gt;rbegin()-&gt;depth-2*p.depth);
+			while ((2*best[node]-&gt;rbegin()-&gt;depth-2*p.depth)*p.takeover &lt;
+p.cost-best[node]-&gt;rbegin()-&gt;cost+p.depth*p.depth-best[node]-&gt;rbegin()-&gt;depth*best[node]-&gt;rbegin()-&gt;depth)
+p.takeover++;
+			if (p.takeover &gt; best[node]-&gt;rbegin()-&gt;takeover) break;
+			best[node]-&gt;erase(*(best[node]-&gt;rbegin()));
+		}
+		if (best[node]-&gt;empty()) p.takeover = -1000000000;
+		best[node]-&gt;insert(p);
+	}
+}
+
+int main()
+{
+	ifstream inp("solder.in");
+	ofstream outp("solder.out");
+	
+	inp &gt;&gt; N;
+	for (int i = 0; i &lt; N-1; i++) {
+		int a, b;
+		inp &gt;&gt; a &gt;&gt; b;
+		a--, b--;
+		edges[a].push_back(b);
+		edges[b].push_back(a);
+	}
+	
+	recurse(0);
+	if (edges[0].size() == 1) {
+		poss when = { 0, 0, 0, true };
+		set&lt;poss&gt;::iterator which = best[0]-&gt;upper_bound(when);
+		which--;
+		outp &lt;&lt; which-&gt;depth*which-&gt;depth+which-&gt;cost+offset[0]
+&lt;&lt; endl;
+	}
+	else {
+		poss p = *(best[0]-&gt;rbegin());
+		outp &lt;&lt; p.cost+offset[0] &lt;&lt; endl;
+	}
+	return 0;
+}
+</pre>
+

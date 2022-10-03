@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://ace.delos.com/TESTDATA/FEB08.lines.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 lines Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="lines.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'lines' Analysis</H2>
+<H4>by Neal Wu</H4>
+<P>To solve this problem, we simply want to count the number of distinct slopes 
+that occur among all pairs of the points. However, we have to be careful about 
+two things:</P>
+<P>-Slopes such as 1 / 2 and 2 / 4 need to be considered equal.</P>
+<P>-We have to correctly handle slopes like "3 / 0."</P>
+<P>To do this, we note that if we have two slopes y1 / x1 and y2 / x2, and we 
+make sure that x1 and x2 are both positive, then the condition y1 / x1 = y2 / x2 
+is the same as the condition y1 * x2 = y2 * x1. (Similarly, y1 / x1 &lt; y2 / x2 
+is the same as y1 * x2 &lt; y2 * x1.)</P>
+<P>Thus, we can compare slopes of lines by using this multiplication comparison, 
+which correctly considers slopes like 1 / 2 and 2 / 4 as the same. To take care 
+of slopes like "3 / 0" correctly, we note that all lines with slope in the form 
+"y / 0" are parallel, so we count them only once (which is shown in the code 
+below).</P>
+<P>Finally, since there can be nearly 20,000 slopes to check, comparing every 
+pair will not be fast enough. Thus, we need a method of counting distinct slopes 
+quickly, and to do this we can efficiently sort all the slopes by the comparison 
+above. After sorting, all pairs of equal slopes will be adjacent in our sorted 
+list, so we can compare them easily.</P>
+<P>The following is a sample solution:</P><PRE>#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+FILE *fin = fopen ("lines.in", "r");
+FILE *fout = fopen ("lines.out", "w");
+
+const int MAXN = 205;
+const int MAXM = 20005;
+
+struct slope
+{
+    int dx, dy;
+
+    inline slope ()
+    {
+	dx = dy = 0;
+    }
+
+    inline slope (int y, int x)
+    {
+	dy = y, dx = x;
+
+// take care of the "y / 0" case
+	if (dx == 0)
+	    dy = 1;
+
+// make sure dx is positive for our comparison to work properly
+	if (dx &lt; 0)
+	{
+	    dx = -dx;
+	    dy = -dy;
+	}
+    }
+};
+
+// comparison of two slopes
+inline bool operator &lt; (const slope &amp;left, const slope &amp;right)
+{
+    return left.dy * right.dx &lt; right.dy * left.dx;
+}
+
+int N, M, total;
+int x [MAXN], y [MAXN];
+slope lines [MAXM];
+
+int main ()
+{
+    fscanf (fin, "%d", &amp;N);
+
+    for (int i = 0; i &lt; N; i++)
+	fscanf (fin, "%d %d", x + i, y + i);
+
+
+    for (int i = 0; i &lt; N; i++)
+	for (int j = i + 1; j &lt; N; j++)
+	    lines [M++] = slope (y [i] - y [j], x [i] - x [j]);
+
+    sort (lines, lines + M);
+
+// count distinct slopes
+    total = 1;
+    for (int i = 0; i &lt; M; i++)
+	if (lines [i].dy * lines [i + 1].dx != lines [i + 1].dy * lines [i].dx)
+	    total++;
+
+
+    fprintf (fout, "%d\n", total);
+
+    return 0;
+}
+</PRE>
+<P><I>Maximiliano David Bustos adds:</I> 
+<P>As we only need the number of differents slopes we can use the set container, 
+included in C++ STL. Set can add, remove and check the presence of particular 
+element in O(log M), where M is the count of objects in the set. While adding 
+elements to set, the repeated elements are discarded. A count of the elements in 
+the set, M, is returned in O(1). 
+<P>The following is a sample solution: <PRE>#include &lt;fstream&gt;
+#include &lt;set&gt;
+
+using namespace std;
+
+#define INF 99999
+#define MAXN 20001
+
+int main () {
+   // Variables:
+   int N;
+   int i,j;
+   float slope,x1,y1;
+   set&lt;float&gt; s;
+   int x[MAXN],y[MAXN];
+   
+   // Open files:
+   ifstream fin("lines.in");
+   ofstream fout("lines.out");
+   
+   // Read data:
+   fin&gt;&gt;N;
+   for(i=0;i&lt;N;i++) 
+      fin&gt;&gt;x[i]&gt;&gt;y[i];
+   
+   // Try all pairs of points:
+   for(i=0;i&lt;N;i++)
+      for(j=i+1;j&lt;N;j++) {
+         y1 = y[i] - y[j];
+         x1 = x[i] - x[j];   
+         if(x1==0) slope = INF;
+         else slope = y1/x1;
+         s.insert(slope); // If the slope already exists in the set it is not saved.
+      }   
+   
+   // Output:
+   int ans = int(s.size()); // The number of elements saved is the number of distinct slopes.
+   fout&lt;&lt;ans&lt;&lt;endl;
+   
+   // Close files:
+   fin.close();
+   fout.close();
+    return 0;
+}
+</PRE></BODY></HTML>

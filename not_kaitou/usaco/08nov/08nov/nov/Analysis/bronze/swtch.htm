@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://ace.delos.com/TESTDATA/NOV08.swtch.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 swtch Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="swtch.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'swtch' Analysis</H2>
+<H4>by Rob Kolstad</H4>
+<P>This program's goal is to simulate the toggling of N lights and report the 
+number of lights switched on in any given interval. Since N will not exceed 500 
+and the number of toggling/reporting operations will not exceed 2,000, even a 
+relatively complex inner loop will be executed only a million times. Thus, this 
+is a straightforward brute-force solution whose goal is to produce the correct 
+answer the first time. 
+<P>The program is simple: it reads the input line and, depending on the value of 
+the command token, either sums and prints the number of lights that are on or 
+toggles lights in some interval. The only unusual part of the program is the 
+statement <TT>lights[j] ^= 1</TT> which is equivalent to <TT>lights[j] = 
+lights[j] ^ 1</TT> where '^' is the 'exclusive or' operator with this truth 
+table: 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD align=middle><B>xor</B></TD>
+    <TD><B>0</B>
+    <TD><B>1</B> 
+  <TR>
+    <TD><B>0</B>
+    <TD>0
+    <TD>1 
+  <TR>
+    <TD><B>1</B>
+    <TD>1
+    <TD>0 </TR></TBODY></TABLE>
+<P>'Exclusive or' means "one or the other of the two inputs is true". x=x^1 
+toggles the 0/1 value of x. 
+<P>Below is a simple rendering of the solution: <PRE>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int lights[500+1];      /* lights numbered 1..500 */
+
+main () {
+    FILE *fin = fopen ("switch.in", "r");
+    FILE *fout = fopen ("switch.out", "w");
+    int n, m, i, a, b, command, sum, j;
+    fscanf (fin, "%d %d", &amp;n, &amp;m);
+    for (i = 0; i &lt; m; i++) {
+        fscanf (fin, "%d %d %d", &amp;command, &amp;a, &amp;b);
+        if (command == 1) {     /* print */
+            sum = 0;
+            for (j = a; j &lt;= b; j++)
+                sum += lights[j];
+            fprintf (fout, "%d\n", sum);
+        } else {
+            for (j = a; j &lt;= b; j++)
+                lights[j] ^= 1;
+        }
+    }
+    exit (0);
+}
+</PRE></BODY></HTML>

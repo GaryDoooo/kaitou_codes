@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://ace.delos.com/ioiupload?d=bronze&a=QRLZdFiBSOS&lang=en -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY background=bronzeen.files/bg9.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="bronzeen.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: NOV08</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>ANNOUNCEMENT: If USACO's upgrade can be completed then accepted
+submitted solutions will be viewable by all contest participants
+after the contest is complete.
+
+**********************************************************************
+                           BRONZE PROBLEMS
+**********************************************************************
+                  Three problems numbered 11 through 13
+**********************************************************************
+
+Problem 11: Switching Lights [LongFan, 2008]
+
+Farmer John tries to keep the cows sharp by letting them play with
+intellectual toys. One of the larger toys is the lights in the barn.
+Each of the N (2 &lt;= N &lt;= 500) cow stalls conveniently numbered
+1..N has a colorful light above it.
+
+At the beginning of the evening, all the lights are off. The cows
+control the lights with a set of N pushbutton switches that toggle
+the lights; pushing switch i changes the state of light i from off
+to on or from on to off.
+
+The cows read and execute a list of M (1 &lt;= M &lt;= 2,000) operations
+expressed as one of two integers (0 &lt;= operation &lt;= 1).
+
+The first operation (denoted by a 0 command) includes two subsequent
+integers S_i and E_i (1 &lt;= S_i &lt;= E_i &lt;= N) that indicate a starting
+switch and ending switch. They execute the operation by pushing
+each pushbutton from S_i through E_i inclusive exactly once.
+
+The second operation (denoted by a 1 command) asks the cows to count
+how many lights are on in the range given by two integers S_i and
+E_i (1 &lt;= S_i &lt;= E_i &lt;= N) which specify the inclusive range in
+which the cows should count the number of lights that are on.
+
+Help FJ ensure the cows are getting the correct answer by processing
+the list and producing the proper counts.
+
+PROBLEM NAME: swtch
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and M
+
+* Lines 2..M+1: Each line represents an operation with three
+        space-separated integers: operation, S_i, and E_i
+
+SAMPLE INPUT (file swtch.in):
+
+4 5
+0 1 2
+0 2 4
+1 2 3
+0 2 4
+1 1 4
+
+INPUT DETAILS:
+
+Four lights; five commands. Here is the sequence that should
+be processed:
+	    Lights
+            1 2 3 4
+  Init:     O O O O   O = off  * = on
+  0 1 2 -&gt;  * * O O  toggle lights 1 and 2
+  0 2 4 -&gt;  * O * *
+  1 2 3 -&gt;  1        count the number of lit lights in range 2..3
+  0 2 4 -&gt;  * * O O  toggle lights 2, 3, and 4
+  1 1 4 -&gt;  2        count the number of lit lights in the range 1..4
+
+OUTPUT FORMAT:
+
+* Lines 1..number of queries: For each output query, print the count
+        as an integer by itself on a single line.
+
+SAMPLE OUTPUT (file swtch.out):
+
+1
+2
+
+**********************************************************************
+
+Problem 12: Guarding the Farm [Fatih Gelgi, 2008]
+
+The farm has many hills upon which Farmer John would like to place
+guards to ensure the safety of his valuable milk-cows.
+
+He wonders how many guards he will need if he wishes to put one on
+top of each hill. He has a map supplied as a matrix of integers;
+the matrix has N (1 &lt; N &lt;= 100) rows and M (1 &lt; M &lt;= 70) columns.
+Each member of the matrix is an altitude H_ij (0 &lt;= H_ij &lt;= 10,000).
+Help him determine the number of hilltops on the map.
+
+A hilltop is one or more adjacent matrix elements of the same value
+surrounded exclusively by either the edge of the map or elements
+with a lower (smaller) altitude. Two different elements are adjacent
+if the magnitude of difference in their X coordinates is no greater
+than 1 and the magnitude of differences in their Y coordinates is
+also no greater than 1.
+
+PROBLEM NAME: guard
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and M
+
+* Lines 2..N+1: Line i+1 describes row i of the matrix with M
+        space-separated integers: H_ij
+
+SAMPLE INPUT (file guard.in):
+
+8 7
+4 3 2 2 1 0 1
+3 3 3 2 1 0 1
+2 2 2 2 1 0 0
+2 1 1 1 1 0 0
+1 1 0 0 0 1 0
+0 0 0 1 1 1 0
+0 1 2 2 1 1 0
+0 1 1 1 2 1 0
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer that specifies the number of hilltops
+
+SAMPLE OUTPUT (file guard.out):
+
+3
+
+OUTPUT DETAILS:
+
+There are three peaks: The one with height 4 on the left top, one of
+the points with height 2 at the bottom part, and one of the points with
+height 1 on the right top corner.
+
+**********************************************************************
+
+Problem 13: Going Once, Going Twice, Gone! [Jeffrey Wang, 2008]
+
+The cows' slimming diet has left Farmer John with extra hay so he
+has decided to hold an auction to reduce his inventory. He has N
+(1 &lt;= N &lt;= 1,000) identical lots (each of about 100 bales) of hay;
+his potential customers comprise M (1 &lt;= M &lt;= 1,000) other farmers
+in the area.
+
+Each farmer i tells Farmer John how much he is willing to pay P_i
+(1 &lt;= P_i &lt;= 1,000,000) for a lot of hay. Each of the farmers
+wishes to purchase a single lot of hay.
+
+To make sure the other farmers do not get jealous of each other,
+Farmer John decides that he must sell the lots of hay at a fixed
+price to each customer who is willing to pay at least that price;
+the rest will decline the purchase.
+
+Help Farmer John determine the smallest price he should set on a
+lot of hay to maximize the amount of money he makes.
+
+PROBLEM NAME: auction
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers: N and M
+
+* Lines 2..M+1: Line i+1 contains a single integer: P_i
+
+SAMPLE INPUT (file auction.in):
+
+5 4
+2
+8
+10
+7
+
+INPUT DETAILS:
+
+Farmer John has 5 lots of hay. 4 farmers wish to purchase hay; they
+will pay 2, 8, 10, and 7, respectively, for a lot of hay.
+
+OUTPUT FORMAT:
+
+* Line 1: Two space-separated integers: the smallest price that Farmer
+        John should choose to maximize his revenue and the amount of
+        money he takes in.
+
+SAMPLE OUTPUT (file auction.out):
+
+7 21
+
+OUTPUT DETAILS:
+
+Farmer John should set the price at 7 so that 3 of the farmers will
+be willing to pay for a lot of hay, and he will earn 21.
+
+**********************************************************************
+
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=QRLZdFiBSOS name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program for grading:&nbsp;<B><INPUT type=file 
+                  name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">The following 
+solution files are saved for grading:<BR>
+<TABLE cellSpacing=2>
+  <TBODY>
+  <TR>
+    <TH>Name</TH>
+    <TH>Size</TH>
+    <TH>When</TH>
+    <TH>Age</TH></TR>
+  <TR>
+    <TD><A 
+      href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;seesaved=auction.c">auction.c</A></TD>
+    <TD align=right>687</TD>
+    <TD align=right>5h29:54</TD>
+    <TD align=right>64h07:39</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;seesaved=swtch.c">swtch.c</A></TD>
+    <TD align=right>644</TD>
+    <TD align=right>4h56:59</TD>
+    <TD align=right>64h40:34</TD></TR></TBODY></TABLE></TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=QRLZdFiBSOS">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=QRLZdFiBSOS">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 4:37:33 GMT. 
+</CENTER></FONT></FORM></BODY></HTML>

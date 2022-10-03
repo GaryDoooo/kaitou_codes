@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html data-page="problem_detail" data-layout="basic" class="layout--basic page--problem_detail theme--light nojs" lang="" data-app="Hydro">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <meta name="theme-color" content="#56758f">
+    <meta property="og:site_name" content="核OJ_核桃编程" />
+  <meta property="og:title" content="Problem Detail - 【提高】小X与神牛 - 核OJ_核桃编程" />
+  <meta property="og:url" content="oj.hetao101.com/p/529" />
+  <meta property="og:image" content="/favicon-96x96.png" />
+    <title>Problem Detail - 【提高】小X与神牛 - 核OJ_核桃编程</title>
+  <style>
+    body {
+      --font-family: "Open Sans", "Open Sans", "Seravek", "Segoe UI", "Verdana", "PingFang SC", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans";
+      --code-font-family: "Source Code Pro", "monaco", "Source Code Pro", "Consolas", "Lucida Console", "monospace";
+      --font-ligatures: none !important;
+    }
+  </style>
+      <link rel="stylesheet" media="all" href="/default-4.38.3.theme.css">
+        <script>
+      var _htmlNode = document.documentElement;
+      _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+      try {
+        import('data:text/javascript,');Object.fromEntries([]);window.matchMedia('all').addEventListener('change',()=>{});
+      } catch(e) {
+        const s = document.createElement('script');
+        s.async = false;
+        s.src = "/polyfill-4.38.3.js";
+        document.head.appendChild(s);
+      }
+    </script>
+  </head>
+<body>
+  <nav class="nav slideout-menu" id="menu">
+  <div class="row"><div class="columns clearfix">
+    <ol class="nav__list nav__list--main clearfix">
+      <li class="nav__list-item"><a href="/" class="nav__logo" style="background-size: 100% 100%;">&nbsp;</a></li>        <li class="nav__list-item">
+  <a href="/d/training/" class="nav__item">
+    Home
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/p" class="nav__item nav--active">
+    Problem Set
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/training" class="nav__item">
+    Training
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/homework" class="nav__item">
+    Homework
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/discuss" class="nav__item">
+    Discussion
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/contest" class="nav__item">
+    Contest
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/record?uidOrName=71" class="nav__item">
+    Record
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/ranking" class="nav__item">
+    Ranking
+  </a>
+</li>
+      </ol>
+    <ol class="nav__list nav__list--secondary clearfix">
+          <li class="nav__list-item" data-dropdown-pos="bottom right" data-dropdown-custom-class="nav__dropdown" data-dropdown-target="#menu-nav-user" data-dropdown-disabledconstrainToWindow data-dropdown-trigger-desktop-only>
+        <a href="/d/training/user/71" class="nav__item">hetao7745825 <span class="icon icon-expand_more nojs--hide"></span></a>
+        <ol class="dropdown-target menu" id="menu-nav-user">
+          <li class="menu__item">
+            <a href="/d/training/user/71" class="menu__link">
+              <span class="icon icon-account--circle"></span> My Profile
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/messages" class="menu__link">
+              <span class="icon icon-comment--multiple"></span> Messages
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/domain" class="menu__link">
+              <span class="icon icon-web"></span> @ 练习题库
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/account" class="menu__link">
+              <span class="icon icon-wrench"></span> Account Settings
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/preference" class="menu__link">
+              <span class="icon icon-sliders"></span> Preference
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/security" class="menu__link">
+              <span class="icon icon-security"></span> Security
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/domain" class="menu__link">
+              <span class="icon icon-web"></span> My Domains
+            </a>
+          </li>
+                      <li class="menu__item">
+              <a href="/d/training/file" class="menu__link">
+                <span class="icon icon-file"></span> My Files
+              </a>
+            </li>
+                                <li class="menu__item">
+              <a href="/d/training/blog/71" class="menu__link">
+                <span class="icon icon-book"></span> Blog
+              </a>
+            </li>
+                    <li class="menu__seperator"></li>
+                    <li class="menu__item">
+            <a href="/d/training/logout" class="menu__link" name="nav_logout">
+              <span class="icon icon-logout"></span> Logout
+            </a>
+          </li>
+        </ol>
+      </li>
+        </ol>
+  </div></div>
+</nav>
+<nav class="nav--shadow"></nav>
+<div class="slideout-panel" id="panel">
+  <div class="slideout-overlay"></div>
+  <div class="header--mobile">
+  <div class="row"><div class="columns clearfix">
+    <div class="float-left">
+      <a class="header--mobile__domain" href="/" target="_self">&nbsp;</a>
+    </div>
+    <div class="float-right">
+      <button type="button" class="header__hamburger">
+  <div class="hamburger hamburger--spin">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </div>
+</button>
+    </div>
+  </div></div>
+</div>
+  <div class="main">
+    <script>
+
+  
+  
+  
+  
+  
+</script>
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header" style="align: center">
+        <h1 class="section__title">
+                      <a href="/d/training/record/615f1133e68158c2e244ee95">
+              <span class="icon record-status--icon pass"></span>
+              <span class="record-status--text pass">100</span>
+            </a>
+                                <form class="form--inline" action="/d/training/p" method="post">
+              <input type="hidden" name="pid" value="529">
+              <input type="hidden" name="operation" value="star">
+              <button class="star" type="submit">
+                <span class="starred--hide"><span class="icon icon-star--outline" data-tooltip="Star"></span></span>
+                <span class="starred--show"><span class="icon icon-star" data-tooltip="Unstar"></span></span>
+              </button>
+            </form>
+                    #529. 【提高】小X与神牛
+        </h1>
+      </div>
+      <div class="section__body">
+        <ul class="problem__tags">
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">ID: 529</span>
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-book">Type: Default</span>
+                      <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-stopwatch">1000ms</span>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-comparison">128MiB</span>
+                                <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=529">Tried: 4</a>
+            <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=529&amp;status=1">Accepted: 2</a>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">Difficulty: 10</span>
+                    <span class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item">Uploaded By: <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="https://hydro.ac/file/518/pic.jpg" width="20" height="20">
+    <a class="user-profile-name" href="/d/training/user/2">
+          33DAI
+      </a>
+  </span>
+</span>
+                      <span name="show_tags" class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item nojs--hide icon icon-tag">Tags&gt;</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">深搜</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">市赛</span>        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
+        <div class="section__header non-scratchpad--hide">
+          <h1 class="section__title">【提高】小X与神牛</h1>
+        </div>
+                <div class="section__body typo" data-fragment-id="problem-description">
+        <h2>说明</h2>
+<p>神牛都长着B只角，B只角从左到右在头顶上排成一排。每只角上都标着数字，不是0就是1。小X将每头神牛的B只角上的数字从左到右依次取出，组成一个只含0或1的B位二进制数。小X将这个二进制数转化为十进制，用这个十进制数来代表一头神牛，这个十进制就是这头神牛的编号。<br />
+神牛们之间的关系是很微妙的，如果两头神牛的第i只角上的数字不同，则称这两头神牛的第i只角是不一样的。如果两头神牛不同的角的数目大于等于D，则称这两头神牛是友好的。比如当B=8，D=2时，<br />
+01010100<br />
+00110100<br />
+  xx<br />
+这两头神牛的第2和第3只角不同(x指向的位置)，不同的角的数目为2，所以这两头神牛是友好的。<br />
+现在小X向你求助：请找出N头神牛，使得任意两头神牛都是友好的，并将这N头神牛的编号按从小到大排序后依次输出。如果有多种符合条件的解，那么排在越前面的牛的编号越小越好。</p>
+<h2>输入格式</h2>
+<p>输入仅有一行包含3个用空格隔开的正整数，分别表示 N, B, D。</p>
+<h2>输出格式</h2>
+<p>输出仅有一行包含N个非负整数，相邻两个数之间用一个空格隔开，表示N头神牛的编号。如果有多解，你的程序要输出这样的解：越前面的牛的编号越小越好。</p>
+<h2>样例</h2>
+<pre><code class="language-input1">3 5 3</code></pre><pre><code class="language-output1">0 7 25</code></pre>
+<h2>提示</h2>
+<p><strong>样例输入</strong><br />
+样例1:<br />
+3 5 3<br />
+样例2: <br />
+16 7 3<br />
+样例输出<br />
+样例1: <br />
+0 7 25<br />
+样例2: <br />
+0 7 25 30 42 45 51 52 75 76 82 85 97 102 120 127<br />
+<strong> 样例解释</strong><br />
+每头神牛都长着7只角，若两头神牛不同的角的数目大于等于3，则这两头神牛是友好的。现在要找出16头相互都友好的神牛。<br />
+答案是0000000, 0000111, 0011001, 0011110, 0101010, 0101101, 0110011, 0110100, 1001011, 1001100, 1010010, 1010101, 1100001, 1100110, 1111000, 1111111，转化为十进制就是0 7 25 30 42 45 51 52 75 76 82 85 97 102 120 127<br />
+<strong> 数据规模</strong><br />
+对于30%的数据，1&lt;=D&lt;=B&lt;=8，1&lt;=N&lt;=3<br />
+对于另外10%的数据，D=1<br />
+对于另外30%的数据，D=2<br />
+对于100%的数据，1&lt;=D&lt;=B&lt;=8, 1&lt;=N&lt;=16<br />
+数据保证有解。<br />
+<br />
+<strong> 来源</strong><br />
+常州市2017“信息与未来”夏令营选拔赛</p>
+
+</div>      </div></div>
+    </div>
+  </div>
+  <div class="medium-3 columns">
+          <div class="section side section--problem-sidebar">
+  <div>
+    <ol class="menu">
+                  <li class="menu__item scratchpad--hide"><a class="menu__link highlight" name="problem-sidebar__open-scratchpad" href="javascript:;" data-global-hotkey="alt+e">
+        <span class="icon icon-enlarge"></span> Open Scratchpad (Alt+E)
+      </a></li>
+      <li class="menu__item non-scratchpad--hide"><a class="menu__link" name="problem-sidebar__quit-scratchpad" href="javascript:;" data-global-hotkey="alt+q">
+        <span class="icon icon-enlarge"></span> Quit Scratchpad (Alt+Q)
+      </a></li>
+                  <li class="menu__item scratchpad--hide"><a class="menu__link" href="/d/training/p/529/submit">
+        <span class="icon icon-send"></span> Submit
+      </a></li>
+                  <li class="menu__seperator"></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/discuss/problem/529">
+        <span class="icon icon-comment--text"></span> Discussions (0)      </a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/p/529/solution">
+        <span class="icon icon-comment--text"></span> Solutions (0)      </a></li>
+          <li class="menu__item"><a class="menu__link" href="/d/training/p/529/files">
+        <span class="icon icon-file"></span> Files
+      </a></li>
+              <li class="menu__seperator nojs--hide"></li>
+                    <li class="menu__item nojs--hide"><a class="menu__link" href="javascript:;" name="problem-sidebar__copy">
+          <span class="icon icon-copy"></span> Copy
+        </a></li>
+              </ol>
+  </div>
+</div>
+<div class="section side nojs--hide">
+  <div class="section__header">
+    <h1 class="section__title">Statistics</h1>
+  </div>
+  <div id="submission-status-placeholder" style="width: 100%; height:230px"></div>
+  <div id="submission-score-placeholder" style="width: 100%; height:230px"></div>
+</div>
+  </div>
+</div>
+<div style="display:none" class="outer-loader-container"><div class="loader"></div></div>
+<div class="scratchpad-container" style="display:none">
+  <div style="display:none" class="loader-container"><div class="loader"></div></div>
+  <div id="scratchpad" style="opacity:0"></div>
+</div>
+  </div>
+  <div class="footer">
+  <div class="row"><div class="columns">
+      <div class="row footer__links">
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Status
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/record">Judging Queue</a></li>
+          <li class="footer__category__item"><a href="/d/training/status">Service Status</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Development
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="https://github.com/hydro-dev/Hydro" target="_blank">Open Source</a></li>
+          <li class="footer__category__item"><a href="/d/training/api">API</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <h1>
+          Support
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/wiki/help">Help</a></li>
+          <!--<li class="footer__category__item"><a href="#">Blog</a></li>-->
+          <li class="footer__category__item"><a href="/d/training/wiki/about#contact">QQ Group</a></li>
+        </ul></div>
+      </div>
+    </div>
+      <div class="footer__extra-link clearfix">
+      <div class="footer__extra-left">
+        <ol class="clearfix">
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about">About</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#contact">Contact Us</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#privacy">Privacy</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#tos">Terms of Service</a></li>
+          <li class="footer__extra-link-item"><a href="https://hydro.js.org/#%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">Copyright Complaint</a></li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-lang">
+            <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-lang"><li class="menu__item"><a class="menu__link" href="/d/training/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh_TW">正體中文</a></li></ol>
+          </li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-theme">
+            <span><span class="icon icon-global"></span> Theme <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-theme">
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/light">Light</a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/dark">Dark</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div class="footer__extra-right">
+        <ol class="clearfix"><li class="footer__extra-link-item"></li><li class="footer__extra-link-item"></li><li class="footer__extra-link-item">Worker 0 in 7ms</li>
+          <!-- Prepare 3ms -->
+          <!-- Method 1ms -->
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro v3.14.5</a> Community</li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</div>
+</div>
+      <script>
+      var UiContext = '{"cdn_prefix":"/","url_prefix":"/","domainId":"training","domain":{"_id":"training","lower":"training","owner":2,"name":"\u7EC3\u4E60\u9898\u5E93","bulletin":"# \u6838OJ_\u6838\u6843\u7F16\u7A0B - \u7EC3\u4E60\u9898\u5E93\\r\\n\\r\\n[\u21D0 \u8FD4\u56DE\u6839\u9898\u5E93](http://oj.hetao101.com/)\\r\\n\\r\\n## \u57FA\u672C\u4F7F\u7528\u65B9\u6CD5\\r\\n\\r\\nP \u7CFB\u5217\u9898\u76EE\u6765\u81EA\u7F51\u7EDC\uFF0C\u53EF\u80FD\u4F1A\u6709\u9898\u76EE\u6392\u7248\u6570\u636E\u95EE\u9898\uFF0C\u90E8\u5206\u7EAF\u8F93\u51FA\u7684\u9898\u76EE\u53EF\u80FD\u7F3A\u5C11\u6570\u636E\uFF0C\u7BA1\u7406\u5458\u770B\u5230\u7F3A\u5C11\u6570\u636E\u7CFB\u7EDF\u9519\u8BEF\u7684\u63D0\u4EA4\u540E\u4F1A\u53CA\u65F6\u4FEE\u590D\u3002\u9047\u5230\u95EE\u9898\u53EF\u4EE5\u5728\u8BA8\u8BBA\u533A\u53D1\u5E03\u5E16\u5B50\u3002\\r\\n\\r\\n1. \u901A\u8FC7\u9898\u5E93\u70B9\u51FB\u67D0\u9053\u60F3\u505A\u7684\u9898\u76EE\\r\\n2. \u8BFB\u9898\\r\\n3. \u70B9\u51FB\u8FDB\u5165\u5728\u7EBF\u7F16\u7A0B\u6A21\u5F0F\\r\\n4. \u70B9\u51FB\u53F3\u4E0A\u65B9\u7684\u81EA\u6D4B\u6253\u5F00\u81EA\u6D4B\u7A97\u53E3\\r\\n5. \u5C06\u9898\u76EE\u7684\u6837\u4F8B\u8F93\u5165\u590D\u5236\u8FDB\u8F93\u5165\u6846\u4E2D\\r\\n6. \u70B9\u51FB\u8FD0\u884C\u81EA\u6D4B\uFF0C\u67E5\u770B\u662F\u5426\u4E0E\u8F93\u51FA\u4E00\u81F4\\r\\n7. \u5982\u679C\u7ED3\u679C\u6CA1\u6709\u95EE\u9898\uFF0C\u53EF\u4EE5\u70B9\u51FB\u9012\u4EA4\u8BC4\u6D4B\u67E5\u770B\u8BC4\u6D4B\u7ED3\u679C\\r\\n8. \u5982\u679C\u663E\u793A\u9519\u8BEF\u3001\u53EF\u4EE5\u5BF9\u5E94\u5730\u4FEE\u6539\u4EE3\u7801\u518D\u6B21\u81EA\u6D4B\\r\\n\\r\\n![](http://oj.hetao101.com/file/2/t.png)\\r\\n\\r\\n## \u5E38\u89C1\u8BBE\u7F6E\\r\\n\\r\\n0. \u8BBE\u7F6E\u5F53\u524D\u9898\u5E93\u7684\u663E\u793A\u540D\uFF1A<http://oj.hetao101.com/d/training/home/settings/domain>\\r\\n1. \u8FDB\u5165\u5F53\u524D\u9898\u5E93\u7684\u504F\u597D\u8BBE\u7F6E\u9875\u9762\uFF1A<http://oj.hetao101.com/d/training/home/settings/preference>\\r\\n2. \u5C06\u663E\u793A\u504F\u597D\u4E2D\u7684**\u7528\u6237\u754C\u9762\u8BED\u8A00**\u8BBE\u7F6E\u6210**\u7B80\u4F53\u4E2D\u6587**\\r\\n3. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u4EE3\u7801\u8BED\u8A00**\u8BBE\u7F6E\u6210\u81EA\u5DF1\u5E38\u7528\u7684\u8BED\u8A00\\r\\n4. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u9ED8\u8BA4\u4EE3\u7801\u6A21\u677F**\u6539\u6210\u81EA\u5DF1\u4E60\u60EF\u7684\u4EE3\u7801\u6846\u67B6\uFF0C\u6BD4\u5982\u4E0B\u9762\u8FD9\u6BB5\\r\\n\\r\\n```cpp\\r\\n#include<bits/stdc++.h>\\r\\nusing namespace std;\\r\\nint main(){\\r\\n\\r\\n\\r\\n\\r\\n    return 0;\\r\\n}\\r\\n```\\r\\n","roles":{"teacher":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652630151444198802323445","guest":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624967874125500547201","default":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","root":"-1","cpp":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652641680659602963691511","contest_creator":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629953004340186416069"},"avatar":"","langs":"cc,cc.std98,cc.std11,cc.std14,py,py.py3","share":"*"},"extraTitleContent":"\u3010\u63D0\u9AD8\u3011\u5C0FX\u4E0E\u795E\u725B","constantVersion":"40d7cc7454c37f5c1cf381ecdfd9f83e1c73a32f","problemId":529,"problemNumId":529,"codeLang":"cc.std11","codeTemplate":"","pdoc":{"_id":"60e6cb421340ac06ced3500d","content":"<h2>\u8BF4\u660E</h2>\\r\\n\\r\\n\u795E\u725B\u90FD\u957F\u7740B\u53EA\u89D2\uFF0CB\u53EA\u89D2\u4ECE\u5DE6\u5230\u53F3\u5728\u5934\u9876\u4E0A\u6392\u6210\u4E00\u6392\u3002\u6BCF\u53EA\u89D2\u4E0A\u90FD\u6807\u7740\u6570\u5B57\uFF0C\u4E0D\u662F0\u5C31\u662F1\u3002\u5C0FX\u5C06\u6BCF\u5934\u795E\u725B\u7684B\u53EA\u89D2\u4E0A\u7684\u6570\u5B57\u4ECE\u5DE6\u5230\u53F3\u4F9D\u6B21\u53D6\u51FA\uFF0C\u7EC4\u6210\u4E00\u4E2A\u53EA\u542B0\u62161\u7684B\u4F4D\u4E8C\u8FDB\u5236\u6570\u3002\u5C0FX\u5C06\u8FD9\u4E2A\u4E8C\u8FDB\u5236\u6570\u8F6C\u5316\u4E3A\u5341\u8FDB\u5236\uFF0C\u7528\u8FD9\u4E2A\u5341\u8FDB\u5236\u6570\u6765\u4EE3\u8868\u4E00\u5934\u795E\u725B\uFF0C\u8FD9\u4E2A\u5341\u8FDB\u5236\u5C31\u662F\u8FD9\u5934\u795E\u725B\u7684\u7F16\u53F7\u3002<br />\\r\\n\u795E\u725B\u4EEC\u4E4B\u95F4\u7684\u5173\u7CFB\u662F\u5F88\u5FAE\u5999\u7684\uFF0C\u5982\u679C\u4E24\u5934\u795E\u725B\u7684\u7B2Ci\u53EA\u89D2\u4E0A\u7684\u6570\u5B57\u4E0D\u540C\uFF0C\u5219\u79F0\u8FD9\u4E24\u5934\u795E\u725B\u7684\u7B2Ci\u53EA\u89D2\u662F\u4E0D\u4E00\u6837\u7684\u3002\u5982\u679C\u4E24\u5934\u795E\u725B\u4E0D\u540C\u7684\u89D2\u7684\u6570\u76EE\u5927\u4E8E\u7B49\u4E8ED\uFF0C\u5219\u79F0\u8FD9\u4E24\u5934\u795E\u725B\u662F\u53CB\u597D\u7684\u3002\u6BD4\u5982\u5F53B=8\uFF0CD=2\u65F6\uFF0C<br />\\r\\n01010100<br />\\r\\n00110100<br />\\r\\n&nbsp; xx<br />\\r\\n\u8FD9\u4E24\u5934\u795E\u725B\u7684\u7B2C2\u548C\u7B2C3\u53EA\u89D2\u4E0D\u540C(x\u6307\u5411\u7684\u4F4D\u7F6E)\uFF0C\u4E0D\u540C\u7684\u89D2\u7684\u6570\u76EE\u4E3A2\uFF0C\u6240\u4EE5\u8FD9\u4E24\u5934\u795E\u725B\u662F\u53CB\u597D\u7684\u3002<br />\\r\\n\u73B0\u5728\u5C0FX\u5411\u4F60\u6C42\u52A9\uFF1A\u8BF7\u627E\u51FAN\u5934\u795E\u725B\uFF0C\u4F7F\u5F97\u4EFB\u610F\u4E24\u5934\u795E\u725B\u90FD\u662F\u53CB\u597D\u7684\uFF0C\u5E76\u5C06\u8FD9N\u5934\u795E\u725B\u7684\u7F16\u53F7\u6309\u4ECE\u5C0F\u5230\u5927\u6392\u5E8F\u540E\u4F9D\u6B21\u8F93\u51FA\u3002\u5982\u679C\u6709\u591A\u79CD\u7B26\u5408\u6761\u4EF6\u7684\u89E3\uFF0C\u90A3\u4E48\u6392\u5728\u8D8A\u524D\u9762\u7684\u725B\u7684\u7F16\u53F7\u8D8A\u5C0F\u8D8A\u597D\u3002\\r\\n<h2>\u8F93\u5165\u683C\u5F0F</h2>\\r\\n\\r\\n\u8F93\u5165\u4EC5\u6709\u4E00\u884C\u5305\u542B3\u4E2A\u7528\u7A7A\u683C\u9694\u5F00\u7684\u6B63\u6574\u6570\uFF0C\u5206\u522B\u8868\u793A N, B, D\u3002\\r\\n<h2>\u8F93\u51FA\u683C\u5F0F</h2>\\r\\n\\r\\n\u8F93\u51FA\u4EC5\u6709\u4E00\u884C\u5305\u542BN\u4E2A\u975E\u8D1F\u6574\u6570\uFF0C\u76F8\u90BB\u4E24\u4E2A\u6570\u4E4B\u95F4\u7528\u4E00\u4E2A\u7A7A\u683C\u9694\u5F00\uFF0C\u8868\u793AN\u5934\u795E\u725B\u7684\u7F16\u53F7\u3002\u5982\u679C\u6709\u591A\u89E3\uFF0C\u4F60\u7684\u7A0B\u5E8F\u8981\u8F93\u51FA\u8FD9\u6837\u7684\u89E3\uFF1A\u8D8A\u524D\u9762\u7684\u725B\u7684\u7F16\u53F7\u8D8A\u5C0F\u8D8A\u597D\u3002\\r\\n<h2>\u6837\u4F8B</h2>\\r\\n<pre><code class=\\"language-input1\\">3 5 3</code></pre><pre><code class=\\"language-output1\\">0 7 25</code></pre>\\r\\n\\r\\n<h2>\u63D0\u793A</h2>\\r\\n\\r\\n<strong>\u6837\u4F8B\u8F93\u5165</strong><br />\\r\\n\u6837\u4F8B1:<br />\\r\\n3 5 3<br />\\r\\n\u6837\u4F8B2: <br />\\r\\n16 7 3<br />\\r\\n\u6837\u4F8B\u8F93\u51FA<br />\\r\\n\u6837\u4F8B1: <br />\\r\\n0 7 25<br />\\r\\n\u6837\u4F8B2: <br />\\r\\n0 7 25 30 42 45 51 52 75 76 82 85 97 102 120 127<br />\\r\\n<strong> \u6837\u4F8B\u89E3\u91CA</strong><br />\\r\\n\u6BCF\u5934\u795E\u725B\u90FD\u957F\u77407\u53EA\u89D2\uFF0C\u82E5\u4E24\u5934\u795E\u725B\u4E0D\u540C\u7684\u89D2\u7684\u6570\u76EE\u5927\u4E8E\u7B49\u4E8E3\uFF0C\u5219\u8FD9\u4E24\u5934\u795E\u725B\u662F\u53CB\u597D\u7684\u3002\u73B0\u5728\u8981\u627E\u51FA16\u5934\u76F8\u4E92\u90FD\u53CB\u597D\u7684\u795E\u725B\u3002<br />\\r\\n\u7B54\u6848\u662F0000000, 0000111, 0011001, 0011110, 0101010, 0101101, 0110011, 0110100, 1001011, 1001100, 1010010, 1010101, 1100001, 1100110, 1111000, 1111111\uFF0C\u8F6C\u5316\u4E3A\u5341\u8FDB\u5236\u5C31\u662F0 7 25 30 42 45 51 52 75 76 82 85 97 102 120 127<br />\\r\\n<strong> \u6570\u636E\u89C4\u6A21</strong><br />\\r\\n\u5BF9\u4E8E30%\u7684\u6570\u636E\uFF0C1&lt;=D&lt;=B&lt;=8\uFF0C1&lt;=N&lt;=3<br />\\r\\n\u5BF9\u4E8E\u53E6\u591610%\u7684\u6570\u636E\uFF0CD=1<br />\\r\\n\u5BF9\u4E8E\u53E6\u591630%\u7684\u6570\u636E\uFF0CD=2<br />\\r\\n\u5BF9\u4E8E100%\u7684\u6570\u636E\uFF0C1&lt;=D&lt;=B&lt;=8, 1&lt;=N&lt;=16<br />\\r\\n\u6570\u636E\u4FDD\u8BC1\u6709\u89E3\u3002<br />\\r\\n<br />\\r\\n<strong> \u6765\u6E90</strong><br />\\r\\n\u5E38\u5DDE\u5E022017\u201C\u4FE1\u606F\u4E0E\u672A\u6765\u201D\u590F\u4EE4\u8425\u9009\u62D4\u8D5B","owner":2,"domainId":"training","docType":10,"docId":529,"title":"\u3010\u63D0\u9AD8\u3011\u5C0FX\u4E0E\u795E\u725B","tag":["\u6DF1\u641C","\u5E02\u8D5B"],"hidden":false,"nSubmit":4,"nAccept":2,"data":[{"_id":"1.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/1.in","size":5,"etag":"8989966d9f674f780b48b9328be5ead2","lastModified":"2021-07-08T09:54:10.264Z","lastUsage":"2021-07-08T09:54:10.265Z","name":"1.in","prefix":"problem/training/529/testdata/"},{"_id":"1.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/1.out","size":2,"etag":"2e5751b7cfd7f053cd29e946fb2649a4","lastModified":"2021-07-08T09:54:10.279Z","lastUsage":"2021-07-08T09:54:10.279Z","name":"1.out","prefix":"problem/training/529/testdata/"},{"_id":"10.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/10.in","size":6,"etag":"bda88e855b701a4394639c45c6756d6c","lastModified":"2021-07-08T09:54:10.292Z","lastUsage":"2021-07-08T09:54:10.293Z","name":"10.in","prefix":"problem/training/529/testdata/"},{"_id":"10.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/10.out","size":24,"etag":"fa334bfa0d5604b7d82322aa874c85ef","lastModified":"2021-07-08T09:54:10.305Z","lastUsage":"2021-07-08T09:54:10.306Z","name":"10.out","prefix":"problem/training/529/testdata/"},{"_id":"2.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/2.in","size":5,"etag":"cef0c009c6cb16d0dbbc97f4df1dfe32","lastModified":"2021-07-08T09:54:10.319Z","lastUsage":"2021-07-08T09:54:10.319Z","name":"2.in","prefix":"problem/training/529/testdata/"},{"_id":"2.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/2.out","size":17,"etag":"6ebe75bce7ad7fa202c2229d311d18c1","lastModified":"2021-07-08T09:54:10.332Z","lastUsage":"2021-07-08T09:54:10.332Z","name":"2.out","prefix":"problem/training/529/testdata/"},{"_id":"3.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/3.in","size":6,"etag":"10fb27c1431ae8ba3727a4c5774e6a6d","lastModified":"2021-07-08T09:54:10.345Z","lastUsage":"2021-07-08T09:54:10.347Z","name":"3.in","prefix":"problem/training/529/testdata/"},{"_id":"3.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/3.out","size":34,"etag":"984aa7ecd911d5e4b90d6fadc86ddb33","lastModified":"2021-07-08T09:54:10.375Z","lastUsage":"2021-07-08T09:54:10.376Z","name":"3.out","prefix":"problem/training/529/testdata/"},{"_id":"4.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/4.in","size":5,"etag":"cfb5bc2d2746362a873b7a7ecd9eb3af","lastModified":"2021-07-08T09:54:10.394Z","lastUsage":"2021-07-08T09:54:10.394Z","name":"4.in","prefix":"problem/training/529/testdata/"},{"_id":"4.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/4.out","size":8,"etag":"f1195e0fb9e2c414b5470f299b4c2aad","lastModified":"2021-07-08T09:54:10.409Z","lastUsage":"2021-07-08T09:54:10.409Z","name":"4.out","prefix":"problem/training/529/testdata/"},{"_id":"5.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/5.in","size":5,"etag":"1deb6a22c00bab4f3592bd87eb15c2ee","lastModified":"2021-07-08T09:54:10.428Z","lastUsage":"2021-07-08T09:54:10.429Z","name":"5.in","prefix":"problem/training/529/testdata/"},{"_id":"5.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/5.out","size":18,"etag":"86b6a3f7afe2e3d98040458732384e91","lastModified":"2021-07-08T09:54:10.442Z","lastUsage":"2021-07-08T09:54:10.442Z","name":"5.out","prefix":"problem/training/529/testdata/"},{"_id":"6.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/6.in","size":6,"etag":"89afe93c35000a185850de5d2b2bbfae","lastModified":"2021-07-08T09:54:10.456Z","lastUsage":"2021-07-08T09:54:10.457Z","name":"6.in","prefix":"problem/training/529/testdata/"},{"_id":"6.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/6.out","size":56,"etag":"e0ff09daa1345f22e5aeddafadae843d","lastModified":"2021-07-08T09:54:10.491Z","lastUsage":"2021-07-08T09:54:10.491Z","name":"6.out","prefix":"problem/training/529/testdata/"},{"_id":"7.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/7.in","size":5,"etag":"fe65f7e0e02527ce40c3cc9627e30b36","lastModified":"2021-07-08T09:54:10.514Z","lastUsage":"2021-07-08T09:54:10.515Z","name":"7.in","prefix":"problem/training/529/testdata/"},{"_id":"7.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/7.out","size":7,"etag":"484e2071fc014d20890a80e88aa0e9ae","lastModified":"2021-07-08T09:54:10.543Z","lastUsage":"2021-07-08T09:54:10.543Z","name":"7.out","prefix":"problem/training/529/testdata/"},{"_id":"8.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/8.in","size":6,"etag":"820f0be108ccd426b8f53dc20e07622e","lastModified":"2021-07-08T09:54:10.578Z","lastUsage":"2021-07-08T09:54:10.578Z","name":"8.in","prefix":"problem/training/529/testdata/"},{"_id":"8.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/8.out","size":42,"etag":"e4d2d934e0d31f2c41ffd473ec210336","lastModified":"2021-07-08T09:54:10.604Z","lastUsage":"2021-07-08T09:54:10.605Z","name":"8.out","prefix":"problem/training/529/testdata/"},{"_id":"9.in","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/9.in","size":6,"etag":"8b6fbba5f90931f4e0fcd5889521a253","lastModified":"2021-07-08T09:54:10.633Z","lastUsage":"2021-07-08T09:54:10.634Z","name":"9.in","prefix":"problem/training/529/testdata/"},{"_id":"9.out","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/9.out","size":48,"etag":"48156b15db617552602deececffa72c0","lastModified":"2021-07-08T09:54:10.652Z","lastUsage":"2021-07-08T09:54:10.653Z","name":"9.out","prefix":"problem/training/529/testdata/"},{"_id":"config.yaml","meta":{"content-type":"binary/octet-stream"},"path":"problem/training/529/testdata/config.yaml","size":22,"etag":"75ba9e99cfe4e42873579e5e10e76cab","lastModified":"2021-07-08T09:54:10.677Z","lastUsage":"2021-07-08T09:54:10.686Z","name":"config.yaml","prefix":"problem/training/529/testdata/"}],"config":{"count":0,"memoryMin":128,"memoryMax":128,"timeMin":1000,"timeMax":1000,"type":"default","langs":["cc","cc.std98","cc.std11","cc.std14","py","py.py3"]},"additional_file":[],"stats":{"AC":2,"WA":0,"TLE":0,"MLE":0,"RE":2,"SE":0,"IGN":0,"CE":0,"s80":2,"s100":2},"assign":[]},"canViewRecord":true,"postSubmitUrl":"/d/training/p/529/submit","getSubmissionsUrl":"/d/training/record?fullStatus=true&pid=529","getRecordDetailUrl":"/d/training/record/{rid}","pretestConnUrl":"/record-conn?pretest=1&uidOrName=71&pid=529&domainId=training"}';
+      var UserContext = '{"_id":71,"mail":"7745825@hetao101.com.cn","uname":"hetao7745825","hashType":"hydro","priv":17367108,"regat":"2021-07-17T07:41:48.744Z","loginat":"2022-09-09T21:56:08.996Z","perm":"BigInt::10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","scope":"BigInt::-1","role":"default","tfa":false,"group":["71","71"],"viewLang":"en","timeZone":"America/New_York","codeLang":"cc.std11","codeTemplate":"","avatar":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128","qq":"","gender":"2","bio":"\u539F\u795E1.0 OG UID: 605032876","backgroundImage":"/components/profile/backgrounds/1.jpg","unreadMsg":0,"fontFamily":"Open Sans","codeFontFamily":"Source Code Pro","preferredEditorType":"monaco","monacoTheme":"vs-dark","theme":"light","showInvisibleChar":false,"formatCode":true,"nAccept":232,"nSubmit":256,"rp":274.68981576224417,"rpInfo":{"problem":248.83044076224417,"contest":25.859375},"rank":1,"level":10,"avatarUrl":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128"}';
+    </script>
+    <script type="text/javascript" src="/l/en"></script>
+          <script src="/default.theme.js?version=4.38.3"></script>
+              <script type="text/javascript" src="/hydro-4.38.3.js"></script>
+            </body>
+</html>

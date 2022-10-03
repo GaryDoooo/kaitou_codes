@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://ace.delos.com/TESTDATA/NOV08.buyhay.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 buyhay Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="buyhay.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'buyhay' Analysis</H2>
+<H4>by Neal Wu</H4>
+<P>This problem is a typical knapsack problem and can be solved using dynamic 
+programming. We keep an array called best [] such that best [h] is the minimum 
+cost possible to obtain exactly h pounds of hay. For each supplier given, we do 
+a simple traversal from 0 to H to update the values in the array. In particular, 
+if (best [i] + the cost of one package) is better than best [i + the weight of 
+one package], we update this value accordingly.</P>
+<P>At the end, our answer is simply the minimum cost of any value in the array 
+that is at position H or after. Since our algorithm does H iterations for each 
+of the N suppliers, our overall runtime is O(NH).</P>
+<P>The following is a sample solution:</P><PRE>#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+FILE *fout = fopen ("buyhay.out", "w");
+FILE *fin = fopen ("buyhay.in", "r");
+
+const int INF = 1000000000;
+const int MAXH = 60005;
+
+int N, H, P, C;
+int best [MAXH];
+int ans = INF;
+
+int main ()
+{
+// initialize to infinity
+    memset (best, 63, sizeof (best));
+
+    best [0] = 0;
+
+
+    fscanf (fin, "%d %d", &amp;N, &amp;H);
+
+    while (N--)
+    {
+        fscanf (fin, "%d %d\n", &amp;P, &amp;C);
+
+// update values in the array; only necessary to go up to H
+        for (int i = 0; i &lt; H; i++)
+            if (best [i] + C &lt; best [i + P])
+                best [i + P] = best [i] + C;
+    }
+
+// find best cost for any amount that is at least H
+    for (int i = H; i &lt; MAXH; i++)
+        if (best [i] &lt; ans)
+            ans = best [i];
+
+    fprintf (fout, "%d\n", ans);
+
+
+    return 0;
+}
+</PRE></BODY></HTML>

@@ -1,0 +1,456 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://ace.delos.com/ioiupload?d=gold&a=QRLZdFiBSOS&lang=ch -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=GB2312">
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY background=goldch.files/bg9.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="goldch.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: NOV08</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>公告: 如果USACO的升级可以完成, 那么在比赛结束后, 被接受的程序可以被所有的
+参赛者看到.
+
+提示: 每个题目都有一个分值, 你的目标是使得你的总分值最大. 总分值是你三道得分最高
+的题目的分数之和. 提高分数的唯一途径是正确地解答这些题目; 请合理地安排使得分数最大化.
+
+**********************************************************************
+                                   金组题目
+**********************************************************************
+                                编号1~4，共4题
+**********************************************************************
+
+题目 1: 混乱的奶牛 [Don Piele, 2007]
+
+Farmer John的N(4 &lt;= N &lt;= 16)头奶牛中的每一头都有一个唯一的编号S_i
+(1 &lt;= S_i &lt;= 25,000). 奶牛为她们的编号感到骄傲, 所以每一头奶牛都把她的编号刻在一个
+金牌上, 并且把金牌挂在她们宽大的脖子上.
+
+奶牛们对在挤奶的时候被排成一支"混乱"的队伍非常反感. 如果一个队伍里任意两头相邻的奶牛的
+编号相差超过K (1 &lt;= K &lt;= 3400), 它就被称为是混乱的. 比如说，当N = 6, K = 1时,
+1, 3, 5, 2, 6, 4 就是一支"混乱"的队伍, 但是 1, 3, 6, 5, 2, 4 不是(因为5和6只
+相差1).
+
+那么, 有多少种能够使奶牛排成"混乱"的队伍的方案呢?
+
+对于你前10次的提交, 你的程序会在一部分正式的测试数据上运行, 并且返回运行的结果.
+
+分值: 200
+
+程序名: mixup2
+
+输入格式:
+
+* 第 1 行: 用空格隔开的两个整数N和K
+
+* 第 2..N+1 行: 第i+1行包含了一个用来表示第i头奶牛的编号的整数: S_i
+
+输入样例 (输入文件 mixup2.in):
+
+4 1
+3
+4
+2
+1
+
+输出格式:
+
+* 第 1 行: 只有一个整数, 表示有多少种能够使奶牛排成"混乱"的队伍的方案. 答案保证是
+             一个在64位范围内的整数.
+
+输出样例 (输出文件 mixup2.out):
+
+2
+
+输出解释:
+
+两种方法分别是:
+3 1 4 2
+2 4 1 3
+
+**********************************************************************
+
+题目 2: 安慰奶牛 [David Benjamin and Jacob Steinhardt, 2008]
+
+Farmer John变得非常懒, 他不想再继续维护供奶牛之间供通行的道路. 道路被用来连接N
+(5 &lt;= N &lt;= 10,000)个牧场, 牧场被连续地编号为1..N. 每一个牧场都是一个奶牛的家.
+FJ计划除去P(N-1 &lt;= P &lt;= 100,000)条道路中尽可能多的道路, 但是还要保持牧场之间
+的连通性. 你首先要决定那些道路是需要保留的N-1条道路.
+
+第j条双向道路连接了牧场S_j和E_j (1 &lt;= S_j &lt;= N; 1 &lt;= E_j &lt;= N; S_j != E_j),
+而且走完它需要L_j (0 &lt;= L_j &lt;= 1,000)的时间. 没有两个牧场是被一条以上的道路所连接.
+
+奶牛们非常伤心, 因为她们的交通系统被削减了. 你需要到每一个奶牛的住处去安慰她们. 每次
+你到达第i个牧场的时候(即使你已经到过), 你必须花去C_i (1 &lt;= C_i &lt;= 1,000)的
+时间和奶牛交谈.
+
+你每个晚上都会在同一个牧场(这是供你选择的)过夜, 直到奶牛们都从悲伤中缓过神来. 在早上
+起来和晚上回去睡觉的时候, 你都需要和在你睡觉的牧场的奶牛交谈一次. 这样你才能完成你的
+交谈任务.
+
+假设Farmer John采纳了你的建议, 请计算出使所有奶牛都被安慰的最少时间.
+
+对于你前10次的提交, 你的程序会在一部分正式的测试数据上运行, 并且返回运行的结果.
+
+分值: 300
+
+程序名: cheer
+
+输入格式:
+
+* 第 1 行: 用空格隔开的两个整数N和P
+
+* 第 2..N+1 行: 第i+1行包含了一个整数: C_i
+
+* 第 N+2..N+P+1 行: 第 N+j+1 行包含用空格隔开的三个整数: S_j, E_j 和 L_j
+
+输入样例 (输入文件 cheer.in):
+
+5 7
+10
+10
+20
+6
+30
+1 2 5
+2 3 5
+2 4 12
+3 4 17
+2 5 15
+3 5 6
+4 5 12
+
+输入解释:
+
+              +-(15)-+
+             /        \
+            /          \
+     1-(5)-2-(5)-3-(6)--5
+            \   /(17)  /
+         (12)\ /      /(12)
+              4------+
+
+输出格式:
+
+* 第 1 行: 一个整数, 所需要的总时间(包含和在你所在的牧场的奶牛的两次谈话时间).
+
+输出样例 (输出文件 cheer.out):
+
+176
+
+输出解释:
+
+保持这些路径:
+
+     1-(5)-2-(5)-3      5
+            \          /
+         (12)\        /(12)
+             *4------+
+
+从牧场4起床, 然后按照 4, 5, 4, 2, 3, 2, 1, 2, 4 的顺序来访问奶牛们, 总共
+需要176个单位的时间.
+
+**********************************************************************
+
+题目 3: 开关灯 [LongFan, 2008]
+
+Farmer John尝试通过和奶牛们玩益智玩具来保持他的奶牛们思维敏捷. 其中一个大型玩具是
+牛栏中的灯. N (2 &lt;= N &lt;= 100,000) 头奶牛中的每一头被连续的编号为1..N, 站在一个
+彩色的灯下面.
+
+刚到傍晚的时候, 所有的灯都是关闭的. 奶牛们通过N个按钮来控制灯的开关; 按第i个按钮可以
+改变第i个灯的状态.
+
+奶牛们执行M (1 &lt;= M &lt;= 100,000)条指令, 每个指令都是两个整数中的一个(0 &lt;= 指令号 &lt;= 1).
+
+第1种指令(用0表示)包含两个数字S_i和E_i (1 &lt;= S_i &lt;= E_i &lt;= N), 它们表示起始开关
+和终止开关. 奶牛们只需要把从S_i到E_i之间的按钮都按一次, 就可以完成这个指令.
+
+第2种指令(用1表示)同样包含两个数字S_i和E_i (1 &lt;= S_i &lt;= E_i &lt;= N), 不过这种指令
+是询问从S_i到E_i之间的灯有多少是亮着的.
+
+帮助FJ确保他的奶牛们可以得到正确的答案.
+
+分值: 300
+
+程序名: lites
+
+输入格式:
+
+* 第 1 行: 用空格隔开的两个整数N和M
+* 第 2..M+1 行: 每行表示一个操作, 有三个用空格分开的整数: 指令号, S_i 和 E_i
+
+输入样例 (输入文件 lites.in):
+
+4 5
+0 1 2
+0 2 4
+1 2 3
+0 2 4
+1 1 4
+
+输入解释:
+
+一共有4盏灯; 5个指令. 下面是执行的情况:
+	        灯
+            1 2 3 4
+  Init:     O O O O   O = 关  * = 开
+  0 1 2 -&gt;  * * O O  改变灯 1 和 2 的状态
+  0 2 4 -&gt;  * O * *
+  1 2 3 -&gt;  1        输出在2..3的范围内有多少灯是亮的
+  0 2 4 -&gt;  * * O O  改变灯 2 ,3 和 4 的状态
+  1 1 4 -&gt;  2        输出在1..4的范围内有多少灯是亮的
+
+输出格式:
+
+* 第 1..询问的次数 行: 对于每一次询问, 输出询问的结果.
+
+输出样例 (输出文件 lites.out):
+
+1
+2
+
+**********************************************************************
+
+题目 4: 玩具 [Chen Hu, 2006]
+
+Bessie的生日快到了, 她希望用D (1 &lt;= D &lt;= 100,000; 70%的测试数据都满足
+1 &lt;= D &lt;= 500)天来庆祝. 奶牛们的注意力不会太集中, 因此Bessie想通过提供玩具的
+方式来使它们高兴. 她已经计算出了第i天需要的玩具数T_i (1 &lt;= T_i &lt;= 50).
+
+Bessie的幼儿园提供了许多服务给它们的奶牛程序员们, 包括一个每天以Tc (1 &lt;= Tc
+&lt;= 60)美元卖出商品的玩具店. Bessie想尽可能的节省钱, 但是Farmer John担心
+没有经过消毒的玩具会带来传染病(玩具店卖出的玩具是经过消毒的).
+
+有两种消毒的方式. 第1种方式需要收费C1美元, 需要N1个晚上的时间; 第2种方式需要收费
+C2美元, 需要N2个晚上的时间(1 &lt;= N1 &lt;= D; 1 &lt;= N2 &lt;= D; 1 &lt;= C1 &lt;= 60;
+1 &lt;= C2 &lt;= 60). Bessie在party结束之后把她的玩具带去消毒. 如果消毒只需要一天,
+那么第二天就可以拿到; 如果还需要一天, 那么第三天才可以拿到.
+
+作为一个受过教育的奶牛, Bessie已经了解到节约的意义. 帮助她找到提供玩具的最便宜的
+方法.
+
+分值: 400
+
+程序名: toy
+
+输入格式:
+
+* 第 1 行: 六个用空格隔开的整数 D, N1, N2, C1, C2, Tc
+
+* 第 2..D+1 行: 第 i+1 行包含一个整数: T_i
+
+输入样例 (输入文件 toy.in):
+
+4 1 2 2 1 3
+8
+2
+1
+6
+
+输入解释:
+
+Bessie想开4天的party, 第1天需要8个玩具, 第2天需要2个玩具, 第3天需要1个玩具,
+第4天需要6个玩具. 第一种方式需要$2, 用时1天; 第二种方式需要$1, 用时2天. 买
+一个玩具需要$3.
+
+输出格式:
+
+* 第 1 行: 提供玩具所需要的最小费用.
+
+输出样例 (输出文件 toy.out):
+
+35
+
+输出解释:
+
+第 1 天   买8个玩具, 花去$24; 送2个玩具去快洗, 6个慢洗.
+
+第 2 天   取回2个快洗的玩具, 花去$4. 送1个玩具去慢洗.
+
+第 3 天   取回6个慢洗的玩具, 花去$6.
+
+第 4 天   取回所有的玩具(与现有的加在一起正好6个), 花去$1. 这样就用了最少的钱.
+
+**********************************************************************
+Translation by Wentai ZHANG
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=QRLZdFiBSOS name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program for grading:&nbsp;<B><INPUT type=file 
+                  name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">The following 
+solution files are saved for grading:<BR>
+<TABLE cellSpacing=2>
+  <TBODY>
+  <TR>
+    <TH>Name</TH>
+    <TH>Size</TH>
+    <TH>When</TH>
+    <TH>Age</TH></TR>
+  <TR>
+    <TD><A 
+      href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;seesaved=auction.c">auction.c</A></TD>
+    <TD align=right>687</TD>
+    <TD align=right>5h29:54</TD>
+    <TD align=right>64h06:30</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;seesaved=swtch.c">swtch.c</A></TD>
+    <TD align=right>644</TD>
+    <TD align=right>4h56:59</TD>
+    <TD align=right>64h39:25</TD></TR></TBODY></TABLE></TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=QRLZdFiBSOS">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=QRLZdFiBSOS">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=QRLZdFiBSOS&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 4:36:24 GMT. 
+</CENTER></FONT></FORM></BODY></HTML>

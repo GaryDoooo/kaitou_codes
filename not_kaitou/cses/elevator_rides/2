@@ -1,0 +1,12 @@
+[01m[K4.cpp:[m[K In function ‘[01m[Kbool operator<(const node&, const node&)[m[K’:
+[01m[K4.cpp:8:5:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+    8 |     [01;35m[K}[m[K
+      |     [01;35m[K^[m[K
+[01m[K4.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[K4.cpp:13:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+   13 |     [01;35m[Kscanf("%d%d", &n, &x)[m[K;
+      |     [01;35m[K~~~~~^~~~~~~~~~~~~~~~[m[K
+[01m[K4.cpp:14:38:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+   14 |     for (int i = 0; i < n; i++) [01;35m[Kscanf("%d", &w[i])[m[K;
+      |                                 [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+Compiled successfully.

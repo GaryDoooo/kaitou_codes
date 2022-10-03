@@ -1,0 +1,167 @@
+<html>
+<head> <title>USACO OPEN11 ssort Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'ssort' Analysis</h2>
+<h4>by Lewin Gan</h4>
+<p>When reading the description of the algorithm used to sort, the first thing that should come 
+in mind is recursion. This is because we are basically splitting up the bigger problem into 
+smaller parts, and solving those smaller parts first before going back to the big problem.</p>
+
+<p> Here are the rules again for clarity: </p>
+<ol>
+<li>If there is more than one cow, then partition the cows into
+       two equal-sized sub-groups. Sort the first sub-group using
+       this algorithm and then sort sub-group of the line, also
+       using this algorithm. </li>
+
+<li>Consider the current set of cows to be sorted as an equal-length
+       pair of (potentially huge) base 2^N numbers. If the second
+       number is smaller than the first one, then swap all the
+       elements of the second one with those elements of the first
+       one. </li>
+</ol>
+
+<p>A basic outline for our program will look something like this:</p>
+<pre>
+sort (list) {
+  if list has only one element
+      return; // finished processing this stage
+  split list in half
+  sort (first half)
+  sort (second half)
+  if (second half < first half) {
+     swap the two halves
+     add moves to a global counter
+  }
+}
+</pre>
+
+<p> We can see that this follows the above algorithm </p>
+
+<p> There are now three problems we need to solve (a) how can we split our list in half? (b) how 
+do we compare our lists? (c) how do we count the number of moves? </p>
+
+<p> For (a) it might be easier to consider a range from [a,b], and pass that in instead of a 
+list. Another approach would be to use pointers if you are using C/C++, and pass in the 
+appropriate position. Either approach would work well. </p>
+
+<p> For (b), since all the elements will be distinct, we can just compare the first element of 
+each half, and determine whether or not we need to swap from there. </p>
+
+<p> For (c), if a group has N cows and we need to switch the two halves, each of the N cows will 
+need to move N/2 spaces, so that tells us we need to add a total of N * N / 2 to our move 
+counter. </p>
+
+Now that we have our three main components for our solution, implementing it should not be too 
+difficult. </p>
+
+<p> Two approaches shown below, one with pointers, and another with ranges </p>
+
+<p> Solution #1: </p>
+<pre> 
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int cowline[1024], N, total_distance_moved;
+
+ssort (list, n)
+int list[], n;
+{
+    int i, j;
+    if (n > 2) {
+	ssort (&list[0], n/2);
+	ssort (&list[n/2], n/2);
+    }
+    for (i = 0; i < n/2; i++) {
+	if (list[i] > list[i + n/2]) {		/* swap required? */
+	    for (j = 0; j < n/2; j++) {
+		int t = list[j];
+		list[j] = list[j + n/2];
+		list[j + n/2] = t;
+		total_distance_moved += n/2 * 2; /* two cows move n/2 */
+	    }
+	    return;
+	} else if (list[i] < list[i + n/2]) {
+		break;
+	}
+    }
+}
+
+main () {
+    FILE *fin = fopen ("ssort.in", "r");
+    FILE *fout = fopen ("ssort.out", "w");
+    int i;
+
+    fscanf (fin, "%d", &N);
+    N = 1 << N;				/* 2^N */
+    for (i = 0; i < N; i++)
+	fscanf (fin, "%d", &cowline[i]);
+    ssort (cowline, N);
+    fprintf (fout, "%d\n", total_distance_moved);
+
+    for (i = 0; i < N; i++)
+	fprintf (fout, "%d\n", cowline[i]);
+    exit (0);
+}
+</pre>
+
+<p> Solution #2: </p>
+<pre>
+import java.io.*;
+import java.util.*;
+
+public class ssort
+{
+    private static BufferedReader in;
+    private static PrintWriter out;
+
+    public static void main (String [] args) throws IOException {
+        in = new BufferedReader (new FileReader ("ssort.in"));
+        out = new PrintWriter (new BufferedWriter (new FileWriter ("ssort.out")));
+        
+        int N = Integer.parseInt (in.readLine ());
+        N = 1 << N;
+        int [] cows = new int [N];
+        for (int i = 0; i < N; i++)
+            cows [i] = Integer.parseInt (in.readLine ());
+
+        out.println (sort (cows, 0, N - 1));
+        for (int i = 0; i < N; i++)
+            out.println (cows [i]);
+            
+        out.close ();
+        System.exit (0);
+    }
+    
+    // sort returns number of moves needed to sort cows from [lo,hi]
+    private static int sort (int [] cows, int lo, int hi) {
+        if (hi - lo == 0) return 0; // just one cow in this range 
+
+        int mid = (lo + hi) / 2; 
+
+        // sort both halves
+        int moves = sort (cows, lo, mid) + sort (cows, mid + 1, hi);
+
+        if (cows [lo] < cows [mid + 1]) return moves; // first < second, so no need to process
+        else {
+            int dist = mid + 1 - lo; // number of spaces we need to move
+            for (int i = lo; i <= mid; i++) {
+                int t = cows [i];
+                cows [i] = cows [i + dist];
+                cows [i + dist] = t;
+            }
+            return moves + dist * (hi - lo + 1); // number of cows in [lo,hi] is (hi - lo + 1)
+        }
+        
+    }
+}
+</pre>
+
+

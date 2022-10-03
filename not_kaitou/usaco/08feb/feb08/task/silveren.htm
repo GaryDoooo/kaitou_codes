@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://ace.delos.com/ioiupload?d=silver&a=jl19fZt7G5u&lang=en -->
+<HTML><HEAD><TITLE>USACO Problems</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Pragma content=no-cache>
+<SCRIPT language=javascript>
+<!--
+    var endtime;
+    
+    function initcount(secondsleft) {
+        var now = new Date();
+        return now.getTime() + secondsleft*1000;
+    }
+    function count1(i) { i = i - i%1; return i; } 
+    function count2(i) { i = i - i%1; if (i < 10) return "0"+i; return i; }
+    function updateclock(head, word, endtime) {
+        var now = new Date();
+        var delta = (endtime - now.getTime())/1000;
+        var s, x;
+        if(delta < 1)
+            s = head + " has ended";
+        else{
+            s = head + " ends: ";
+            s = head + ": ";
+            if(delta >= 24*3600)
+                s = s + count1(delta/86400) + "d";
+            if(delta >= 3600)
+                s = s + count2((delta/3600)%24) + "h";
+            if(delta >= 60)
+                s = s + count2((delta/60)%60) + "m";
+            s = s + count2(delta%60) + "s";
+            setTimeout("updateclock('"+head+"','"+word+"',"+endtime+")", 500);
+        }
+
+        var slot = document.getElementById(word);
+        slot.innerHTML = s;
+    }
+-->
+</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY background=silveren.files/bg9silver.jpg onload=""><FONT 
+face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><IMG src="silveren.files/cowhead2.gif"> </TD>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0>
+        <TBODY>
+        <TR>
+          <TD>Contest: FEB08 <B>SILVER</B> Division</TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FONT 
+color=red><B></B></FONT><BR><FONT size=6 <b>ANALYSIS MODE</B></FONT><BR>Submit 
+solutions for your own enjoyment. </FONT><PRE>**********************************************************************
+                           SILVER PROBLEMS
+**********************************************************************
+                  Three problems numbered 6 through 8
+**********************************************************************
+
+Problem 6: Game of Lines [Neal Wu, 2007]
+
+Farmer John has challenged Bessie to the following game: FJ has a
+board with dots marked at N (2 &lt;= N &lt;= 200) distinct lattice points.
+Dot i has the integer coordinates X_i and Y_i (-1,000 &lt;= X_i &lt;=
+1,000; -1,000 &lt;= Y_i &lt;= 1,000).
+
+Bessie can score a point in the game by picking two of the dots and
+drawing a straight line between them; however, she is not allowed
+to draw a line if she has already drawn another line that is parallel
+to that line. Bessie would like to know her chances of winning, so
+she has asked you to help find the maximum score she can obtain.
+
+PROBLEM NAME: lines
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+* Lines 2..N+1: Line i+1 describes lattice point i with two
+        space-separated integers: X_i and Y_i.
+
+SAMPLE INPUT (file lines.in):
+
+4
+-1 1
+-2 0
+0 0
+1 1
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer representing the maximal number of lines
+        Bessie can draw, no two of which are parallel.
+
+SAMPLE OUTPUT (file lines.out):
+
+4
+
+OUTPUT DETAILS:
+
+Bessie can draw lines of the following four slopes: -1, 0, 1/3, and 1.
+
+**********************************************************************
+
+Problem 7: Meteor Shower [Jeffrey Wang, 2007]
+
+Bessie hears that an extraordinary meteor shower is coming; reports
+say that these meteors will crash into earth and destroy anything
+they hit. Anxious for her safety, she vows to find her way to a
+safe location (one that is never destroyed by a meteor) . She is
+currently grazing at the origin in the coordinate plane and wants
+to move to a new, safer location while avoiding being destroyed by
+meteors along her way.
+
+The reports say that M meteors (1 &lt;= M &lt;= 50,000) will strike, with
+meteor i will striking point (X_i, Y_i) (0 &lt;= X_i &lt;= 300; 0 &lt;= Y_i
+&lt;= 300) at time T_i (0 &lt;= T_i &lt;= 1,000). Each meteor destroys the
+point that it strikes and also the four rectilinearly adjacent
+lattice points.
+
+Bessie leaves the origin at time 0 and can travel in the first
+quadrant and parallel to the axes at the rate of one distance unit
+per second to any of the (often 4) adjacent rectilinear points that
+are not yet destroyed by a meteor.  She cannot be located on a point
+at any time greater than or equal to the time it is destroyed).
+
+Determine the minimum time it takes Bessie to get to a safe place.
+
+PROBLEM NAME: meteor
+
+INPUT FORMAT:
+
+* Line 1: A single integer: M
+
+* Lines 2..M+1: Line i+1 contains three space-separated integers: X_i,
+        Y_i, and T_i
+
+SAMPLE INPUT (file meteor.in):
+
+4
+0 0 2
+2 1 2
+1 1 2
+0 3 5
+
+INPUT DETAILS:
+
+There are four meteors, which strike points (0, 0); (2, 1); (1, 1); and (0,
+3) at times 2, 2, 2, and 5, respectively.
+                                                                          
+       
+    t = 0                t = 2              t = 5
+5|. . . . . . .     5|. . . . . . .     5|. . . . . . .    
+4|. . . . . . .     4|. . . . . . .     4|# . . . . . .   * = meteor impact
+3|. . . . . . .     3|. . . . . . .     3|* # . . . . .  
+2|. . . . . . .     2|. # # . . . .     2|# # # . . . .   # = destroyed pasture
+1|. . . . . . .     1|# * * # . . .     1|# # # # . . .   
+0|B . . . . . .     0|* # # . . . .     0|# # # . . . .   
+  --------------      --------------      -------------- 
+  0 1 2 3 4 5 6       0 1 2 3 4 5 6       0 1 2 3 4 5 6 
+
+OUTPUT FORMAT:
+
+* Line 1: The minimum time it takes Bessie to get to a safe place or
+        -1 if it is impossible.
+
+SAMPLE OUTPUT (file meteor.out):
+
+5
+
+OUTPUT DETAILS:
+
+Examining the plot above at t=5, the closest safe point is (3, 0)
+-- but Bessie's path to that point is too quickly blocked off by
+the second meteor. The next closest point is (4,0) -- also blocked
+too soon.  Next closest after that are lattice points on the
+(0,5)-(5,0) diagonal. Of those, any one of (0,5), (1,4), and (2,3)
+is reachable in 5 timeunits.
+
+       5|. . . . . . .   
+       4|. . . . . . .   
+       3|3 4 5 . . . .    Bessie's locations over time
+       2|2 . . . . . .    for one solution
+       1|1 . . . . . .   
+       0|0 . . . . . .   
+         -------------- 
+         0 1 2 3 4 5 6  
+
+**********************************************************************
+
+Problem 8: Eating Together [Ionescu Victor, 2007]
+
+The cows are so very silly about their dinner partners. They have
+organized themselves into three groups (conveniently numbered 1,
+2, and 3) that insist upon dining together. The trouble starts when
+they line up at the barn to enter the feeding area.
+
+Each cow i carries with her a small card upon which is engraved D_i
+(1 &lt;= D_i &lt;= 3) indicating her dining group membership. The entire
+set of N (1 &lt;= N &lt;= 30,000) cows has lined up for dinner but it's
+easy for anyone to see that they are not grouped by their dinner-partner
+cards.
+
+FJ's job is not so difficult.  He just walks down the line of cows
+changing their dinner partner assignment by marking out the old
+number and writing in a new one. By doing so, he creates groups of
+cows like 111222333 or 333222111 where the cows' dining groups are
+sorted in either ascending or descending order by their dinner
+cards.
+
+FJ is just as lazy as the next fellow. He's curious: what is the
+absolute mminimum number of cards he must change to create a proper
+grouping of dining partners? He must only change card numbers and
+must not rearrange the cows standing in line.
+
+PROBLEM NAME: egroup
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+* Lines 2..N+1: Line i describes the i-th cow's current dining group
+        with a single integer: D_i
+
+SAMPLE INPUT (file egroup.in):
+
+5
+1
+3
+2
+1
+1
+
+INPUT DETAILS:
+
+Five cows in line: first cow and last two cows prefer dining group 1;
+second cow likes group 3; third cow likes group 2.
+
+OUTPUT FORMAT:
+
+* Line 1: A single integer representing the minimum number of changes
+        that must be made so that the final sequence of cows is sorted
+        in either ascending or descending order
+
+SAMPLE OUTPUT (file egroup.out):
+
+1
+
+OUTPUT DETAILS:
+
+We would need at least two changes to turn this into an increasing
+sequence (changing both non-1's to a 1).
+
+However, changing the first "1" to a "3" yields a decreasing sequence with
+just one change, which is optimal.
+
+**********************************************************************
+
+</PRE>
+<HR>
+
+<FORM action=/ioiupload method=post encType=multipart/form-data><INPUT 
+type=hidden value=jl19fZt7G5u name=a> 
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD><FONT 
+            face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><B>Submit a program or file for grading:&nbsp;<B><INPUT 
+                  type=file name=filename> &nbsp;&nbsp; <INPUT type=submit value=Submit name=submit></B></B></TD></TR></TBODY></TABLE></FONT></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD colSpan=2><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>To 
+                  run your program with your own test data, enter the 
+                  program<BR>file name and input file name then click 
+                  'Test':</B></FONT></TD></TR>
+              <TR>
+                <TD>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Program&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file name=testprogramname></TD></TR>
+                          <TR>
+                            <TD align=right><FONT 
+                              face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Input&nbsp;File:&nbsp;</B></FONT></TD>
+                            <TD><INPUT type=file 
+                          name=testfilename></TD></TR></TBODY></TABLE></TD>
+                      <TD>&nbsp;&nbsp;</TD>
+                      <TD><INPUT type=submit value=Test name=submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD></TD></TR></TBODY></TABLE></TD></TD>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD height=1></TD></TR>
+        <TR>
+          <TD width=1>
+          <TD>
+            <TABLE cellPadding=5 width="100%" bgColor=#bfffbf>
+              <TBODY>
+              <TR>
+                <TD><FONT 
+                  face="Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans"><B>Backup 
+                  a file:&nbsp;</B><INPUT type=file name=backupfilename> 
+                  &nbsp;&nbsp;&nbsp;<INPUT type=submit value=Backup name=submit> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <INPUT type=submit value="See Backups" name=submit> 
+              </FONT></TD></TR></TBODY></TABLE></TD>
+          <TD width=1></TD></TR>
+        <TR height=1>
+          <TD>
+          <TD></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE><TR><TD>Nothing is currently saved for grading. 
+</TD></TR>
+<HR>
+
+<CENTER><A href="http://ace.delos.com/ioiedit?a=jl19fZt7G5u">Edit your database 
+record</A>&nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;logout=1">Logout </A><!--<a href="https://ace.delos.com/rules.html" target="_blank"> Rules </a>-->&nbsp;|&nbsp; 
+<A href="http://ace.delos.com/ioiupload?init=1&amp;a=jl19fZt7G5u">Main contest 
+index</A> </CENTER><!--&nbsp;|&nbsp;-->
+<CENTER><A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;showsubmit">See submitted 
+solutions</A> &nbsp;|&nbsp; <A 
+href="http://ace.delos.com/ioiupload?a=jl19fZt7G5u&amp;suggestionbox">Send 
+message to operations staff</A><BR>Director is currently online (AIM: 
+RobAtDelos)<BR>This page was generated at 8:10:48 GMT. 
+</CENTER></FORM></BODY></HTML>

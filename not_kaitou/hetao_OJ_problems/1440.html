@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html data-page="problem_detail" data-layout="basic" class="layout--basic page--problem_detail theme--light nojs" lang="" data-app="Hydro">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <meta name="theme-color" content="#56758f">
+    <meta property="og:site_name" content="核OJ_核桃编程" />
+  <meta property="og:title" content="Problem Detail - 「JOI 2013 Final」JOIOI 塔 - 核OJ_核桃编程" />
+  <meta property="og:url" content="oj.hetao101.com/p/1440" />
+  <meta property="og:image" content="/favicon-96x96.png" />
+    <title>Problem Detail - 「JOI 2013 Final」JOIOI 塔 - 核OJ_核桃编程</title>
+  <style>
+    body {
+      --font-family: "Open Sans", "Open Sans", "Seravek", "Segoe UI", "Verdana", "PingFang SC", "Hiragino Sans GB", "Lantinghei SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans";
+      --code-font-family: "Source Code Pro", "monaco", "Source Code Pro", "Consolas", "Lucida Console", "monospace";
+      --font-ligatures: none !important;
+    }
+  </style>
+      <link rel="stylesheet" media="all" href="/default-4.38.3.theme.css">
+        <script>
+      var _htmlNode = document.documentElement;
+      _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+      try {
+        import('data:text/javascript,');Object.fromEntries([]);window.matchMedia('all').addEventListener('change',()=>{});
+      } catch(e) {
+        const s = document.createElement('script');
+        s.async = false;
+        s.src = "/polyfill-4.38.3.js";
+        document.head.appendChild(s);
+      }
+    </script>
+  </head>
+<body>
+  <nav class="nav slideout-menu" id="menu">
+  <div class="row"><div class="columns clearfix">
+    <ol class="nav__list nav__list--main clearfix">
+      <li class="nav__list-item"><a href="/" class="nav__logo" style="background-size: 100% 100%;">&nbsp;</a></li>        <li class="nav__list-item">
+  <a href="/d/training/" class="nav__item">
+    Home
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/p" class="nav__item nav--active">
+    Problem Set
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/training" class="nav__item">
+    Training
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/homework" class="nav__item">
+    Homework
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/discuss" class="nav__item">
+    Discussion
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/contest" class="nav__item">
+    Contest
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/record?uidOrName=71" class="nav__item">
+    Record
+  </a>
+</li>
+              <li class="nav__list-item">
+  <a href="/d/training/ranking" class="nav__item">
+    Ranking
+  </a>
+</li>
+      </ol>
+    <ol class="nav__list nav__list--secondary clearfix">
+          <li class="nav__list-item" data-dropdown-pos="bottom right" data-dropdown-custom-class="nav__dropdown" data-dropdown-target="#menu-nav-user" data-dropdown-disabledconstrainToWindow data-dropdown-trigger-desktop-only>
+        <a href="/d/training/user/71" class="nav__item">hetao7745825 <span class="icon icon-expand_more nojs--hide"></span></a>
+        <ol class="dropdown-target menu" id="menu-nav-user">
+          <li class="menu__item">
+            <a href="/d/training/user/71" class="menu__link">
+              <span class="icon icon-account--circle"></span> My Profile
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/messages" class="menu__link">
+              <span class="icon icon-comment--multiple"></span> Messages
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/domain" class="menu__link">
+              <span class="icon icon-web"></span> @ 练习题库
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/account" class="menu__link">
+              <span class="icon icon-wrench"></span> Account Settings
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/settings/preference" class="menu__link">
+              <span class="icon icon-sliders"></span> Preference
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="/d/training/home/security" class="menu__link">
+              <span class="icon icon-security"></span> Security
+            </a>
+          </li>
+          <li class="menu__seperator"></li>
+          <li class="menu__item">
+            <a href="/d/training/home/domain" class="menu__link">
+              <span class="icon icon-web"></span> My Domains
+            </a>
+          </li>
+                      <li class="menu__item">
+              <a href="/d/training/file" class="menu__link">
+                <span class="icon icon-file"></span> My Files
+              </a>
+            </li>
+                                <li class="menu__item">
+              <a href="/d/training/blog/71" class="menu__link">
+                <span class="icon icon-book"></span> Blog
+              </a>
+            </li>
+                    <li class="menu__seperator"></li>
+                    <li class="menu__item">
+            <a href="/d/training/logout" class="menu__link" name="nav_logout">
+              <span class="icon icon-logout"></span> Logout
+            </a>
+          </li>
+        </ol>
+      </li>
+        </ol>
+  </div></div>
+</nav>
+<nav class="nav--shadow"></nav>
+<div class="slideout-panel" id="panel">
+  <div class="slideout-overlay"></div>
+  <div class="header--mobile">
+  <div class="row"><div class="columns clearfix">
+    <div class="float-left">
+      <a class="header--mobile__domain" href="/" target="_self">&nbsp;</a>
+    </div>
+    <div class="float-right">
+      <button type="button" class="header__hamburger">
+  <div class="hamburger hamburger--spin">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </div>
+</button>
+    </div>
+  </div></div>
+</div>
+  <div class="main">
+    <script>
+
+  
+  
+  
+  
+  
+</script>
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header" style="align: center">
+        <h1 class="section__title">
+                      <a href="/d/training/record/62f858dd39e79ec979e2afe6">
+              <span class="icon record-status--icon pass"></span>
+              <span class="record-status--text pass">100</span>
+            </a>
+                                <form class="form--inline" action="/d/training/p" method="post">
+              <input type="hidden" name="pid" value="1440">
+              <input type="hidden" name="operation" value="star">
+              <button class="star" type="submit">
+                <span class="starred--hide"><span class="icon icon-star--outline" data-tooltip="Star"></span></span>
+                <span class="starred--show"><span class="icon icon-star" data-tooltip="Unstar"></span></span>
+              </button>
+            </form>
+                    #1440. 「JOI 2013 Final」JOIOI 塔
+        </h1>
+      </div>
+      <div class="section__body">
+        <ul class="problem__tags">
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">ID: 1440</span>
+          <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-book">Type: Default</span>
+                      <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-stopwatch">3000ms</span>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item icon icon-comparison">256MiB</span>
+                                <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=1440">Tried: 6</a>
+            <a class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item" href="/d/training/record?pid=1440&amp;status=1">Accepted: 1</a>
+            <span class="bp4-tag bp4-large bp4-minimal problem__tag-item">Difficulty: 10</span>
+                    <span class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item">Uploaded By: <span class="user-profile-link">
+      <img class="small user-profile-avatar v-center" loading="lazy" src="//q1.qlogo.cn/g?b=qq&amp;nk=835646089&amp;s=160" width="20" height="20">
+    <a class="user-profile-name" href="/d/training/user/481">
+          源老师 (wsy1998)
+      </a>
+  </span>
+</span>
+                      <span name="show_tags" class="bp4-tag bp4-large bp4-minimal bp4-interactive problem__tag-item nojs--hide icon icon-tag">Tags&gt;</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">二分</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">2013</span><span class="bp4-tag bp4-large bp4-minimal problem__tag-item tags hasjs--hide">JOI</span>        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
+        <div class="section__header non-scratchpad--hide">
+          <h1 class="section__title">「JOI 2013 Final」JOIOI 塔</h1>
+        </div>
+                <div class="section__body typo" data-fragment-id="problem-description">
+        <h2 id="%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0" tabindex="-1">题目描述</h2>
+<p><strong>本题译自 <a href="https://www.ioi-jp.org/joi/2012/2013-ho/index.html">JOI 2013 Final</a> T4「<a href="https://www.ioi-jp.org/joi/2012/2013-ho/2013-ho.pdf">JOIOIの塔</a>」</strong></p>
+<p>JOIOI 塔是一种单人游戏。</p>
+<p>这个游戏要用到一些写有 <code>J</code>, <code>O</code>, <code>I</code> 中任一文字的圆盘。这些圆盘的直径互不相同。游戏开始时，这些圆盘按照直径大的在下面的规则堆叠。你需要用这些圆盘做尽量多的迷你 JOIOI 塔。迷你 JOIOI 塔由 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex"> 3 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 个圆盘构成，从直径较小的圆盘开始分别为 <code>J</code>, <code>O</code>, <code>I</code> 或分别为 <code>I</code>, <code>O</code>, <code>I</code> 。不过，每个圆盘最多只能使用一次。</p>
+<p><img src="https://www.z4a.net/images/2018/08/14/3ab6e7ae407ceb0dbca914b199af6144.png" alt="3ab6e7ae407ceb0dbca914b199af6144.png"></p>
+<h4 id="%E4%BB%BB%E5%8A%A1" tabindex="-1">任务</h4>
+<p>给出长为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex"> N </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 的字符串 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex"> S </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> ，表示直径从小到大的圆盘上的文字。请编写程序求出使用这些圆盘能够做出的迷你 JOIOI 塔个数的最大值。</p>
+<h2 id="%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F" tabindex="-1">输入格式</h2>
+<p>第一行为一个整数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex"> N </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> ，表示字符串 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex"> S </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 的长度。
+第二行是一个字符串 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex"> S </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 。</p>
+<h2 id="%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F" tabindex="-1">输出格式</h2>
+<p>输出一行一个整数：表示能够做出的迷你 JOIOI 塔数量的最大值。</p>
+<h2 id="%E6%A0%B7%E4%BE%8B-1" tabindex="-1">样例 1</h2>
+<pre><code class="language-input1">6
+JOIIOI
+</code></pre>
+<pre><code class="language-output1">2
+</code></pre>
+<p>JOIIOI 分别含子串 <code>JOI</code> 和子串 <code>IOI</code> 各一个，故可以做出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex"> 2 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> 个迷你 JOIOI 塔。</p>
+<pre><code class="language-input2">5
+JOIOI
+</code></pre>
+<pre><code class="language-output2">1
+</code></pre>
+<p>虽然 JOIOI 也分别含子串 <code>JOI</code> 和子串 <code>IOI</code> 各一个，但每个字符不能被使用两次或以上。</p>
+<pre><code class="language-input3">6
+JOIOII
+</code></pre>
+<pre><code class="language-output3">2
+</code></pre>
+<p>此样例对应题目描述中的例子。</p>
+<pre><code class="language-input4">15
+JJOIIOOJOJIOIIO
+</code></pre>
+<pre><code class="language-output4">4
+</code></pre>
+<h2 id="%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%8F%90%E7%A4%BA" tabindex="-1">数据范围与提示</h2>
+<p>对于所有数据，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">1\leq N \leq 10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">子任务</th>
+<th style="text-align:center">分值</th>
+<th style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo></mrow><annotation encoding="application/x-tex">N\le</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span></span></span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo><mn>15</mn></mrow><annotation encoding="application/x-tex"> N \leq 15 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></td>
+<td style="text-align:center" rowspan="2"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo><mn>50</mn></mrow><annotation encoding="application/x-tex"> N \leq 50 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">50</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo><mn>3000</mn></mrow><annotation encoding="application/x-tex"> N \leq 3000 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3000</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">50</span></span></span></span></td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex"> N \leq 10^6 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+
+</div>      </div></div>
+    </div>
+  </div>
+  <div class="medium-3 columns">
+          <div class="section side section--problem-sidebar">
+  <div>
+    <ol class="menu">
+                  <li class="menu__item scratchpad--hide"><a class="menu__link highlight" name="problem-sidebar__open-scratchpad" href="javascript:;" data-global-hotkey="alt+e">
+        <span class="icon icon-enlarge"></span> Open Scratchpad (Alt+E)
+      </a></li>
+      <li class="menu__item non-scratchpad--hide"><a class="menu__link" name="problem-sidebar__quit-scratchpad" href="javascript:;" data-global-hotkey="alt+q">
+        <span class="icon icon-enlarge"></span> Quit Scratchpad (Alt+Q)
+      </a></li>
+                  <li class="menu__item scratchpad--hide"><a class="menu__link" href="/d/training/p/1440/submit">
+        <span class="icon icon-send"></span> Submit
+      </a></li>
+                  <li class="menu__seperator"></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/discuss/problem/1440">
+        <span class="icon icon-comment--text"></span> Discussions (0)      </a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/p/1440/solution">
+        <span class="icon icon-comment--text"></span> Solutions (1)      </a></li>
+          <li class="menu__item"><a class="menu__link" href="/d/training/p/1440/files">
+        <span class="icon icon-file"></span> Files
+      </a></li>
+              <li class="menu__seperator nojs--hide"></li>
+                    <li class="menu__item nojs--hide"><a class="menu__link" href="javascript:;" name="problem-sidebar__copy">
+          <span class="icon icon-copy"></span> Copy
+        </a></li>
+              </ol>
+  </div>
+</div>
+<div class="section side nojs--hide">
+  <div class="section__header">
+    <h1 class="section__title">Statistics</h1>
+  </div>
+  <div id="submission-status-placeholder" style="width: 100%; height:230px"></div>
+  <div id="submission-score-placeholder" style="width: 100%; height:230px"></div>
+</div>
+  </div>
+</div>
+<div style="display:none" class="outer-loader-container"><div class="loader"></div></div>
+<div class="scratchpad-container" style="display:none">
+  <div style="display:none" class="loader-container"><div class="loader"></div></div>
+  <div id="scratchpad" style="opacity:0"></div>
+</div>
+  </div>
+  <div class="footer">
+  <div class="row"><div class="columns">
+      <div class="row footer__links">
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Status
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/record">Judging Queue</a></li>
+          <li class="footer__category__item"><a href="/d/training/status">Service Status</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <h1>
+          Development
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="https://github.com/hydro-dev/Hydro" target="_blank">Open Source</a></li>
+          <li class="footer__category__item"><a href="/d/training/api">API</a></li>
+        </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <h1>
+          Support
+          <span class="expand-icon">
+            <span class="icon icon-expand_more"></span>
+          </span>
+        </h1>
+        <div class="footer__category__expander"><ul class="footer__category__list">
+          <li class="footer__category__item"><a href="/d/training/wiki/help">Help</a></li>
+          <!--<li class="footer__category__item"><a href="#">Blog</a></li>-->
+          <li class="footer__category__item"><a href="/d/training/wiki/about#contact">QQ Group</a></li>
+        </ul></div>
+      </div>
+    </div>
+      <div class="footer__extra-link clearfix">
+      <div class="footer__extra-left">
+        <ol class="clearfix">
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about">About</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#contact">Contact Us</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#privacy">Privacy</a></li>
+          <li class="footer__extra-link-item"><a href="/d/training/wiki/about#tos">Terms of Service</a></li>
+          <li class="footer__extra-link-item"><a href="https://hydro.js.org/#%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC">Copyright Complaint</a></li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-lang">
+            <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-lang"><li class="menu__item"><a class="menu__link" href="/d/training/language/en">English</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/ko">한국어</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh">简体中文</a></li><li class="menu__item"><a class="menu__link" href="/d/training/language/zh_TW">正體中文</a></li></ol>
+          </li>
+          <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-theme">
+            <span><span class="icon icon-global"></span> Theme <span class="icon icon-expand_less"></span></span>
+            <ol class="dropdown-target menu" id="menu-footer-theme">
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/light">Light</a></li>
+              <li class="menu__item"><a class="menu__link" href="/d/training/set_theme/dark">Dark</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div class="footer__extra-right">
+        <ol class="clearfix"><li class="footer__extra-link-item"></li><li class="footer__extra-link-item"></li><li class="footer__extra-link-item">Worker 0 in 12ms</li>
+          <!-- Prepare 3ms -->
+          <!-- Method 2ms -->
+          <li class="footer__extra-link-item">Powered by <a href="https://hydro.js.org">Hydro v3.14.5</a> Community</li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</div>
+</div>
+      <script>
+      var UiContext = '{"cdn_prefix":"/","url_prefix":"/","domainId":"training","domain":{"_id":"training","lower":"training","owner":2,"name":"\u7EC3\u4E60\u9898\u5E93","bulletin":"# \u6838OJ_\u6838\u6843\u7F16\u7A0B - \u7EC3\u4E60\u9898\u5E93\\r\\n\\r\\n[\u21D0 \u8FD4\u56DE\u6839\u9898\u5E93](http://oj.hetao101.com/)\\r\\n\\r\\n## \u57FA\u672C\u4F7F\u7528\u65B9\u6CD5\\r\\n\\r\\nP \u7CFB\u5217\u9898\u76EE\u6765\u81EA\u7F51\u7EDC\uFF0C\u53EF\u80FD\u4F1A\u6709\u9898\u76EE\u6392\u7248\u6570\u636E\u95EE\u9898\uFF0C\u90E8\u5206\u7EAF\u8F93\u51FA\u7684\u9898\u76EE\u53EF\u80FD\u7F3A\u5C11\u6570\u636E\uFF0C\u7BA1\u7406\u5458\u770B\u5230\u7F3A\u5C11\u6570\u636E\u7CFB\u7EDF\u9519\u8BEF\u7684\u63D0\u4EA4\u540E\u4F1A\u53CA\u65F6\u4FEE\u590D\u3002\u9047\u5230\u95EE\u9898\u53EF\u4EE5\u5728\u8BA8\u8BBA\u533A\u53D1\u5E03\u5E16\u5B50\u3002\\r\\n\\r\\n1. \u901A\u8FC7\u9898\u5E93\u70B9\u51FB\u67D0\u9053\u60F3\u505A\u7684\u9898\u76EE\\r\\n2. \u8BFB\u9898\\r\\n3. \u70B9\u51FB\u8FDB\u5165\u5728\u7EBF\u7F16\u7A0B\u6A21\u5F0F\\r\\n4. \u70B9\u51FB\u53F3\u4E0A\u65B9\u7684\u81EA\u6D4B\u6253\u5F00\u81EA\u6D4B\u7A97\u53E3\\r\\n5. \u5C06\u9898\u76EE\u7684\u6837\u4F8B\u8F93\u5165\u590D\u5236\u8FDB\u8F93\u5165\u6846\u4E2D\\r\\n6. \u70B9\u51FB\u8FD0\u884C\u81EA\u6D4B\uFF0C\u67E5\u770B\u662F\u5426\u4E0E\u8F93\u51FA\u4E00\u81F4\\r\\n7. \u5982\u679C\u7ED3\u679C\u6CA1\u6709\u95EE\u9898\uFF0C\u53EF\u4EE5\u70B9\u51FB\u9012\u4EA4\u8BC4\u6D4B\u67E5\u770B\u8BC4\u6D4B\u7ED3\u679C\\r\\n8. \u5982\u679C\u663E\u793A\u9519\u8BEF\u3001\u53EF\u4EE5\u5BF9\u5E94\u5730\u4FEE\u6539\u4EE3\u7801\u518D\u6B21\u81EA\u6D4B\\r\\n\\r\\n![](http://oj.hetao101.com/file/2/t.png)\\r\\n\\r\\n## \u5E38\u89C1\u8BBE\u7F6E\\r\\n\\r\\n0. \u8BBE\u7F6E\u5F53\u524D\u9898\u5E93\u7684\u663E\u793A\u540D\uFF1A<http://oj.hetao101.com/d/training/home/settings/domain>\\r\\n1. \u8FDB\u5165\u5F53\u524D\u9898\u5E93\u7684\u504F\u597D\u8BBE\u7F6E\u9875\u9762\uFF1A<http://oj.hetao101.com/d/training/home/settings/preference>\\r\\n2. \u5C06\u663E\u793A\u504F\u597D\u4E2D\u7684**\u7528\u6237\u754C\u9762\u8BED\u8A00**\u8BBE\u7F6E\u6210**\u7B80\u4F53\u4E2D\u6587**\\r\\n3. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u4EE3\u7801\u8BED\u8A00**\u8BBE\u7F6E\u6210\u81EA\u5DF1\u5E38\u7528\u7684\u8BED\u8A00\\r\\n4. \u5C06\u4F7F\u7528\u504F\u597D\u4E2D\u7684**\u9ED8\u8BA4\u4EE3\u7801\u6A21\u677F**\u6539\u6210\u81EA\u5DF1\u4E60\u60EF\u7684\u4EE3\u7801\u6846\u67B6\uFF0C\u6BD4\u5982\u4E0B\u9762\u8FD9\u6BB5\\r\\n\\r\\n```cpp\\r\\n#include<bits/stdc++.h>\\r\\nusing namespace std;\\r\\nint main(){\\r\\n\\r\\n\\r\\n\\r\\n    return 0;\\r\\n}\\r\\n```\\r\\n","roles":{"teacher":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652630151444198802323445","guest":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624967874125500547201","default":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","root":"-1","cpp":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652641680659602963691511","contest_creator":"10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629953004340186416069"},"avatar":"","langs":"cc,cc.std98,cc.std11,cc.std14,py,py.py3","share":"*"},"extraTitleContent":"\u300CJOI 2013 Final\u300DJOIOI \u5854","constantVersion":"40d7cc7454c37f5c1cf381ecdfd9f83e1c73a32f","problemId":1440,"problemNumId":1440,"codeLang":"cc.std11","codeTemplate":"","pdoc":{"_id":"626682f6b058735b3776d79d","content":"{\\"zh\\":[{\\"sectionTitle\\":\\"\u9898\u76EE\u63CF\u8FF0\\",\\"type\\":\\"Text\\",\\"text\\":\\"**\u672C\u9898\u8BD1\u81EA [JOI 2013 Final](https://www.ioi-jp.org/joi/2012/2013-ho/index.html) T4\u300C[JOIOI\u306E\u5854](https://www.ioi-jp.org/joi/2012/2013-ho/2013-ho.pdf)\u300D**\\\\r\\\\n\\\\r\\\\nJOIOI \u5854\u662F\u4E00\u79CD\u5355\u4EBA\u6E38\u620F\u3002\\\\r\\\\n\\\\r\\\\n\u8FD9\u4E2A\u6E38\u620F\u8981\u7528\u5230\u4E00\u4E9B\u5199\u6709 `J`, `O`, `I` \u4E2D\u4EFB\u4E00\u6587\u5B57\u7684\u5706\u76D8\u3002\u8FD9\u4E9B\u5706\u76D8\u7684\u76F4\u5F84\u4E92\u4E0D\u76F8\u540C\u3002\u6E38\u620F\u5F00\u59CB\u65F6\uFF0C\u8FD9\u4E9B\u5706\u76D8\u6309\u7167\u76F4\u5F84\u5927\u7684\u5728\u4E0B\u9762\u7684\u89C4\u5219\u5806\u53E0\u3002\u4F60\u9700\u8981\u7528\u8FD9\u4E9B\u5706\u76D8\u505A\u5C3D\u91CF\u591A\u7684\u8FF7\u4F60 JOIOI \u5854\u3002\u8FF7\u4F60 JOIOI \u5854\u7531 $ 3 $ \u4E2A\u5706\u76D8\u6784\u6210\uFF0C\u4ECE\u76F4\u5F84\u8F83\u5C0F\u7684\u5706\u76D8\u5F00\u59CB\u5206\u522B\u4E3A `J`, `O`, `I` \u6216\u5206\u522B\u4E3A `I`, `O`, `I` \u3002\u4E0D\u8FC7\uFF0C\u6BCF\u4E2A\u5706\u76D8\u6700\u591A\u53EA\u80FD\u4F7F\u7528\u4E00\u6B21\u3002\\\\r\\\\n\\\\r\\\\n![3ab6e7ae407ceb0dbca914b199af6144.png](https://www.z4a.net/images/2018/08/14/3ab6e7ae407ceb0dbca914b199af6144.png)\\\\r\\\\n\\\\r\\\\n#### \u4EFB\u52A1\\\\r\\\\n\u7ED9\u51FA\u957F\u4E3A $ N $ \u7684\u5B57\u7B26\u4E32 $ S $ \uFF0C\u8868\u793A\u76F4\u5F84\u4ECE\u5C0F\u5230\u5927\u7684\u5706\u76D8\u4E0A\u7684\u6587\u5B57\u3002\u8BF7\u7F16\u5199\u7A0B\u5E8F\u6C42\u51FA\u4F7F\u7528\u8FD9\u4E9B\u5706\u76D8\u80FD\u591F\u505A\u51FA\u7684\u8FF7\u4F60 JOIOI \u5854\u4E2A\u6570\u7684\u6700\u5927\u503C\u3002\\\\r\\\\n\\",\\"subType\\":\\"markdown\\"},{\\"sectionTitle\\":\\"\u8F93\u5165\u683C\u5F0F\\",\\"type\\":\\"Text\\",\\"text\\":\\"\u7B2C\u4E00\u884C\u4E3A\u4E00\u4E2A\u6574\u6570 $ N $ \uFF0C\u8868\u793A\u5B57\u7B26\u4E32 $ S $ \u7684\u957F\u5EA6\u3002\\\\r\\\\n\u7B2C\u4E8C\u884C\u662F\u4E00\u4E2A\u5B57\u7B26\u4E32 $ S $ \u3002\\",\\"subType\\":\\"markdown\\"},{\\"sectionTitle\\":\\"\u8F93\u51FA\u683C\u5F0F\\",\\"type\\":\\"Text\\",\\"text\\":\\"\u8F93\u51FA\u4E00\u884C\u4E00\u4E2A\u6574\u6570\uFF1A\u8868\u793A\u80FD\u591F\u505A\u51FA\u7684\u8FF7\u4F60 JOIOI \u5854\u6570\u91CF\u7684\u6700\u5927\u503C\u3002\\",\\"subType\\":\\"markdown\\"},{\\"sectionTitle\\":\\"\u6837\u4F8B 1\\",\\"type\\":\\"Sample\\",\\"text\\":\\"JOIIOI \u5206\u522B\u542B\u5B50\u4E32 `JOI` \u548C\u5B50\u4E32 `IOI` \u5404\u4E00\u4E2A\uFF0C\u6545\u53EF\u4EE5\u505A\u51FA $ 2 $ \u4E2A\u8FF7\u4F60 JOIOI \u5854\u3002\\",\\"subType\\":\\"markdown\\",\\"payload\\":[\\"6\\\\nJOIIOI\\",\\"2\\"]},{\\"sectionTitle\\":\\"\u6837\u4F8B 2\\",\\"type\\":\\"Sample\\",\\"text\\":\\"\u867D\u7136 JOIOI \u4E5F\u5206\u522B\u542B\u5B50\u4E32 `JOI` \u548C\u5B50\u4E32 `IOI` \u5404\u4E00\u4E2A\uFF0C\u4F46\u6BCF\u4E2A\u5B57\u7B26\u4E0D\u80FD\u88AB\u4F7F\u7528\u4E24\u6B21\u6216\u4EE5\u4E0A\u3002\\",\\"subType\\":\\"markdown\\",\\"payload\\":[\\"5\\\\nJOIOI\\",\\"1\\"]},{\\"sectionTitle\\":\\"\u6837\u4F8B 3\\",\\"type\\":\\"Sample\\",\\"text\\":\\"\u6B64\u6837\u4F8B\u5BF9\u5E94\u9898\u76EE\u63CF\u8FF0\u4E2D\u7684\u4F8B\u5B50\u3002\\",\\"subType\\":\\"markdown\\",\\"payload\\":[\\"6\\\\nJOIOII\\",\\"2\\"]},{\\"sectionTitle\\":\\"\u6837\u4F8B 4\\",\\"type\\":\\"Sample\\",\\"text\\":\\"\\",\\"subType\\":\\"markdown\\",\\"payload\\":[\\"15\\\\nJJOIIOOJOJIOIIO\\",\\"4\\"]},{\\"sectionTitle\\":\\"\u6570\u636E\u8303\u56F4\u4E0E\u63D0\u793A\\",\\"type\\":\\"Text\\",\\"text\\":\\"\u5BF9\u4E8E\u6240\u6709\u6570\u636E\uFF0C$1\\\\\\\\leq N \\\\\\\\leq 10^6$\u3002\\\\r\\\\n\\\\r\\\\n|\u5B50\u4EFB\u52A1|\u5206\u503C|$N\\\\\\\\le$|\\\\r\\\\n|:-:|:-:|:-:|\\\\r\\\\n|$1$|$10$|$ N \\\\\\\\leq 15 $|\\\\r\\\\n|$2$|$20$|$ N \\\\\\\\leq 50 $|\\\\r\\\\n|$3$|$20$|$ N \\\\\\\\leq 3000 $|\\\\r\\\\n|$4$|$50$|$ N \\\\\\\\leq 10^6 $|\\\\r\\\\n\\",\\"subType\\":\\"markdown\\"}]}","owner":481,"domainId":"training","docType":10,"docId":1440,"title":"\u300CJOI 2013 Final\u300DJOIOI \u5854","tag":["\u4E8C\u5206","2013","JOI"],"hidden":false,"nSubmit":6,"nAccept":1,"data":[{"_id":"1.in","name":"1.in","size":19,"lastModified":"2022-06-17T05:59:41.328Z","etag":"a318cc4b1899180ad6f87641119899f3"},{"_id":"1.out","name":"1.out","size":2,"lastModified":"2022-06-17T05:59:42.120Z","etag":"b026324c6904b2a9cb4b88d6d61c81d1"},{"_id":"2.in","name":"2.in","size":19,"lastModified":"2022-06-17T05:59:58.706Z","etag":"cbce7af8500e5fe478a5425aa2351f45"},{"_id":"2.out","name":"2.out","size":2,"lastModified":"2022-06-17T05:59:59.452Z","etag":"b026324c6904b2a9cb4b88d6d61c81d1"},{"_id":"3.in","name":"3.in","size":19,"lastModified":"2022-06-17T06:00:16.623Z","etag":"cf618b933f36627983f5c57554ce8d78"},{"_id":"3.out","name":"3.out","size":2,"lastModified":"2022-06-17T06:00:17.419Z","etag":"26ab0db90d72e28ad0ba1e22ee510510"},{"_id":"4.in","name":"4.in","size":19,"lastModified":"2022-06-17T06:00:37.677Z","etag":"a854f183808e8763ee64250470dfa553"},{"_id":"4.out","name":"4.out","size":2,"lastModified":"2022-06-17T06:00:38.827Z","etag":"26ab0db90d72e28ad0ba1e22ee510510"},{"_id":"5.in","name":"5.in","size":19,"lastModified":"2022-06-17T06:01:04.338Z","etag":"dca7cb0f973b8f732e4ea14f75071c67"},{"_id":"5.out","name":"5.out","size":2,"lastModified":"2022-06-17T06:01:05.096Z","etag":"48a24b70a0b376535542b996af517398"},{"_id":"6.in","name":"6.in","size":19,"lastModified":"2022-06-17T06:01:08.264Z","etag":"82ef4a7af4c227310cef2e2b38839d30"},{"_id":"6.out","name":"6.out","size":2,"lastModified":"2022-06-17T06:01:09.017Z","etag":"6d7fce9fee471194aa8b5b6e47267f03"},{"_id":"7.in","name":"7.in","size":19,"lastModified":"2022-06-17T06:01:09.773Z","etag":"3dddbbe5a606743ca47bafc584834fc1"},{"_id":"7.out","name":"7.out","size":2,"lastModified":"2022-06-17T06:01:10.564Z","etag":"48a24b70a0b376535542b996af517398"},{"_id":"8.in","name":"8.in","size":19,"lastModified":"2022-06-17T06:01:11.325Z","etag":"297a497e0ab4229908543e10dfd4a1b6"},{"_id":"8.out","name":"8.out","size":2,"lastModified":"2022-06-17T06:01:12.089Z","etag":"1dcca23355272056f04fe8bf20edfce0"},{"_id":"9.in","name":"9.in","size":19,"lastModified":"2022-06-17T06:01:12.853Z","etag":"5da76ae4066ddeb3cf7b11cae83926a4"},{"_id":"9.out","name":"9.out","size":2,"lastModified":"2022-06-17T06:01:13.636Z","etag":"48a24b70a0b376535542b996af517398"},{"_id":"10.in","name":"10.in","size":19,"lastModified":"2022-06-17T05:59:43.152Z","etag":"fd959009427f0d7100c7e49d9b101925"},{"_id":"10.out","name":"10.out","size":2,"lastModified":"2022-06-17T05:59:43.936Z","etag":"6d7fce9fee471194aa8b5b6e47267f03"},{"_id":"11.in","name":"11.in","size":54,"lastModified":"2022-06-17T05:59:44.725Z","etag":"6b9b359ee487ab89a9ad3a49bb6b6e9c"},{"_id":"11.out","name":"11.out","size":3,"lastModified":"2022-06-17T05:59:45.458Z","etag":"367764329430db34be92fd14a7a770ee"},{"_id":"12.in","name":"12.in","size":54,"lastModified":"2022-06-17T05:59:46.209Z","etag":"006921e6f7572ff030a002ba03df901d"},{"_id":"12.out","name":"12.out","size":2,"lastModified":"2022-06-17T05:59:46.944Z","etag":"7c5aba41f53293b712fd86d08ed5b36e"},{"_id":"13.in","name":"13.in","size":54,"lastModified":"2022-06-17T05:59:47.689Z","etag":"4ab1aef09e1ab80aa254d91f0fe76967"},{"_id":"13.out","name":"13.out","size":3,"lastModified":"2022-06-17T05:59:48.439Z","etag":"2737b49252e2a4c0fe4c342e92b13285"},{"_id":"14.in","name":"14.in","size":54,"lastModified":"2022-06-17T05:59:49.223Z","etag":"1b184e978f32896da45bd58867a97d56"},{"_id":"14.out","name":"14.out","size":3,"lastModified":"2022-06-17T05:59:49.980Z","etag":"166d77ac1b46a1ec38aa35ab7e628ab5"},{"_id":"15.in","name":"15.in","size":54,"lastModified":"2022-06-17T05:59:50.747Z","etag":"9ad7c3730601918ffb73977ab2a00fcc"},{"_id":"15.out","name":"15.out","size":3,"lastModified":"2022-06-17T05:59:51.516Z","etag":"5b6b41ed9b343fed9cd05a66d36650f0"},{"_id":"16.in","name":"16.in","size":54,"lastModified":"2022-06-17T05:59:52.299Z","etag":"6ea2809291657387ba32c0c4431a7bde"},{"_id":"16.out","name":"16.out","size":3,"lastModified":"2022-06-17T05:59:53.123Z","etag":"aa6ed9e0f26a6eba784aae8267df1951"},{"_id":"17.in","name":"17.in","size":54,"lastModified":"2022-06-17T05:59:53.870Z","etag":"49a8317d6c90399ff143970d51f1f513"},{"_id":"17.out","name":"17.out","size":3,"lastModified":"2022-06-17T05:59:54.638Z","etag":"367764329430db34be92fd14a7a770ee"},{"_id":"18.in","name":"18.in","size":54,"lastModified":"2022-06-17T05:59:55.393Z","etag":"06a0deecf155a2c2b9d61a6450be74a7"},{"_id":"18.out","name":"18.out","size":3,"lastModified":"2022-06-17T05:59:56.177Z","etag":"aa6ed9e0f26a6eba784aae8267df1951"},{"_id":"19.in","name":"19.in","size":54,"lastModified":"2022-06-17T05:59:56.923Z","etag":"1f1e839cede37d3ec3591f0075190222"},{"_id":"19.out","name":"19.out","size":2,"lastModified":"2022-06-17T05:59:57.690Z","etag":"897316929176464ebc9ad085f31e7284"},{"_id":"20.in","name":"20.in","size":54,"lastModified":"2022-06-17T06:00:00.298Z","etag":"ff7f7a263e88a345ce8268e32b547a71"},{"_id":"20.out","name":"20.out","size":2,"lastModified":"2022-06-17T06:00:01.057Z","etag":"897316929176464ebc9ad085f31e7284"},{"_id":"21.in","name":"21.in","size":3006,"lastModified":"2022-06-17T06:00:01.840Z","etag":"723a5d9c072438d6f994461081f40c3f"},{"_id":"21.out","name":"21.out","size":4,"lastModified":"2022-06-17T06:00:02.594Z","etag":"06a302b5cb4805a5696f6ff0af179e4a"},{"_id":"22.in","name":"22.in","size":3006,"lastModified":"2022-06-17T06:00:03.370Z","etag":"dc55e77d7224a41500355679d64e9080"},{"_id":"22.out","name":"22.out","size":4,"lastModified":"2022-06-17T06:00:04.278Z","etag":"b3b5b4a77a529cf0dd604d140a29d7b9"},{"_id":"23.in","name":"23.in","size":3006,"lastModified":"2022-06-17T06:00:05.041Z","etag":"493f4cb60385ac1cde3871be827a0f5d"},{"_id":"23.out","name":"23.out","size":4,"lastModified":"2022-06-17T06:00:05.813Z","etag":"90741521da0ae4439bc9ecfae394d74b"},{"_id":"24.in","name":"24.in","size":3006,"lastModified":"2022-06-17T06:00:06.558Z","etag":"055fe068f24960119b4dabc945857296"},{"_id":"24.out","name":"24.out","size":4,"lastModified":"2022-06-17T06:00:07.563Z","etag":"944f52934ffca777afabbc803297074d"},{"_id":"25.in","name":"25.in","size":3006,"lastModified":"2022-06-17T06:00:08.647Z","etag":"f2d4bfd9bb2a4dc35fb0b57b939a3574"},{"_id":"25.out","name":"25.out","size":4,"lastModified":"2022-06-17T06:00:09.400Z","etag":"38ff848be2169b6b9abdac2c98619ec5"},{"_id":"26.in","name":"26.in","size":3006,"lastModified":"2022-06-17T06:00:10.467Z","etag":"f812277930e1f724a6187209df064c05"},{"_id":"26.out","name":"26.out","size":4,"lastModified":"2022-06-17T06:00:11.220Z","etag":"27743c8e448d1abe1de61af2112866fd"},{"_id":"27.in","name":"27.in","size":3006,"lastModified":"2022-06-17T06:00:12.038Z","etag":"97374a86195c8a8db43275c56bba45f7"},{"_id":"27.out","name":"27.out","size":4,"lastModified":"2022-06-17T06:00:12.821Z","etag":"a3863d6b1cb3371f2e42096e8769b5ec"},{"_id":"28.in","name":"28.in","size":3006,"lastModified":"2022-06-17T06:00:13.593Z","etag":"af28efda99589d048d78bc21e077b02a"},{"_id":"28.out","name":"28.out","size":4,"lastModified":"2022-06-17T06:00:14.347Z","etag":"b3b5b4a77a529cf0dd604d140a29d7b9"},{"_id":"29.in","name":"29.in","size":3006,"lastModified":"2022-06-17T06:00:15.112Z","etag":"275aa140ffa949d2b09db08a2621d777"},{"_id":"29.out","name":"29.out","size":4,"lastModified":"2022-06-17T06:00:15.858Z","etag":"55a2d52784d3cd2149ab0031a73f7eb5"},{"_id":"30.in","name":"30.in","size":3006,"lastModified":"2022-06-17T06:00:18.471Z","etag":"db4261d73f90d02b89a141a69cd71c3b"},{"_id":"30.out","name":"30.out","size":4,"lastModified":"2022-06-17T06:00:19.223Z","etag":"f47bc36040d5c7db08e4b3a457dcfbb2"},{"_id":"31.in","name":"31.in","size":100008,"lastModified":"2022-06-17T06:00:20.343Z","etag":"99cca3a1078d76ed537c44b3e469826a"},{"_id":"31.out","name":"31.out","size":6,"lastModified":"2022-06-17T06:00:21.160Z","etag":"af53a4f7161a7ac750549bdbd9646c4e"},{"_id":"32.in","name":"32.in","size":100008,"lastModified":"2022-06-17T06:00:22.339Z","etag":"70677dd5f116c48f258c6005ae1bb0b6"},{"_id":"32.out","name":"32.out","size":6,"lastModified":"2022-06-17T06:00:23.084Z","etag":"daa7a5fffcba8b5ec5ca1a8de7734416"},{"_id":"33.in","name":"33.in","size":100008,"lastModified":"2022-06-17T06:00:24.310Z","etag":"62a11fe301b6e3fed99990ac8022a2a6"},{"_id":"33.out","name":"33.out","size":6,"lastModified":"2022-06-17T06:00:25.065Z","etag":"daa7a5fffcba8b5ec5ca1a8de7734416"},{"_id":"34.in","name":"34.in","size":100008,"lastModified":"2022-06-17T06:00:26.213Z","etag":"ee8ab2d9399ba3f378b4604c80c480df"},{"_id":"34.out","name":"34.out","size":6,"lastModified":"2022-06-17T06:00:26.948Z","etag":"39b91aa19cf1922917121d8ba426cd78"},{"_id":"35.in","name":"35.in","size":100008,"lastModified":"2022-06-17T06:00:28.113Z","etag":"5cd42e0e9bb05cf517cafef7728dc69f"},{"_id":"35.out","name":"35.out","size":6,"lastModified":"2022-06-17T06:00:28.886Z","etag":"bcbde11867da9a765eff733a364103ae"},{"_id":"36.in","name":"36.in","size":100008,"lastModified":"2022-06-17T06:00:30.073Z","etag":"1dcde17e316b34b84943924ecde6348f"},{"_id":"36.out","name":"36.out","size":6,"lastModified":"2022-06-17T06:00:30.866Z","etag":"92d50586054eb9f79989e8d0db32454d"},{"_id":"37.in","name":"37.in","size":100008,"lastModified":"2022-06-17T06:00:32.013Z","etag":"ee8f5c9390948a7ba193a411a2b0ac56"},{"_id":"37.out","name":"37.out","size":6,"lastModified":"2022-06-17T06:00:33.120Z","etag":"a1322c55a79e4290a70d8681353a6d60"},{"_id":"38.in","name":"38.in","size":100008,"lastModified":"2022-06-17T06:00:34.274Z","etag":"2aa10fb74d2b82a77ce4d98ced53ffb6"},{"_id":"38.out","name":"38.out","size":6,"lastModified":"2022-06-17T06:00:35.030Z","etag":"0e17524781c2a4d2fb2133a6339d95ba"},{"_id":"39.in","name":"39.in","size":100008,"lastModified":"2022-06-17T06:00:36.152Z","etag":"dad9415965fb42001764169c9cbfe9af"},{"_id":"39.out","name":"39.out","size":6,"lastModified":"2022-06-17T06:00:36.895Z","etag":"e7132703d1906d35d9beb1b63771524b"},{"_id":"40.in","name":"40.in","size":100008,"lastModified":"2022-06-17T06:00:40.015Z","etag":"cd92ecd20a443d71b293196f7521e1af"},{"_id":"40.out","name":"40.out","size":6,"lastModified":"2022-06-17T06:00:40.783Z","etag":"02ea488b5a9b7efdb39914506c4ce273"},{"_id":"41.in","name":"41.in","size":1000009,"lastModified":"2022-06-17T06:00:42.458Z","etag":"f03a55d2bbf9c1fea6b4c6e58cd35b51"},{"_id":"41.out","name":"41.out","size":7,"lastModified":"2022-06-17T06:00:43.252Z","etag":"018dbe5d5b1d13c7ebfc058b4367b508"},{"_id":"42.in","name":"42.in","size":1000009,"lastModified":"2022-06-17T06:00:45.002Z","etag":"d59336500a4ba82311e0e18aac84f3ab"},{"_id":"42.out","name":"42.out","size":7,"lastModified":"2022-06-17T06:00:45.916Z","etag":"4840b8f3a114710619d3e7ba820d41e7"},{"_id":"43.in","name":"43.in","size":1000009,"lastModified":"2022-06-17T06:00:47.673Z","etag":"51fcfe874e9aa56596f7008c76707866"},{"_id":"43.out","name":"43.out","size":7,"lastModified":"2022-06-17T06:00:48.435Z","etag":"5597a824285b1d8bef8b7eea01a5d8a2"},{"_id":"44.in","name":"44.in","size":1000009,"lastModified":"2022-06-17T06:00:50.327Z","etag":"68c3521d0b38b36b4b744a10f00aa18e"},{"_id":"44.out","name":"44.out","size":7,"lastModified":"2022-06-17T06:00:51.096Z","etag":"0173dcae8a05b75980975b98e8dd4c14"},{"_id":"45.in","name":"45.in","size":1000009,"lastModified":"2022-06-17T06:00:52.783Z","etag":"ea14727aad4521d3ffa63a50d1efea09"},{"_id":"45.out","name":"45.out","size":7,"lastModified":"2022-06-17T06:00:53.659Z","etag":"bf0bf6cff41a22e9d68aa829ffcdb1f6"},{"_id":"46.in","name":"46.in","size":1000009,"lastModified":"2022-06-17T06:00:55.392Z","etag":"54d284b7dfb1345919a549b7334a9a20"},{"_id":"46.out","name":"46.out","size":7,"lastModified":"2022-06-17T06:00:56.149Z","etag":"7d889f2a883166bd9c8ded9c572b0a2a"},{"_id":"47.in","name":"47.in","size":1000009,"lastModified":"2022-06-17T06:00:57.863Z","etag":"8f8a0c0f5f1edccdf5d431144e65467b"},{"_id":"47.out","name":"47.out","size":7,"lastModified":"2022-06-17T06:00:58.646Z","etag":"6472f0ba635bf54f187479342589523c"},{"_id":"48.in","name":"48.in","size":1000009,"lastModified":"2022-06-17T06:01:00.305Z","etag":"27ade654325ba3122ef4440a4f4dd32d"},{"_id":"48.out","name":"48.out","size":7,"lastModified":"2022-06-17T06:01:01.083Z","etag":"b1a8f17a27b1115eb4327ccc8b9f65cc"},{"_id":"49.in","name":"49.in","size":1000009,"lastModified":"2022-06-17T06:01:02.824Z","etag":"715da8dfdfe4bae29906c2675daeb75f"},{"_id":"49.out","name":"49.out","size":7,"lastModified":"2022-06-17T06:01:03.562Z","etag":"02b7fa325842d53756434c2976398f9a"},{"_id":"config.yaml","name":"config.yaml","size":2374,"lastModified":"2022-06-17T05:59:40.050Z","etag":"1a33ad9df8f636aa9e29a55f2a169db5"},{"_id":"50.in","name":"50.in","size":1000009,"lastModified":"2022-06-17T06:01:06.754Z","etag":"b95547c0042032d810db44786d025a73"},{"_id":"50.out","name":"50.out","size":7,"lastModified":"2022-06-17T06:01:07.518Z","etag":"1e0c61f366cd0b65d40bf9db8f82c891"}],"config":{"count":0,"memoryMin":256,"memoryMax":256,"timeMin":3000,"timeMax":3000,"type":"default","langs":["cc","cc.std98","cc.std11","cc.std14","py","py.py3"]},"assign":[],"stats":{"AC":1,"WA":5,"TLE":0,"MLE":0,"RE":0,"SE":0,"IGN":0,"CE":0,"s0":1,"s20":2,"s30":2,"s100":1}},"canViewRecord":true,"postSubmitUrl":"/d/training/p/1440/submit","getSubmissionsUrl":"/d/training/record?fullStatus=true&pid=1440","getRecordDetailUrl":"/d/training/record/{rid}","pretestConnUrl":"/record-conn?pretest=1&uidOrName=71&pid=1440&domainId=training"}';
+      var UserContext = '{"_id":71,"mail":"7745825@hetao101.com.cn","uname":"hetao7745825","hashType":"hydro","priv":17367108,"regat":"2021-07-17T07:41:48.744Z","loginat":"2022-09-09T21:56:08.996Z","perm":"BigInt::10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652629951852052000506561","scope":"BigInt::-1","role":"default","tfa":false,"group":["71","71"],"viewLang":"en","timeZone":"America/New_York","codeLang":"cc.std11","codeTemplate":"","avatar":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128","qq":"","gender":"2","bio":"\u539F\u795E1.0 OG UID: 605032876","backgroundImage":"/components/profile/backgrounds/1.jpg","unreadMsg":0,"fontFamily":"Open Sans","codeFontFamily":"Source Code Pro","preferredEditorType":"monaco","monacoTheme":"vs-dark","theme":"light","showInvisibleChar":false,"formatCode":true,"nAccept":232,"nSubmit":256,"rp":274.68981576224417,"rpInfo":{"problem":248.83044076224417,"contest":25.859375},"rank":1,"level":10,"avatarUrl":"//cn.gravatar.com/avatar/79fa6ff0bf508ac1af6686d3e94d924c?d=mm&s=128"}';
+    </script>
+    <script type="text/javascript" src="/l/en"></script>
+          <script src="/default.theme.js?version=4.38.3"></script>
+              <script type="text/javascript" src="/hydro-4.38.3.js"></script>
+            </body>
+</html>

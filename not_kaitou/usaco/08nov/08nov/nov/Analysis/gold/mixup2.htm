@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://ace.delos.com/TESTDATA/NOV08.mixup2.htm -->
+<HTML><HEAD><TITLE>USACO NOV08 mixup2 Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Verdana,Tahoma,sans-serif,Arial,Lucida
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1615" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="mixup2.files/cow1.jpg" width=742></CENTER>
+<H2>USACO NOV08 Problem 'mixup2' Analysis</H2>
+<H4>by Spencer Liang</H4>
+<P>This problem is solved with dynamic programming. The state space is (T, i) 
+where T is a set of cows and i is the index of a cow in T. Let f(T, i) represent 
+the number of "Mixed Up" sequences using the cows in T such that the last cow in 
+every sequence is i. Then f(T, i) equals the sum of f(T-i, k) over all k such 
+that k is in T-i and |S[k]-S[i]| &gt; K. This follows from the observation that 
+the only restrictions on the index of the final cow in a "Mixed Up" sequence 
+come from the index of the second-to-last cow in the sequence. </P>
+<P>To implement this algorithm, use a bitmask b of length N to represent T: the 
+i-th bit of b is set if and only if the cow with index i is in T. Then testing 
+to see if cow i is in T is equivalent to testing if (b&amp;(1&lt;&lt;i) == 1), 
+and adding cow i to T is equivalent to (b = b|(1&lt;&lt;i)). There are 
+O(2<SUP>N</SUP>N) states, each taking O(N) time to solve, for a total running 
+time of O(2<SUP>N</SUP>N<SUP>2</SUP>). </P><PRE>/*
+LANG: C++
+*/
+
+#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#define MAX 16
+using namespace std;
+#define REP(i,n) for(int i=0;i&lt;n;i++)
+typedef long long LL;
+
+int S[MAX];
+LL ways[1&lt;&lt;MAX][MAX];
+
+int main() {
+    FILE *fin = fopen("mixup2.in", "r"), *fout = fopen("mixup2.out", "w");
+    int N, K; fscanf(fin, "%d %d", &amp;N, &amp;K);
+    REP(i, N) fscanf(fin, "%d", &amp;S[i]);
+    REP(last, N) ways[1&lt;&lt;last][last] = 1;
+
+    REP(mask, 1&lt;&lt;N) REP(last, N) if (mask&amp;(1&lt;&lt;last))
+        REP(next, N) if ((mask&amp;(1&lt;&lt;next)) == 0 &amp;&amp; abs(S[next]-S[last]) &gt; K)
+            ways[mask|(1&lt;&lt;next)][next] += ways[mask][last];
+
+    LL res = 0; REP(last, N) res += ways[(1&lt;&lt;N)-1][last];
+    fprintf(fout, "%lld\n", res);
+    return 0;
+}
+</PRE></BODY></HTML>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://ace.delos.com/TESTDATA/FEB08.racing.htm -->
+<HTML><HEAD><TITLE>USACO FEB08 racing Analysis</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff>
+<CENTER><IMG height=118 src="racing.files/cow1.jpg" width=742></CENTER>
+<H2>USACO FEB08 Problem 'racing' Analysis</H2>
+<H4>by Rob Kolstad</H4>
+<P>This problem uses a straightforward, almost greed, algorithm to determine the 
+furthest Bessie can run from her starting point. The insight is to notice that 
+any path she runs one way will be run again when she returns. Thus, we must only 
+count through paths until we are "too far" and then report an answer that is 
+just a bit less than "too far". 
+<P>My solution is pretty simple -- it reads through the data and calculates how 
+long it takes to traverse a segment both ways. When that segment's time causes 
+the total to go over the limit, then the proper number of segments is reported. <PRE>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+main () {
+    FILE *fin = fopen ("racing.in", "r");
+    FILE *fout = fopen ("racing.out", "w");
+    int m, t, u, f, d, thistime, totaltime, i;
+    char line[80];
+    fscanf (fin, "%d %d %d %d %d", &amp;m, &amp;t, &amp;u, &amp;f, &amp;d);
+    totaltime = 0;
+    for (i = 0; i &lt; t; i++) {
+        fscanf (fin, "%s", line);
+        if (line[0] == 'u' || line[0] == 'd') thistime = u+d;
+        if (line[0] == 'f') thistime = f+f;
+        if (totaltime + thistime &gt; m) {
+            fprintf (fout, "%d\n", i);
+            exit (0);
+        }
+        totaltime += thistime;
+    }
+    fprintf (fout, "%d\n", i);
+    exit (0);
+}
+</PRE>
+<P>The code of Contest Director Christos is even shorter and uses compact coding 
+to achieve the same results: <PRE>#include&lt;cstdio&gt;
+
+int M, T, U, F, D, A;
+
+int main() {
+    char c;
+    FILE *fin = fopen("racing.in", "r");
+    FILE *fout = fopen("racing.out", "w");
+    fscanf(fin,"%d %d %d %d %d",&amp;M, &amp;T, &amp;U, &amp;F, &amp;D);
+    for(A=0;A&lt;T;A++) {
+        fscanf(fin," %c ",&amp;c);
+        if(c=='f') M-=2*F;
+        else M-=U+D;
+        if(M&lt;0) break;
+    }
+    fprintf(fout,"%d\n",A);
+    return 0;
+}
+</PRE></BODY></HTML>

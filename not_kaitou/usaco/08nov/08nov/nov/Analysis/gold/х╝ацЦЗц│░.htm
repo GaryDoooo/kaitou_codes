@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<div class="post hentry">
+  <a name="1590090765677669995"></a>
+  <h3 class="post-title entry-title"><a href="http://rchardx.blogspot.com/2008/11/usaconov08.html">[USACO]NOV08简单题解</a></h3>
+  <div class="post-header-line-1">
+  </div>
+  <div class="post-body entry-content">
+    这一次的比赛是4道题目，但是只需要选择3道作一下，最后选择3道得分最高的计算总分。我考得不算太好，由于第一题没有交，再加上最后一题只有120分，所以最后的分数只有720分。看到吴翼980分高高在上，也只能羡慕了（有我翻译题目的功劳）。<br>
+    <br>
+    <ol>
+      <li>Mixed Up Cows：不用多说，是一个简单的递推。
+      <li>Cheering up the Cows：是一个最小生成树。模型不太容易看出来，因为题目中设置了许多障碍来使题面复杂化。主要就是一个点的权值如何处理。因为如果找到了一棵生成树，显然每一条边都要走过两边，正好是一个欧拉回路。这时候，一个很重要的发现就是，如果一个点的度是n，那么这个点必然会被走过n次（出发的那个点出外，因为它会多一次）。因此，只需要将每一个点的权值加到相邻的边上去，题目就变成了一个简单的最小生成树，使用Kruskal可以轻松解决。
+      <li>Light Switching：<span style="FONT-FAMILY: monospace">简单的</span>线段树，没什么好说的。
+      <li>Toys：贪心加三分。由于数据范围过大，所以原本的贪心算法必须与三分相结合。吴翼用了三分，结果还超时一个点。贪心的思想就是从小到大枚举需要买的餐巾的数量，然后再尽可能的在一开始就全部买完。确定了每天需要买的餐巾数之后，再尽量送到便宜的地方去消毒就可以了。下面是没有三分的代码：<br>
+        <pre><tt><i><span style="COLOR: rgb(154,25,0)">{</span></i>
+<i><span style="COLOR: rgb(154,25,0)">PROG: toy</span></i>
+<i><span style="COLOR: rgb(154,25,0)">LANG: PASCAL</span></i>
+<i><span style="COLOR: rgb(154,25,0)">ID: zhang-h1</span></i>
+<i><span style="COLOR: rgb(154,25,0)">}</span></i>
+<span style="COLOR: rgb(153,0,0)">//</span>Greedy Method
+<b><span style="COLOR: rgb(0,0,255)">const</span></b>
+  MAXN <span style="COLOR: rgb(153,0,0)">=</span> <span style="COLOR: rgb(153,51,153)">100000</span><span style="COLOR: rgb(153,0,0)">+</span><span style="COLOR: rgb(153,51,153)">5</span><span style="COLOR: rgb(153,0,0)">;</span>
+<b><span style="COLOR: rgb(0,0,255)">type</span></b>
+  arr_t <span style="COLOR: rgb(153,0,0)">=</span> <b><span style="COLOR: rgb(0,0,255)">array</span></b><span style="COLOR: rgb(153,0,0)">[-</span>MAXN<span style="COLOR: rgb(153,0,0)">..</span>MAXN<span style="COLOR: rgb(153,0,0)">]</span> <b><span style="COLOR: rgb(0,0,255)">of</span></b> longint<span style="COLOR: rgb(153,0,0)">;</span>
+<b><span style="COLOR: rgb(0,0,255)">var</span></b>
+  i<span style="COLOR: rgb(153,0,0)">,</span>j<span style="COLOR: rgb(153,0,0)">,</span>all<span style="COLOR: rgb(153,0,0)">,</span>m<span style="COLOR: rgb(153,0,0)">,</span>n<span style="COLOR: rgb(153,0,0)">,</span>p<span style="COLOR: rgb(153,0,0)">,</span>f<span style="COLOR: rgb(153,0,0)">,</span>s <span style="COLOR: rgb(153,0,0)">:</span> longint<span style="COLOR: rgb(153,0,0)">;</span>
+  sum<span style="COLOR: rgb(153,0,0)">,</span>cost<span style="COLOR: rgb(153,0,0)">,</span>tmp<span style="COLOR: rgb(153,0,0)">,</span>slow<span style="COLOR: rgb(153,0,0)">,</span>fast<span style="COLOR: rgb(153,0,0)">,</span>ans <span style="COLOR: rgb(153,0,0)">:</span> longint<span style="COLOR: rgb(153,0,0)">;</span>
+  need<span style="COLOR: rgb(153,0,0)">,</span>fslow<span style="COLOR: rgb(153,0,0)">,</span>ffast<span style="COLOR: rgb(153,0,0)">,</span>buy<span style="COLOR: rgb(153,0,0)">,</span>bak <span style="COLOR: rgb(153,0,0)">:</span> arr_t<span style="COLOR: rgb(153,0,0)">;</span>
+  finish <span style="COLOR: rgb(153,0,0)">:</span> <span style="COLOR: rgb(0,153,0)">boolean</span><span style="COLOR: rgb(153,0,0)">;</span>
+<b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+  <b><span style="COLOR: rgb(0,0,0)">assign</span></b><span style="COLOR: rgb(153,0,0)">(</span>input<span style="COLOR: rgb(153,0,0)">,</span><span style="COLOR: rgb(255,0,0)">'toy.in'</span><span style="COLOR: rgb(153,0,0)">);</span> <b><span style="COLOR: rgb(0,0,255)">reset</span></b><span style="COLOR: rgb(153,0,0)">(</span>input<span style="COLOR: rgb(153,0,0)">);</span>
+  <b><span style="COLOR: rgb(0,0,0)">assign</span></b><span style="COLOR: rgb(153,0,0)">(</span>output<span style="COLOR: rgb(153,0,0)">,</span><span style="COLOR: rgb(255,0,0)">'toy.out'</span><span style="COLOR: rgb(153,0,0)">);</span> <b><span style="COLOR: rgb(0,0,255)">rewrite</span></b><span style="COLOR: rgb(153,0,0)">(</span>output<span style="COLOR: rgb(153,0,0)">);</span>
+  <b><span style="COLOR: rgb(0,0,255)">readln</span></b><span style="COLOR: rgb(153,0,0)">(</span>all<span style="COLOR: rgb(153,0,0)">,</span>m<span style="COLOR: rgb(153,0,0)">,</span>n<span style="COLOR: rgb(153,0,0)">,</span>f<span style="COLOR: rgb(153,0,0)">,</span>s<span style="COLOR: rgb(153,0,0)">,</span>p<span style="COLOR: rgb(153,0,0)">);</span>
+  <b><span style="COLOR: rgb(0,0,255)">if</span></b> <span style="COLOR: rgb(153,0,0)">(</span>m<span style="COLOR: rgb(153,0,0)">&gt;</span>n<span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b>
+    <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+      j <span style="COLOR: rgb(153,0,0)">:=</span> m<span style="COLOR: rgb(153,0,0)">;</span> m <span style="COLOR: rgb(153,0,0)">:=</span> n<span style="COLOR: rgb(153,0,0)">;</span> n <span style="COLOR: rgb(153,0,0)">:=</span> j<span style="COLOR: rgb(153,0,0)">;</span>
+      j <span style="COLOR: rgb(153,0,0)">:=</span> f<span style="COLOR: rgb(153,0,0)">;</span> f <span style="COLOR: rgb(153,0,0)">:=</span> s<span style="COLOR: rgb(153,0,0)">;</span> s <span style="COLOR: rgb(153,0,0)">:=</span> j<span style="COLOR: rgb(153,0,0)">;</span>
+    <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+  <b><span style="COLOR: rgb(0,0,0)">fillchar</span></b><span style="COLOR: rgb(153,0,0)">(</span>need<span style="COLOR: rgb(153,0,0)">,</span><b><span style="COLOR: rgb(0,0,0)">sizeof</span></b><span style="COLOR: rgb(153,0,0)">(</span>need<span style="COLOR: rgb(153,0,0)">),</span><span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">);</span>
+  sum <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">;</span>
+  <b><span style="COLOR: rgb(0,0,255)">for</span></b> i <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">1</span> <b><span style="COLOR: rgb(0,0,255)">to</span></b> all <b><span style="COLOR: rgb(0,0,255)">do</span></b>
+    <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+      <b><span style="COLOR: rgb(0,0,255)">readln</span></b><span style="COLOR: rgb(153,0,0)">(</span>need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]);</span>
+      <b><span style="COLOR: rgb(0,0,0)">inc</span></b><span style="COLOR: rgb(153,0,0)">(</span>sum<span style="COLOR: rgb(153,0,0)">,</span>need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]);</span>
+    <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+  ans <span style="COLOR: rgb(153,0,0)">:=</span> maxlongint<span style="COLOR: rgb(153,0,0)">;</span>
+  finish <span style="COLOR: rgb(153,0,0)">:=</span> <b><span style="COLOR: rgb(0,0,255)">true</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+  <b><span style="COLOR: rgb(0,0,255)">while</span></b> finish <b><span style="COLOR: rgb(0,0,255)">do</span></b>
+    <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+      tmp <span style="COLOR: rgb(153,0,0)">:=</span> sum<span style="COLOR: rgb(153,0,0)">;</span>
+      cost <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">;</span>
+      <b><span style="COLOR: rgb(0,0,255)">for</span></b> i <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">1</span> <b><span style="COLOR: rgb(0,0,255)">to</span></b> all <b><span style="COLOR: rgb(0,0,255)">do</span></b>
+        <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+          <b><span style="COLOR: rgb(0,0,255)">if</span></b> <span style="COLOR: rgb(153,0,0)">(</span>tmp<span style="COLOR: rgb(153,0,0)">&gt;</span>need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">])</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b> buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span>
+          <b><span style="COLOR: rgb(0,0,255)">else</span></b> buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> tmp<span style="COLOR: rgb(153,0,0)">;</span>
+          <b><span style="COLOR: rgb(0,0,0)">inc</span></b><span style="COLOR: rgb(153,0,0)">(</span>cost<span style="COLOR: rgb(153,0,0)">,</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]*</span>p<span style="COLOR: rgb(153,0,0)">);</span>
+          <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>tmp<span style="COLOR: rgb(153,0,0)">,</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]);</span>
+        <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+      <b><span style="COLOR: rgb(0,0,0)">fillchar</span></b><span style="COLOR: rgb(153,0,0)">(</span>fslow<span style="COLOR: rgb(153,0,0)">,</span><b><span style="COLOR: rgb(0,0,0)">sizeof</span></b><span style="COLOR: rgb(153,0,0)">(</span>fslow<span style="COLOR: rgb(153,0,0)">),</span><span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">);</span>
+      <b><span style="COLOR: rgb(0,0,0)">fillchar</span></b><span style="COLOR: rgb(153,0,0)">(</span>ffast<span style="COLOR: rgb(153,0,0)">,</span><b><span style="COLOR: rgb(0,0,0)">sizeof</span></b><span style="COLOR: rgb(153,0,0)">(</span>ffast<span style="COLOR: rgb(153,0,0)">),</span><span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">);</span>
+      slow <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">;</span> bak <span style="COLOR: rgb(153,0,0)">:=</span> need<span style="COLOR: rgb(153,0,0)">;</span>
+      <b><span style="COLOR: rgb(0,0,255)">for</span></b> i <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">1</span> <b><span style="COLOR: rgb(0,0,255)">to</span></b> all <b><span style="COLOR: rgb(0,0,255)">do</span></b>
+        <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+          <b><span style="COLOR: rgb(0,0,0)">inc</span></b><span style="COLOR: rgb(153,0,0)">(</span>slow<span style="COLOR: rgb(153,0,0)">,</span>bak<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">-</span>n<span style="COLOR: rgb(153,0,0)">]);</span>
+          <b><span style="COLOR: rgb(0,0,255)">if</span></b> need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]&gt;</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b>
+            <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+              <b><span style="COLOR: rgb(0,0,255)">if</span></b> <span style="COLOR: rgb(153,0,0)">(</span>slow<span style="COLOR: rgb(153,0,0)">&gt;</span>need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]-</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">])</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b> fslow<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]-</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span>
+              <b><span style="COLOR: rgb(0,0,255)">else</span></b> fslow<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> slow<span style="COLOR: rgb(153,0,0)">;</span>
+              <b><span style="COLOR: rgb(0,0,0)">inc</span></b><span style="COLOR: rgb(153,0,0)">(</span>cost<span style="COLOR: rgb(153,0,0)">,</span>fslow<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]*</span>s<span style="COLOR: rgb(153,0,0)">);</span>
+              <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>slow<span style="COLOR: rgb(153,0,0)">,</span>fslow<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]);</span>
+              j <span style="COLOR: rgb(153,0,0)">:=</span> i<span style="COLOR: rgb(153,0,0)">-</span>m<span style="COLOR: rgb(153,0,0)">;</span>
+              fast <span style="COLOR: rgb(153,0,0)">:=</span> need<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]-</span>buy<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]-</span>fslow<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">];</span>
+              ffast<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> fast<span style="COLOR: rgb(153,0,0)">;</span>
+              <b><span style="COLOR: rgb(0,0,0)">inc</span></b><span style="COLOR: rgb(153,0,0)">(</span>cost<span style="COLOR: rgb(153,0,0)">,</span>ffast<span style="COLOR: rgb(153,0,0)">[</span>i<span style="COLOR: rgb(153,0,0)">]*</span>f<span style="COLOR: rgb(153,0,0)">);</span>
+              <b><span style="COLOR: rgb(0,0,255)">while</span></b> <span style="COLOR: rgb(153,0,0)">(</span>j<span style="COLOR: rgb(153,0,0)">&gt;</span>i<span style="COLOR: rgb(153,0,0)">-</span>n<span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">and</span></b> <span style="COLOR: rgb(153,0,0)">(</span>fast<span style="COLOR: rgb(153,0,0)">&gt;</span><span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">do</span></b>
+                <b><span style="COLOR: rgb(0,0,255)">if</span></b> <span style="COLOR: rgb(153,0,0)">(</span>bak<span style="COLOR: rgb(153,0,0)">[</span>j<span style="COLOR: rgb(153,0,0)">]&gt;=</span>fast<span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b> <b><span style="COLOR: rgb(0,0,255)">begin</span></b> <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>bak<span style="COLOR: rgb(153,0,0)">[</span>j<span style="COLOR: rgb(153,0,0)">],</span>fast<span style="COLOR: rgb(153,0,0)">);</span> fast <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">;</span> <b><span style="COLOR: rgb(0,0,255)">end</span></b>
+                <b><span style="COLOR: rgb(0,0,255)">else</span></b> <b><span style="COLOR: rgb(0,0,255)">begin</span></b> <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>fast<span style="COLOR: rgb(153,0,0)">,</span>bak<span style="COLOR: rgb(153,0,0)">[</span>j<span style="COLOR: rgb(153,0,0)">]);</span> bak<span style="COLOR: rgb(153,0,0)">[</span>j<span style="COLOR: rgb(153,0,0)">]</span> <span style="COLOR: rgb(153,0,0)">:=</span> <span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">;</span> <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>j<span style="COLOR: rgb(153,0,0)">);</span> <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+              <b><span style="COLOR: rgb(0,0,255)">if</span></b> <span style="COLOR: rgb(153,0,0)">(</span>j<span style="COLOR: rgb(153,0,0)">&lt;=</span>i<span style="COLOR: rgb(153,0,0)">-</span>n<span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">and</span></b> <span style="COLOR: rgb(153,0,0)">(</span>fast<span style="COLOR: rgb(153,0,0)">&gt;</span><span style="COLOR: rgb(153,51,153)">0</span><span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b>
+                <b><span style="COLOR: rgb(0,0,255)">begin</span></b>
+                  finish <span style="COLOR: rgb(153,0,0)">:=</span> <b><span style="COLOR: rgb(0,0,255)">false</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+                  break<span style="COLOR: rgb(153,0,0)">;</span>
+                <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+            <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+        <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+      <b><span style="COLOR: rgb(0,0,255)">if</span></b> finish <b><span style="COLOR: rgb(0,0,255)">and</span></b> <span style="COLOR: rgb(153,0,0)">(</span>cost<span style="COLOR: rgb(153,0,0)">&lt;</span>ans<span style="COLOR: rgb(153,0,0)">)</span> <b><span style="COLOR: rgb(0,0,255)">then</span></b> ans<span style="COLOR: rgb(153,0,0)">:=</span>cost<span style="COLOR: rgb(153,0,0)">;</span>
+      <b><span style="COLOR: rgb(0,0,0)">dec</span></b><span style="COLOR: rgb(153,0,0)">(</span>sum<span style="COLOR: rgb(153,0,0)">);</span>
+    <b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">;</span>
+  <b><span style="COLOR: rgb(0,0,255)">writeln</span></b><span style="COLOR: rgb(153,0,0)">(</span>ans<span style="COLOR: rgb(153,0,0)">);</span>
+  <b><span style="COLOR: rgb(0,0,0)">close</span></b><span style="COLOR: rgb(153,0,0)">(</span>input<span style="COLOR: rgb(153,0,0)">);</span> <b><span style="COLOR: rgb(0,0,0)">close</span></b><span style="COLOR: rgb(153,0,0)">(</span>output<span style="COLOR: rgb(153,0,0)">);</span>
+<b><span style="COLOR: rgb(0,0,255)">end</span></b><span style="COLOR: rgb(153,0,0)">.</span>
+</tt></pre>
+      </li>
+    </ol>
+    <div style="CLEAR: both">
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

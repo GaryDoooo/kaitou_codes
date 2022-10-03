@@ -1,0 +1,104 @@
+<html>
+<head> <title>USACO OPEN11 cornmaze Analysis</title> 
+<style type="text/css">
+body       {
+	     font-family:Verdana,Helvetica,Tahoma,sans-serif,Arial,Lucida;
+	   }
+</style>
+</head>
+<body bgcolor=#FFFFFF>
+<center><img src='/usaco/cow1.jpg' width='742' height='118'></center>
+<h2>USACO OPEN11 Problem 'cornmaze' Analysis</h2>
+<h4>by Amlesh Jayakumar</h4>
+<p>This problem is merely a path finding exercise. One must find the shortest 
+path from '@' to '='. You could use the standard BFS (Breadth First Search) 
+algorithm for accomplishing this task:</p>
+<pre>
+1) Start at '@' (push it into your BFS queue and set the distance at '@' to 0)
+2) Pop the next state 'S' from your queue, and mark it visited (your state is: 
+(x-position, y-position))
+3) Push all of the neighbor states of S that are valid (i.e. not a wall) and
+haven't been visited into your BFS queue (Make sure to update your distance 
+matrix when pushing in the new states).
+4) Repeat steps 2) and 3) until your BFS queue is empty
+5) Read the number in this distance matrix at the point '=' for your answer
+</pre>
+<p>However, we must also take the teleporter slides into account. Whenever 
+see a teleporter slide, we immediately push in its
+counterpart (i.e. its 'exit') into our queue iff it hasn't been visited before. 
+Since a cow is forced to go on a slide, we do not push on the position of the 
+entrance. </p>
+ 
+<p>Below is my code illustrating the modified BFS:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;queue&gt;
+using namespace std;
+int N, M, dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
+char grid[1100][1100];
+bool vis[1100][1100];
+pair&lt;int, int&gt; start, teleport, portal[100][2];
+queue&lt;pair&lt;pair&lt;int, int&gt;, int&gt; &gt; Q;
+main()
+{
+    freopen("cornmaze.in", "r", stdin);
+    freopen("cornmaze.out", "w", stdout);
+    cin &gt;&gt; N &gt;&gt; M;
+    for (int i = 0; i &lt; N; i++)
+    {
+        for (int j = 0; j &lt; M; j++)
+        {
+            cin &gt;&gt; grid[i][j];
+            if (grid[i][j] == '@') start = make_pair(i, j);
+            else if (grid[i][j] &gt;= 'A' && grid[i][j] &lt;= 'Z')
+            // store both ends of the teleporter slides
+            {
+                if (portal[grid[i][j]-'A'][0] == make_pair(0, 0))
+                    portal[grid[i][j]-'A'][0] = make_pair(i, j);
+                else portal[grid[i][j]-'A'][1] = make_pair(i, j);
+            }
+        }
+    }
+    Q.push(make_pair(start, 0));
+    while (!Q.empty())
+    {
+        int currx = Q.front().first.first curry = Q.front().first.second;
+        int currd = Q.front().second;
+        Q.pop();
+        if (grid[currx][curry] == '=')
+        {
+            cout &lt;&lt; currd &lt;&lt; endl; // exit reached
+            break;
+        }
+        for (int i = 0; i &lt; 4; i++)
+        {
+            int nx = currx+dx[i], ny = curry+dy[i];
+            if ((grid[nx][ny]=='.'||grid[nx][ny]=='=')&&!vis[nx][ny])
+            {
+                Q.push(make_pair(make_pair(nx, ny), currd+1));
+                vis[nx][ny]++;
+            }
+            else if (grid[nx][ny]&gt;='A' && grid[nx][ny]&lt;='Z')
+            // if we stepped on a teleporter slide
+            {
+                if (portal[grid[nx][ny]-'A'][0] == make_pair(nx, ny))
+                    teleport = portal[grid[nx][ny]-'A'][1];
+                else teleport = portal[grid[nx][ny]-'A'][0];
+                if (!vis[teleport.first][teleport.second])
+                // if the other end of the slide hasn't been visited
+                {
+                    Q.push(make_pair(teleport, currd+1));
+                    // push the other end into our search queue
+                    vis[teleport.first][teleport.second]++;
+                }
+            }
+        }
+    }
+}
+</pre>
+
+
+
+
+
