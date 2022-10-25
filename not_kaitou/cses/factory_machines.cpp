@@ -3,8 +3,9 @@
 using namespace std;
 ll n, t, k[212345];
 bool work(ll time) {
-    ll cnt = 0;
+    __int128 cnt = 0;
     for (int i = 0; i < n; i++) cnt += time / k[i];
+    // cout << cnt << endl;
     return cnt >= t;
 }
 int main() {
