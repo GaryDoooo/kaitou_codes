@@ -1,0 +1,8 @@
+[01m[Kinvestigation.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[Kinvestigation.cpp:23:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+   23 |     [01;35m[Kscanf("%d%d", &n, &m)[m[K;
+      |     [01;35m[K~~~~~^~~~~~~~~~~~~~~~[m[K
+[01m[Kinvestigation.cpp:25:14:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+   25 |         [01;35m[Kscanf("%d%d%d", &u, &v, &w)[m[K;
+      |         [01;35m[K~~~~~^~~~~~~~~~~~~~~~~~~~~~[m[K
+Compiled successfully.

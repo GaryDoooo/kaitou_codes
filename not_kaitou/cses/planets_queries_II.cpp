@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define N 200001
+<<<<<<< HEAD
 int n, m, u, v, p[N], q[N], head = 1, tail;
 int nxt[N];    // next node that the last node pointing to
 int premt[N];  // Premeter of a cycle. how many nodes on one cycle.
@@ -76,3 +77,10 @@ int main() {
             printf("%d\n", res);
     }
 }
+=======
+int n, m, u, v, p[N];
+struct node {
+    int in, on_cycle, order, seq;
+} a[N];
+
+>>>>>>> 022aeae43d5707dea3056ee38d0d5d421106e4d8
