@@ -6,7 +6,7 @@ const int mod = 1e9 + 7;
 int n, m, u, v, e[M * 2], h[N], c, d[N];
 
 int dp(int u) {
-    if (d[u] > 0) return d[u];
+    if (d[u] >= 0) return d[u];
     int &res = d[u];
     res      = 0;
     for (int i = h[u]; i; i = e[i]) res = (res + dp(e[i--])) % mod;

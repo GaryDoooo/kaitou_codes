@@ -14,6 +14,7 @@ int path_tail[505];      // pointer to the step chain idx node #
 int n, m;
 vector<int> ee[505];  // edge idx from one node idx is node #
 int vis_e_cur[1005];  // if the edge is visisted in this round
+int start_node_order[505];
 // int vis_node_cur_path[505];  // if the node is visited in this path before
 
 void mark_new_path(int prev_edge) {
@@ -22,8 +23,21 @@ void mark_new_path(int prev_edge) {
     for (int i = 1; i <= m; i++)
         if (e[i].start_node == start_node) e[i].start_node = 0;
     // clean all the old marks
-    for (int i = prev_edge; i; i = e[i].fa)
+    for (int i = prev_edge; i; vis_e_cur[i] = 1, i = e[i].fa)
         e[i].start_node = start_node;  // trace the new path mark
+}
+
+int found_path(const int prev_edge, const int start_ee_i);
+
+int trace_back(int edge_idx) {
+    for (int ei = edge_idx; ei; ei = e[ei].fa)
+        if (found_path(e[ei].fa,  // Go back one step at this old path
+                       0
+                       // e[ei].ee_i + 1  // start trying from the next edge on
+                       // the node
+                       ))
+            return 1;
+    return 0;
 }
 
 int found_path(const int prev_edge, const int start_ee_i) {
@@ -39,29 +53,33 @@ int found_path(const int prev_edge, const int start_ee_i) {
     vis_node_cur_path[1] =
         1;  // Get all the previous nodes on the path to prevent loops
             //
-    for (int i = start_ee_i; i < ee[cur_node].size(); i++) {
-        int ei = ee[cur_node][i];
+    queue<int> q;
+    for (int i = start_ee_i; i < ee[cur_node].size(); i++)
+        if (e[ee[cur_node][i]].start_node == 0) q.push(ee[cur_node][i]);
+
+    for (int i = start_ee_i; i < ee[cur_node].size(); i++)
+        if (e[ee[cur_node][i]].start_node > 0) q.push(ee[cur_node][i]);
+
+    while (!q.empty()) {
+        int ei = q.front();
+        q.pop();
         if (vis_e_cur[ei]) continue;
         if (vis_node_cur_path[e[ei].v]) continue;
-        // if (e[ei].start_node > start_node)
-        // continue;  // if the edge belongs to future paths
+        if (start_node_order[e[ei].start_node] > start_node_order[start_node])
+            continue;  // if the edge belongs to future paths
         vis_e_cur[ei] = 1;
         if (e[ei].start_node == start_node) {
             e[ei].fa = prev_edge;
-            mark_new_path(
-                path_tail[start_node]);  // the new path connected to old tails
+            mark_new_path(path_tail[start_node]);  // the new path connected
+                                                   // to old tails
             return 1;
         }
         // Here the e[ei]'s start node must less than current start node,
         // It's previous paths
-        if (e[ei].start_node > 0 and
-            e[ei].start_node !=
-                start_node)  // The edge is not free, but on an old path
-            if (found_path(e[ei].fa,  // Go back one step at this old path
-                           e[ei].ee_i +
-                               1  // start trying from the next edge on the node
-                           ) == 0)
-                continue;  //
+        if (e[ei].start_node > 0) {  // The edge is not free, but on an old path
+            // cout << "trace back " << e[ei].start_node << endl;
+            if (!trace_back(ei)) continue;  //
+        }
         // Up to here the edge is free to be added to current path
         e[ei].start_node = start_node;
         e[ei].fa         = prev_edge;
@@ -79,10 +97,12 @@ int main() {
     }
     for (int i = 0; i < ee[1].size(); i++)
         path_start.push_back(e[ee[1][i]].v);  // all the nodes connected to 1
-    int path_cnt = 0;
+    int path_cnt = 0, order_cnt = 0;
     sort(path_start.begin(),
          path_start.end());  // only changes the paths smaller than current
     for (int start_node : path_start) {
+        start_node_order[start_node] = ++order_cnt;
+        // cout << start_node << endl;
         // memset(vis_node_cur_path, 0, sizeof(vis_node_cur_path));
         memset(vis_e_cur, 0, sizeof(vis_e_cur));
         int prev_edge = 0;
