@@ -1,0 +1,615 @@
+   CSES
+   doooom — Dark mode Log out
+
+CSES Problem Set
+
+Distinct Routes
+
+     * Task
+     * Submit
+     * Results
+     * Statistics
+
+   CAPTION: Submission details
+
+   Task:            Distinct Routes
+   Sender:          doooom
+   Submission time: 2024-03-08 20:26:49 +0200
+   Language:        C++
+   Status:          READY
+   Result:          WRONG ANSWER
+
+   CAPTION: Test results
+
+   test   verdict     time
+   #1   ACCEPTED     0.00 s details
+   #2   ACCEPTED     0.00 s details
+   #3   ACCEPTED     0.01 s details
+   #4   ACCEPTED     0.00 s details
+   #5   ACCEPTED     0.00 s details
+   #6   WRONG ANSWER 0.01 s details
+   #7   WRONG ANSWER 0.01 s details
+   #8   WRONG ANSWER 0.01 s details
+   #9   ACCEPTED     0.00 s details
+   #10  ACCEPTED     0.00 s details
+   #11  ACCEPTED     0.00 s details
+   #12  ACCEPTED     0.00 s details
+   #13  ACCEPTED     0.00 s details
+   #14  WRONG ANSWER 0.00 s details
+   #15  ACCEPTED     0.01 s details
+   #16  ACCEPTED     0.00 s details
+   #17  ACCEPTED     0.00 s details
+   #18  ACCEPTED     0.00 s details
+
+Compiler report
+
+input/code.cpp: In function 'int pick_path(int)':
+input/code.cpp:74:35: warning: comparison of integer expressions of different signedness: 'std::set<int>::s
+ize_type' {aka 'long unsigned int'} and 'int' [-Wsign-compare]
+   74 |                 if (e[i].r.size() < min_len and
+      |                     ~~~~~~~~~~~~~~^~~~~~~~~
+input/code.cpp: In function 'int main()':
+input/code.cpp:109:23: warning: comparison of integer expressions of different signedness: 'int' and 'std::
+vector<int>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+  109 |     for (int i = 0; i < eo[1].size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~
+input/code.cpp:103:10: warning: ignoring return value of 'int scanf(const char*, ...)' declared with attrib
+ute 'warn_unused_result' [-Wunused-result]
+  103 |     scanf("%d %d", &n, &m);
+      |     ~~~~~^~~~~~~~~~~~~~~~~
+input/code.cpp:105:14: warning: ignoring return value of 'int scanf(const char*, ...)' declared with attrib
+ute 'warn_unused_result' [-Wun
+
+Code
+
+#include <bits/stdc++.h>
+using namespace std;
+struct edge {
+    int u, v, vis;
+    set<int> r;  //, rbkp;
+};
+int n, m, max_r;
+edge e[1005];
+vector<int> ei[501], eo[501];
+int vis[1005];
+vector<vector<int>> cur_res, final_res;
+
+void dry(int code, int edge_idx) {
+    e[edge_idx].r.insert(code);
+    // e[edge_idx].rbkp.insert(code);
+    vis[edge_idx] = 1;
+    if (e[edge_idx].v == n) return;
+    for (int i : eo[e[edge_idx].v]) {
+        if (vis[i]) continue;
+        dry(code, i);
+    }
+}
+
+void record_res(vector<int> &input) {
+    vector<int> t(input.begin(), input.end());
+    cur_res.push_back(t);
+}
+
+void pop_res() { cur_res.pop_back(); }
+
+void copy_res() {
+    final_res.clear();
+    for (auto i : cur_res) {
+        vector<int> t(i.begin(), i.end());
+        final_res.push_back(t);
+    }
+}
+
+void print_res() {
+    for (auto i : final_res) {
+        printf("%ld\n1 ", i.size() + 1);
+        for (int j = i.size() - 1; j >= 0; j--) printf("%d ", e[i[j]].v);
+        puts("");
+    }
+}
+
+int pick_path(int cnt) {
+    if (cnt >= max_r) {
+        copy_res();
+        return 1;
+    }
+    vector<int> candidates;
+    for (int i : ei[n])
+        if (e[i].r.size() > 0 and e[i].vis == 0) candidates.push_back(i);
+    if (candidates.size() == 0) {
+        if (cur_res.size() > final_res.size()) copy_res();
+        return 0;
+    }
+    int pick = candidates[0];
+    for (int i : candidates)
+        if (e[i].r.size() < e[pick].r.size()) pick = i;
+    // cout << pick << endl;
+    // bool no_path= true;
+    for (int code : e[pick].r) {
+        // cout << cnt << ".>" << code << endl;
+        vector<int> path, has_code;
+        path.push_back(pick);
+        e[pick].vis     = 1;
+        int now         = e[pick].u;
+        bool found_path = true;
+        while (now > 1) {
+            int min_len = 2000, min_pick = 0;
+            for (int i : ei[now])
+                if (e[i].r.size() < min_len and
+                    e[i].r.find(code) != e[i].r.end() and e[i].vis == 0) {
+                    min_len  = e[i].r.size();
+                    min_pick = i;
+                }
+            if (min_len == 2000) {
+                found_path = false;
+                break;
+            }
+            path.push_back(min_pick);
+            e[min_pick].vis = 1;
+            now             = e[min_pick].u;
+        }
+        for (int i = 1; i <= m; i++)
+            if (e[i].r.find(code) != e[i].r.end()) {
+                has_code.push_back(i);
+                e[i].r.erase(code);
+            }
+        if (found_path) record_res(path);
+        // cout << "here " << cnt << " " << code << endl;
+        if (pick_path(cnt + 1)) return 1;
+        for (int i : has_code) e[i].r.insert(code);
+        if (found_path) pop_res();
+        for (int i : path) e[i].vis = 0;
+    }
+    return 0;
+}
+
+int main() {
+    scanf("%d %d", &n, &m);
+    for (int i = 1; i <= m; i++) {
+        scanf("%d %d", &e[i].u, &e[i].v);
+        eo[e[i].u].push_back(i);
+        ei[e[i].v].push_back(i);
+    }
+    for (int i = 0; i < eo[1].size(); i++) {
+        memset(vis, 0, sizeof(vis));
+        dry(i, eo[1][i]);
+    }
+    max_r = ei[n].size();
+    pick_path(0);
+    cout << final_res.size() << endl;
+    print_res();
+}
+
+     * Share code to others
+
+Test details
+
+Test 1
+
+   Verdict: ACCEPTED
+   input
+   2 1
+   1 2
+   view save
+   correct output
+   1
+   2
+   1 2
+   view save
+   user output
+   1
+   2
+   1 2
+   view save
+
+Test 2
+
+   Verdict: ACCEPTED
+   input
+   4 2
+   1 2
+   3 4
+   view save
+   correct output
+   0
+   view save
+   user output
+   0
+   view save
+
+Test 3
+
+   Verdict: ACCEPTED
+    input
+   500 996
+   1 2
+   2 500
+   1 3
+   3 500
+   ...
+   view save
+   correct output
+   498
+   3
+   1 2 500
+   3
+   1 3 500
+   ...
+   view save
+   user output
+   498
+   3
+   1 2 500
+   3
+   1 3 500
+   ...
+   view save
+
+Test 4
+
+   Verdict: ACCEPTED
+    input
+   500 499
+   1 2
+   2 3
+   3 4
+   4 5
+   ...
+   view save
+   correct output
+   1
+   500
+   1 2 3 4 5 6 7 8 9 10 11 12 13 ...
+   view save
+   user output
+   1
+   500
+   1 2 3 4 5 6 7 8 9 10 11 12 13 ...
+   view save
+
+Test 5
+
+   Verdict: ACCEPTED
+   input
+   2 1
+   2 1
+   view save
+   correct output
+   0
+   view save
+   user output
+   0
+   view save
+
+Test 6
+
+   Verdict: WRONG ANSWER
+    input
+   40 1000
+   25 22
+   15 24
+   7 33
+   16 32
+   ...
+   view save
+   correct output
+   21
+   44
+   1 35 39 34 29 32 22 38 20 30 1...
+   view save
+   user output
+   13
+   171
+   1 26 25 16 19 18 30 27 16 4 10...
+   view save
+
+Test 7
+
+   Verdict: WRONG ANSWER
+    input
+   75 1000
+   72 6
+   46 66
+   63 45
+   70 46
+   ...
+   view save
+   correct output
+   12
+   30
+   1 29 24 9 18 63 45 31 66 72 6 ...
+   view save
+   user output
+   6
+   10
+   1 70 68 55 68 19 7 57 23 75
+   175
+   1 45 40 3 46 53 49 14 20 44 54...
+   view save
+
+Test 8
+
+   Verdict: WRONG ANSWER
+    input
+   100 1000
+   75 97
+   7 62
+   88 25
+   36 44
+   ...
+   view save
+   correct output
+   9
+   51
+   1 35 15 86 79 34 43 94 83 75 9...
+   view save
+   user output
+   4
+   75
+   1 35 15 70 10 66 73 72 63 89 3...
+   view save
+
+Test 9
+
+   Verdict: ACCEPTED
+   input
+   3 2
+   1 2
+   2 3
+   view save
+   correct output
+   1
+   3
+   1 2 3
+   view save
+   user output
+   1
+   3
+   1 2 3
+   view save
+
+Test 10
+
+   Verdict: ACCEPTED
+   input
+   11 12
+   1 2
+   2 3
+   3 4
+   4 5
+   ...
+   view save
+   correct output
+   2
+   6
+   1 2 3 4 5 11
+   7
+   1 6 7 8 9 10 11
+   view save
+   user output
+   2
+   6
+   1 2 3 4 5 11
+   7
+   1 6 7 8 9 10 11
+   view save
+
+Test 11
+
+   Verdict: ACCEPTED
+   input
+   8 9
+   1 2
+   2 3
+   3 8
+   1 4
+   ...
+   view save
+   correct output
+   2
+   5
+   1 2 6 7 8
+   5
+   1 4 5 3 8
+   view save
+   user output
+   2
+   5
+   1 2 6 7 8
+   5
+   1 4 5 3 8
+   view save
+
+Test 12
+
+   Verdict: ACCEPTED
+   input
+   8 9
+   1 2
+   1 3
+   2 3
+   3 4
+   ...
+   view save
+   correct output
+   1
+   8
+   1 2 3 4 5 6 7 8
+   view save
+   user output
+   1
+   8
+   1 2 3 4 5 6 7 8
+   view save
+
+Test 13
+
+   Verdict: ACCEPTED
+   input
+   7 9
+   1 2
+   1 3
+   2 7
+   3 4
+   ...
+   view save
+   correct output
+   3
+   3
+   1 2 7
+   4
+   1 3 5 7
+   ...
+   view save
+   user output
+   3
+   3
+   1 2 7
+   4
+   1 3 4 7
+   ...
+   view save
+
+Test 14
+
+   Verdict: WRONG ANSWER
+   input
+   7 15
+   3 6
+   5 2
+   5 4
+   3 5
+   ...
+   view save
+   correct output
+   2
+   5
+   1 2 3 6 7
+   4
+   1 4 5 7
+   view save
+   user output
+   1
+   9
+   1 2 5 4 5 2 3 5 7
+   view save
+
+Test 15
+
+   Verdict: ACCEPTED
+    input
+   500 986
+   244 252
+   224 22
+   81 484
+   273 432
+   ...
+   view save
+   correct output
+   116
+   5
+   1 129 142 473 500
+   5
+   1 63 158 171 500
+   ...
+   view save
+   user output
+   116
+   5
+   1 231 468 276 500
+   5
+   1 480 155 224 500
+   ...
+   view save
+
+Test 16
+
+   Verdict: ACCEPTED
+    input
+   122 199
+   1 2
+   1 3
+   2 4
+   2 5
+   ...
+   view save
+   correct output
+   1
+   42
+   1 82 83 84 85 86 87 88 89 90 9...
+   view save
+   user output
+   1
+   42
+   1 82 83 84 85 86 87 88 89 90 9...
+   view save
+
+Test 17
+
+   Verdict: ACCEPTED
+   input
+   22 61
+   1 2
+   1 3
+   1 4
+   1 5
+   ...
+   view save
+   correct output
+   10
+   4
+   1 2 18 22
+   4
+   1 3 16 22
+   ...
+   view save
+   user output
+   10
+   4
+   1 3 13 22
+   4
+   1 2 14 22
+   ...
+   view save
+
+Test 18
+
+   Verdict: ACCEPTED
+   input
+   9 12
+   1 2
+   1 3
+   3 9
+   2 3
+   ...
+   view save
+   correct output
+   3
+   5
+   1 2 6 7 9
+   4
+   1 3 8 9
+   ...
+   view save
+   user output
+   3
+   5
+   1 2 6 7 9
+   3
+   1 3 9
+   ...
+   view save
+
+Graph Algorithms
+
+   ... De Bruijn SequenceTeleporters PathHamiltonian FlightsKnight's TourDownload SpeedPolice
+   ChaseSchool DanceDistinct Routes
+     _____________________________________________________________________________________________
+
+Your submissions
+
+   2024-03-11 01:37:28 2024-03-09 00:12:39 2024-03-08 23:00:31 2024-03-08 22:48:33 2024-03-08
+   20:26:49 2024-03-08 07:04:25 2024-03-08 06:59:43 2024-03-08 01:04:46 2024-03-08 00:57:39
+   2024-03-07 23:40:10 2024-01-05 06:14:57 2024-01-05 05:12:49 2024-01-04 20:13:55 2024-01-04
+   20:12:38 2024-01-04 19:47:41 2024-01-04 19:44:06 2024-01-04 19:42:43 2024-01-04 19:27:34
+   2024-01-04 19:25:33

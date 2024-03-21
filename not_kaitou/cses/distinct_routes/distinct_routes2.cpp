@@ -21,7 +21,8 @@ void mark_new_path(int prev_edge) {
     path_tail[e[prev_edge].start_node] = prev_edge;
     int start_node                     = e[prev_edge].start_node;
     for (int i = 1; i <= m; i++)
-        if (e[i].start_node == start_node) e[i].start_node = 0;
+        if (e[i].start_node == start_node)
+            e[i].start_node = 0, vis_e_cur[i] = 0;
     // clean all the old marks
     for (int i = prev_edge; i; vis_e_cur[i] = 1, i = e[i].fa)
         e[i].start_node = start_node;  // trace the new path mark

@@ -1,8 +1,87 @@
-[01m[Ktowers.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
-[01m[Ktowers.cpp:6:10:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-    6 |     [01;35m[Kscanf("%d", &n)[m[K;
-      |     [01;35m[K~~~~~^~~~~~~~~~[m[K
-[01m[Ktowers.cpp:8:14:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kint scanf(const char*, ...)[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
-    8 |         [01;35m[Kscanf("%d", &a)[m[K;
-      |         [01;35m[K~~~~~^~~~~~~~~~[m[K
-[0;32mCompiled successfully.[0m
+1: 1 0 
+2: 1 0 
+3: 1 0 
+4: 1 0 
+5: 1 0 
+6: 1 0 
+7: 1 0 
+8: 1 0 
+9: 1 0 
+10: 1 0 
+11: 1 0 
+12: 1 0 
+13: 1 0 
+14: 
+15: 
+start picked edge_idx 5
+5 E I nxt:4
+3 E I nxt:8
+code=1 node 2 to nxt ei 2 has color 1
+code=1 node 2 to nxt ei 9 has color 1
+2 E I nxt:9
+add path len:4
+1: 1 0 
+2: 1 0 
+3: 1 0 
+4: 0 
+5: 0 
+6: 1 0 
+7: 1 0 
+8: 0 
+9: 0 
+10: 1 0 
+11: 1 0 
+12: 1 0 
+13: 1 0 
+14: 
+15: 
+start picked edge_idx 7
+6 E I nxt:1
+6 E I nxt:1
+pick_path return 0
+3 E I nxt:11
+5 E I nxt:6
+4 E I nxt:13
+add path len:4
+1: 1 0 
+2: 1 0 
+3: 1 0 
+4: 1 0 
+5: 0 
+6: 0 
+7: 1 0 
+8: 1 0 
+9: 0 
+10: 1 0 
+11: 1 0 
+12: 1 0 
+13: 0 
+14: 
+15: 
+start picked edge_idx 7
+6 E I nxt:1
+3 E I nxt:8
+code=1 node 2 to nxt ei 2 has color 1
+2 E I nxt:2
+code=1 node 2 to nxt ei 9 has color 0
+6 E I nxt:1
+3 E I nxt:8
+code=0 node 2 to nxt ei 2 has color 1
+2 E I nxt:2
+code=0 node 2 to nxt ei 9 has color 1
+pick_path return 0
+5 E I nxt:12
+code=1 node 2 to nxt ei 2 has color 1
+code=1 node 2 to nxt ei 9 has color 0
+5 E I nxt:4
+3 E I nxt:8
+code=0 node 2 to nxt ei 2 has color 1
+code=0 node 2 to nxt ei 9 has color 1
+3 E I nxt:11
+5 E I nxt:6
+5 E I nxt:12
+code=0 node 2 to nxt ei 2 has color 1
+code=0 node 2 to nxt ei 9 has color 1
+1
+5
+1 2 3 5 7 
