@@ -13,6 +13,10 @@ bool cmp_l(const lmt& a, const lmt& b) {
         return a.l > b.l;
 }
 
+// sort all the limits (lmt) in an order that ends lefter first
+// and try to make the limits being met with the trees at the right side of the range as possible, which can be shared with future limit ranges.
+// Using prefix sum to quickly decide how many trees are there in a range. 
+//
 void solve() {
     int n, k;
     scanf("%d %d", &n, &k);
@@ -32,26 +36,25 @@ void solve() {
         else
             l[i].r = distance(a.begin(), it);
     }
+    // sort the trees into orders, and make each limit range left and right side to sit on one tree. The left side sits to the left most tree in the range, 
+    // while the right side of the range sits on the right most tree in the range. 
     sort(l, l + k, cmp_l);
     int l_idx = 0, ps[n + 1];
     memset(ps, 0, sizeof(int) * (n + 1));
-    // for (int i = 0; i < k; i++)
-    //     cout << l[i].l << " " << l[i].r << " " << l[i].t << endl;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { // go through the ranges by order.
         if (i > 0)
-            ps[i] = ps[i - 1];
+            ps[i] = ps[i - 1]; // inherate prefix sum value from last position.
         while (l[l_idx].r == i and l_idx < k) {
             int range_sum;
             if (l[l_idx].l > 0)
                 range_sum = ps[i] - ps[l[l_idx].l - 1];
             else
-                range_sum = ps[i];
-            // cout << range_sum << " " << l_idx << " " << l[l_idx].l << " "
-            //      << l[l_idx].r << " " << l[l_idx].t << endl;
+                range_sum = ps[i]; // count how many trees are currently in the range
             if (range_sum < l[l_idx].t) {
                 int gap = l[l_idx].t - range_sum;
                 int j = i;
-                while (gap > 0) {
+                while (gap > 0) { // if not enough trees in the range, put trees on the right most available slots
+                                  // which ps[i-1]==ps[i] means at position i there is no tree
                     int new_psj = ps[j] + gap;
                     if (j > 0)
                         gap -= (ps[j] == ps[j - 1]);
@@ -62,7 +65,6 @@ void solve() {
             }
             l_idx++;
         }
-        // cout << i << "->" << ps[i] << endl;
     }
     cout << n - ps[n - 1] << endl;
 }

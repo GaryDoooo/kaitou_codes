@@ -1,5 +1,9 @@
 #include <stdio.h>
 long long s[512345], em;
+// The total number of cake Elsie can get is N/2-1. There are always two cakes in the middle that Elsie can't reach at a certain step and all the step after.
+// Bessie should merge these two cakes. By Bessie doing this, the best Elsie can do is to get the N/2-1 cakes from the two ends, whichever portion 
+// the right and left, but makes the total max.
+// 然后就是前缀和。很简单。
 int main() {
     int t, n;
     scanf("%d", &t);
